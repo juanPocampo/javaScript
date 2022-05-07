@@ -8,7 +8,8 @@
     <title>30325-JavaScript: Desafío entregable Nº4</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
@@ -72,13 +73,12 @@
                 <label for="apellido">Apellido</label><br>
                 <input type="text" name="apellido" id="apellido" class="input" required><br>
                 <label for="dni">DNI</label><br>
-                <input type="text" name="dni" id="dni" class="input" required><br>
+                <input type="text" name="dni" id="dni" class="input" pattern=".{8}" title="Debe contener ocho números" required><br>
                 <label for="edad">Edad</label><br>
-                <input type="text" name="edad" id="edad" class="input" required><br>
+                <input type="text" name="edad" id="edad" class="input" pattern=".{2}" title="Debe contener dos números" required><br>
                 <label for="clave">Clave digital</label><br>
-                <input type="password" name="clave" id="clave" class="input" required><br>
-                <input type="submit" class="btn registro" id="nUser" value="Registrarme">
-                <br>
+                <input type="password" name="clave" id="clave" class="input" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Debe contener al menos seis caracteres que incluyan al menos un número, una mayúscula y una minúscula"required><br>
+                <input type="submit" class="btn registro" id="nUser" value="Registrarme"><br>
                 <a href="./principal.html" class="btn volverPpal" id="volver">Volver</a>
             </form>
         </div>
