@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>30325-JavaScript: Desafío entregable Nº4</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <!-- Menú principal -->
+    <div id="menuPrincipal">
+        <div class="botones">
+            <a class="btn azul" id="loginCliente">Ingresar</a>
+        </div>
+        <div class="botones">
+            <a class="btn verde" id="nuevoRegistro">Registrarme</a>
+        </div>
+        <div class="botones">
+            <a class="btn rojo" id="recuperoClave">Recuperar clave</a>
+        </div>
+        <div class="botones">
+            <button class="btn salir" id="salirMenu">Salir</button>
+        </div>
+    </div>
+
+    <!-- Menú de ingreso de usuario existente -->
+    <div id="menuLogin">
+        <div id="borrarMenuLogin">
+            <form id="formLogin">
+                <label for="dniLogin" id="labelDNI">DNI</label><br>
+                <input type="text" name="dniLogin" id="dniLogin" class="input" required><br><br>
+                <label for="password" id="labelClave">Clave digital</label><br>
+                <input type="password" name="claveLogin" id="claveLogin" class="input" required><br><br>
+                <input type="submit" class="btn ingreso" id="ingresar" value="Ingresar"><br>
+                <a href="./principal.html" class="btn volverPpal" id="volver">Volver</a>
+            </form>
+        </div>
+    </div>
+    <div id="clienteLogin"></div>
+    <!-- Fin menú de ingreso de usuario existente -->
+
+    <!-- Menú recuperar clave -->
+    <div id="menuClave">
+        <div id="borrarMenuClave">
+            <form id="formRecuperarClave">
+                <label for="dniBuscar">DNI</label><br>
+                <input type="text" name="dniBuscar" id="dniBuscar" class="input" required><br>
+                <div id="clienteEncontrado"></div>
+                <div id="claveRecuperada">
+                    <input type="submit" class="btn recupero" id="ingresar" value="Recuperar clave"><br><br>
+                </div>
+                <a href="./principal.html" class="btn volverPpal" id="volver">Volver</a>
+            </form>
+        </div>
+    </div>
+    <div id="clienteEncontrado"></div>
+    <!-- Fin menú recuperar clave -->
+
+    <!-- Registro de nuevo cliente -->
+    <div id="menuNuevoCliente">
+        <div id="borrarMenuNuevoCliente">
+            <form id="formNuevoCliente">
+                <label for="nombre">Nombre</label><br>
+                <input type="text" name="nombre" id="nombre" class="input" required><br>
+                <label for="apellido">Apellido</label><br>
+                <input type="text" name="apellido" id="apellido" class="input" required><br>
+                <label for="dni">DNI</label><br>
+                <input type="text" name="dni" id="dni" class="input" required><br>
+                <label for="edad">Edad</label><br>
+                <input type="text" name="edad" id="edad" class="input" required><br>
+                <label for="clave">Clave digital</label><br>
+                <input type="password" name="clave" id="clave" class="input" required><br>
+                <input type="submit" class="btn registro" id="nUser" value="Registrarme">
+                <br>
+                <a href="./principal.html" class="btn volverPpal" id="volver">Volver</a>
+            </form>
+        </div>
+    </div>
+    <div id="nuevoCliente"></div>
+    <!-- Fin registro de nuevo cliente -->
+
+    <!-- Scripts js -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.2/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

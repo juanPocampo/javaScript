@@ -1,0 +1,585 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Heebo', sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    background: rgb(199, 207, 241);
+}
+
+#menuLogin {
+    margin-top: 100px;
+}
+
+#menuClave {
+    margin-top: 100px;
+}
+
+#menuNuevoCliente {
+    margin-top: 70px;
+}
+
+.btnAtras {
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    text-decoration: none;
+    margin: 20px;
+    color: #fff;
+    /*     position: absolute; */
+    display: inline-block;
+}
+
+.btnAtras2 {
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    text-decoration: none;
+    margin: 20px;
+    color: #fff;
+    /*     position: absolute; */
+    display: inline-block;
+}
+
+.titulo {
+    margin-top: 100px;
+    color: rgb(26, 26, 104);
+    text-align: center;
+}
+
+.subtitulo1 {
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: 30px;
+    color: rgb(26, 26, 104);
+    text-align: center;
+}
+
+.subtitulo2 {
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 10px;
+    color: rgb(26, 26, 104);
+    text-align: center;
+}
+
+.botones {
+    padding-top: 5px;
+    text-align: center;
+}
+
+.btn {
+    width: 200px;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-size: 16px;
+    text-decoration: none;
+    margin: 10px;
+    color: black;
+    position: relative;
+    display: inline-block;
+}
+
+.banca {
+    width: 300px;
+    margin-top: 30px;
+    background-color: rgb(26, 26, 104);
+    color: white;
+}
+
+.azul {
+    margin-top: 100px;
+    background-color: blue;
+    color: white;
+    border: 1px blue solid;
+}
+
+.azul:hover {
+    background-color: white;
+    color: rgb(17, 17, 94);
+    cursor: pointer;
+    border: 1px rgb(17, 17, 94) solid;
+}
+
+.verde {
+    color: blue;
+    border: 1px blue solid;
+}
+
+.verde:hover {
+    background-color: rgb(17, 17, 94);
+    color: white;
+    cursor: pointer;
+    border: 1px rgb(17, 17, 94) solid;
+}
+
+.rojo {
+    color: rgb(143, 139, 139);
+    background-color: none;
+    border: 1px rgb(143, 139, 139) solid;
+}
+
+.rojo:hover {
+    color: white;
+    background-color: #4b4a49;
+    cursor: pointer;
+    border: 1px #4b4a49 solid;
+}
+
+.salir {
+    color: rgb(141, 144, 155);
+    background-color: white;
+    border: none;
+}
+
+.salir:hover {
+    color: white;
+    background-color: #4b4a49;
+    cursor: pointer;
+    border: 1px #4b4a49 solid;
+}
+
+.ingreso {
+    color: black;
+    background-color: white;
+    margin-top: 20px;
+    border: 1px black solid;
+}
+
+.ingreso:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.ingresarSaldos {
+    color: white;
+    background-color: rgb(53, 48, 48);
+    margin-top: 20px;
+    border: 1px rgb(53, 48, 48) solid;
+}
+
+.ingresarSaldos:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.swal {
+    text-align: center;
+    margin: 0px;
+    background-color: blue;
+    color: white;
+    border: 1px blue solid;
+}
+
+.menuOperaciones {
+    display: flex;
+}
+
+.botonesOperacion {
+    border-radius: 5px;
+    padding: 0px 50px;
+    font-size: 16px;
+    text-decoration: none;
+    color: rgb(90, 83, 83);
+    text-align: center;
+}
+
+.operacion {
+    color: white;
+    background-color: black;
+    margin-top: 20px;
+    border: 1px black solid;
+}
+
+.operacion:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.volver {
+    color: white;
+    background-color: black;
+    margin-top: 20px;
+    border: 1px black solid;
+}
+
+.volver:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.volverPpal {
+    color: white;
+    background-color: rgb(21, 16, 70);
+    margin-top: 0px;
+    border: 1px black solid;
+}
+
+.volverPpal:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.volverDolares {
+    text-align: center; 
+    color: white;
+    background-color: rgb(21, 16, 70);
+    margin-left: 10px;
+    border: 1px black solid;
+}
+
+.volverDolares:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+} 
+
+.confirmarSaldos {
+    color: white;
+    background-color: rgb(14, 79, 163);
+    margin-top: 0px;
+    border: 1px rgb(14, 79, 163) solid;
+}
+
+.confirmarSaldos:hover {
+    background-color: white;
+    color: rgb(14, 79, 163);
+    cursor: pointer;
+}
+
+#formSaldos {
+    margin-top: 30px;
+}
+
+.configTitulo {
+    margin-top: 60px;
+    margin-bottom: 10px;
+    color: black;
+    text-align: center;
+}
+
+.configSubTitulo {
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    text-align: center;
+}
+
+.saldos {
+    width: 300px;
+    color: white;
+    background-color: rgb(77, 107, 153);
+    margin-top: 30px;
+    border: 1px rgb(77, 107, 153);
+}
+
+.saldos:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.transfPropia {
+    width: 300px;
+    color: white;
+    background-color: rgb(77, 107, 153);
+    margin-top: 30px;
+    border: 1px rgb(77, 107, 153);
+}
+
+.transfPropia:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.transfTerceros {
+    width: 300px;
+    color: white;
+    background-color: rgb(77, 107, 153);
+    margin-top: 10px;
+    border: 1px rgb(77, 107, 153);
+}
+
+.transfTerceros:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.dolares {
+    width: 300px;
+    color: white;
+    background-color: rgb(77, 107, 153);
+    margin-top: 10px;
+    border: 1px rgb(77, 107, 153);
+    margin-bottom: 20px;
+}
+
+.dolares:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.dolarTitulo0 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 150px;
+    margin-top: 100px;
+    margin-bottom: 10px;
+    color: black;
+    text-align: left;
+}
+
+.dolarTitulo1 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 150px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: black;
+    text-align: left;
+}
+
+.cotizacionDolar {
+    font-size: 12px;
+    font-weight: normal;
+    margin-left: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: black;
+    text-align: left;
+}
+
+.dolarPrecio {
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: black;
+    text-align: center;
+    align-content: center;
+}
+
+.cvDolares {
+    text-align: center;
+}
+
+.salirOp {
+    width: 300px;
+    color: black;
+    background-color: white;
+    margin-top: 5px;
+    border: 1px black solid;
+    margin-bottom: 10px;
+}
+
+.salirOp:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+#clienteLogin {
+    text-align: center;
+    margin-top: 30px;
+    color: black;
+}
+
+#clienteEncontrado {
+    text-align: center;
+    margin-top: 30px;
+    color: black;
+}
+
+#inicioCuentas {
+    text-align: center;
+    margin-top: 30px;
+    color: black;
+}
+
+.saldosIniciales {
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.saldoInicial {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.saldo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#nuevoCliente {
+    text-align: center;
+    margin-top: 30px;
+    color: black;
+}
+
+.claveRecuperada {
+    font-size: 14px;
+    color: rgb(87, 84, 84)
+}
+
+.alert1 {
+    font-size: 18px;
+    font-weight: normal;
+    color: red;
+}
+
+.alert2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+}
+
+.recupero {
+    color: black;
+    background-color: white;
+    margin-top: 0px;
+    border: 1px black solid;
+}
+
+.recupero:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.registro {
+    color: black;
+    background-color: white;
+    margin-left: 10px;
+    margin-top: 20px;
+    border: 1px black solid;
+}
+
+.registro:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+#compraDolares {
+    color: black;
+    background-color: white;
+    margin-left: 0px;
+    margin-top: 20px;
+    border: 1px black solid;
+}
+
+#compraDolares:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.flecha {
+    background-color: rgb(58, 58, 57);
+}
+
+.flecha:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.input {
+    width: 200px;
+    height: 30px;
+    margin-bottom: 12px;
+    color: black;
+    border: 1px solid rgb(204, 203, 203);
+}
+
+.configMonto {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    color: black;
+    text-align: center;
+}
+
+.inputMonto {
+    font-size: 12px;
+    font-weight: normal;
+    width: 150px;
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding-left: 10px;
+    text-align: left;
+    color: black;
+    border: 1px solid rgb(204, 203, 203);
+}
+
+#formCompraDolares {
+    text-align: left;
+    margin-left: 150px;
+}
+
+.ingresarImporte {
+    font-size: 12px;
+    font-weight: normal;
+    margin-left: 165px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: gray;
+}
+
+.simularTotal {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 0px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: black;
+}
+
+#formNuevoUsuario {
+    margin-top: 50px;
+}
+
+.normativaBCRA {
+    font-size: 12px;
+    font-weight: normal;
+    text-align:left;
+    padding: 20px;
+    margin-left: 150px;
+    margin-right: 200px;
+    background-color:rgba(158, 189, 214, 0.514);
+}
+
+/* CSS menu nuevo usuario */
+form {
+    text-align: center;
+}
+
+#formNuevoUsuario #flecha {
+    text-align: left;
+}
+
+#flecha2 {
+    text-align: left;
+}
+
+/* Esconder menúes al entrar por primera vez */
+#menuLogin,
+#menuClave,
+#menuNuevoCliente {
+    display: none;
+}

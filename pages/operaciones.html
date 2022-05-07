@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>30325-JavaScript: Desafío entregable Nº4</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <!-- Menú principal de operaciones -->
+    <div id="encabezadoMenuOp" id="spinner">
+        <h2 class="configTitulo">Operaciones</h2>
+        <h3 class="configSubTitulo">Seleccione la operación que desea realizar</h3>
+    </div>
+    <div id="menuOperaciones">
+        <div class="botonesOperacion">
+            <a class="btn transfPropia" id="TransfPropia">Transferencia a cuenta propia</a>
+        </div>
+        <div class="botonesOperacion">
+            <a class="btn transfTerceros" id="TransfTerceros">Transferencia a cuenta de terceros</a>
+        </div>
+        <div class="botonesOperacion">
+            <a class="btn dolares" id="cvDolares">Compraventa de dólares</a>
+        </div>
+        <div class="botonesOperacion">
+            <a href="./principal.html" class="btn salirOp" id="salirMenu">Salir</a>
+        </div>
+    </div>
+
+    <!-- Transferencia a cuenta propia -->
+    <div id="transfPropia0">
+        <div id="borrarTransfPropia">
+            <!-- Mostrar el formulario para realizar una transferencia a una cuenta propia -->
+        </div>
+    </div>
+    <div id="transfPropia2"></div>
+    <!-- Fin transferencia a cuenta propia -->
+
+    <!-- Transferencia a cuenta de terceros -->
+    <div id="transfTerceros0">
+        <div id="borrarTransfTerceros">
+            <!-- Mostrar el formulario para realizar una transferencia a una cuenta de terceros -->
+        </div>
+    </div>
+    <div id="transfTerceros1"></div>
+    <!-- Fin transferencia a cuenta propia -->
+
+    <!-- Compraventa de dólares -->
+    <div id="cvDolares0">
+        <div id="borrarCVDolares">
+            <!-- Mostrar el formulario para comprar o vender dólares -->
+        </div>
+        <div id="tipoDeCambio">
+        </div>
+    </div>
+    <div id="cvDolares1"></div>
+    <!-- Fin compraventa de dólares -->
+
+    <!-- Scripts js -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.2/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
