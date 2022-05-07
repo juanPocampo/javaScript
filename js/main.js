@@ -212,13 +212,30 @@ function abrirMenuOp(menu) {
                                                                     </select>
                                                                     <br><br>
                                                                     <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
-                                                                    <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto" required><br>
+                                                                    <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required><br>
                                                                     <input type="submit" class="btn confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
                                                                     <a href="./operaciones.html" class="btn volverTransf" id="volver">Volver</a>
                                                                 </form>`
     } else if (menu == "transfTerceros0") {
         document.querySelector("#menuOperaciones").style.display = "none";
         document.querySelector("#transfTerceros0").style.display = "block";
+        const element = document.querySelector("#encabezadoMenuOp");
+        element.remove();
+        document.querySelector("#transfTerceros0").innerHTML = `<h2 class="dolarTitulo0">Transferencia a cuenta de terceros</h2>
+                                                                <form id="transfPropia">
+                                                                    <label for="cuenta">Seleccione la cuenta de origen:</label>
+                                                                    <select name="cuentas" id="cuentas">
+                                                                        <option value="cuentaCorriente">Cuenta Corriente</option>
+                                                                        <option value="cajaDeAhorro">Caja de Ahorro</option>
+                                                                    </select>
+                                                                    <br><br>
+                                                                    <label for="cuenta">Ingrese CBU de la cuenta de destino:</label>
+                                                                    <input type="text" name="montoTransf" id="montoTransf" class="input" pattern=".{22}" title="Debe contener 22 números" required><br>
+                                                                    <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
+                                                                    <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required><br>
+                                                                    <input type="submit" class="btn confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
+                                                                    <a href="./operaciones.html" class="btn volverTransf" id="volver">Volver</a>
+                                                                </form>`
     } else if (menu == "cvDolares0") {
         document.querySelector("#menuOperaciones").style.display = "none";
         document.querySelector("#cvDolares0").style.display = "block";
