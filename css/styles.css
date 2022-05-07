@@ -242,6 +242,20 @@ body {
     cursor: pointer;
 } 
 
+.volverTransf {
+    text-align: center; 
+    color: white;
+    background-color: rgb(21, 16, 70);
+    margin-left: 10px;
+    border: 1px black solid;
+}
+
+.volverTransf:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+} 
+
 .confirmarSaldos {
     color: white;
     background-color: rgb(14, 79, 163);
@@ -487,6 +501,28 @@ body {
     cursor: pointer;
 }
 
+.confirmTransfPropia {
+    color: black;
+    background-color: white;
+    margin-left: 0px;
+    margin-top: 30px;
+    border: 1px black solid;
+}
+
+.transfPropia {
+    width: 300px;
+    color: white;
+    background-color: rgb(77, 107, 153);
+    margin-top: 10px;
+    border: 1px rgb(77, 107, 153);
+}
+
+.transfPropia:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
 .flecha {
     background-color: rgb(58, 58, 57);
 }
@@ -532,6 +568,12 @@ body {
     margin-left: 150px;
 }
 
+#transfPropia    {
+    text-align: left;
+    margin-top: 20px;    
+    margin-left: 150px;
+}
+
 .ingresarImporte {
     font-size: 12px;
     font-weight: normal;
@@ -539,6 +581,15 @@ body {
     margin-top: 10px;
     margin-bottom: 0px;
     color: gray;
+}
+
+.ingresarImporteTransf {
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: black;
 }
 
 .simularTotal {

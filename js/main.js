@@ -195,6 +195,27 @@ function abrirMenuOp(menu) {
     if (menu == "transfPropia0") {
         document.querySelector("#menuOperaciones").style.display = "none";
         document.querySelector("#transfPropia0").style.display = "block";
+        const element = document.querySelector("#encabezadoMenuOp");
+        element.remove();
+        document.querySelector("#transfPropia0").innerHTML = `<h2 class="dolarTitulo0">Transferencia a cuenta propia</h2>
+                                                                <form id="transfPropia">
+                                                                    <label for="cuenta">Seleccione la cuenta de origen:</label>
+                                                                    <select name="cuentas" id="cuentas">
+                                                                        <option value="cuentaCorriente">Cuenta Corriente</option>
+                                                                        <option value="cajaDeAhorro">Caja de Ahorro</option>
+                                                                    </select>
+                                                                    <br><br>
+                                                                    <label for="cuenta">Seleccione la cuenta de destino:</label>
+                                                                    <select name="cuentas" id="cuentas">
+                                                                        <option value="cuentaCorriente">Cuenta Corriente</option>
+                                                                        <option value="cajaDeAhorro">Caja de Ahorro</option>
+                                                                    </select>
+                                                                    <br><br>
+                                                                    <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
+                                                                    <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto" required><br>
+                                                                    <input type="submit" class="btn confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
+                                                                    <a href="./operaciones.html" class="btn volverTransf" id="volver">Volver</a>
+                                                                </form>`
     } else if (menu == "transfTerceros0") {
         document.querySelector("#menuOperaciones").style.display = "none";
         document.querySelector("#transfTerceros0").style.display = "block";
@@ -233,10 +254,11 @@ function abrirMenuOp(menu) {
                                                                         <input type="submit" class="btn compraDolares" id="compraDolares" value="Confirmar">
                                                                         <a href="./operaciones.html" class="btn volverDolares" id="volver">Volver</a>
                                                                     </form>`
-                document.querySelector("#simularTotal").addEventListener("onchange", () => simularTotal());
+                // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input (agregar el importe simulado al final de "Total con impuesto...")
+/*                 document.querySelector("#simularTotal").addEventListener("onchange", () => simularTotal());
                 function simularTotal() {
 
-                }
+                } */
             })
 
         // Fin de la petición
