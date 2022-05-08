@@ -12,6 +12,20 @@ class Cliente {
     }
 }
 
+// Declaración del array operaciones
+const arrayOperaciones = [];
+
+// Creación de la clase Operación
+class Operacion {
+    constructor(operacion, origen, destino, importe) {
+        this.operacion = operacion;
+        this.origen = origen;
+        this.destino = destino;
+        this.importe = importe;
+    }
+}
+
+
 // Función display de menúes
 function abrirMenu(menu) {
     if (menu == "menuNuevoCliente") {
@@ -199,23 +213,65 @@ function abrirMenuOp(menu) {
         element.remove();
         document.querySelector("#transfPropia0").innerHTML = `<h2 class="dolarTitulo0">Transferencia a cuenta propia</h2>
                                                                 <form id="transfPropia">
-                                                                    <label for="cuenta">Seleccione la cuenta de origen:</label>
-                                                                    <select name="cuentas" id="cuentas">
-                                                                        <option value="cuentaCorriente">Cuenta Corriente</option>
-                                                                        <option value="cajaDeAhorro">Caja de Ahorro</option>
-                                                                    </select>
+                                                                    <label for="cuenta">Seleccione la cuenta de <strong>origen:</strong></label>
+                                                                    <span id="origen">
+                                                                        <select name="cuentas" id="cuentaOrigen">
+                                                                            <option value=""></option>
+                                                                            <option value="Cuenta Corriente">Cuenta Corriente</option>
+                                                                            <option value="Caja de Ahorro">Caja de Ahorro</option>
+                                                                        </select>
+                                                                    </span>
                                                                     <br><br>
-                                                                    <label for="cuenta">Seleccione la cuenta de destino:</label>
-                                                                    <select name="cuentas" id="cuentas">
-                                                                        <option value="cuentaCorriente">Cuenta Corriente</option>
-                                                                        <option value="cajaDeAhorro">Caja de Ahorro</option>
-                                                                    </select>
+                                                                    <label for="cuenta">Seleccione la cuenta de <strong>destino:</strong></label>
+                                                                    <span id="destino">
+                                                                        <select name="cuentas" id="cuentaDestino">
+                                                                            <option value=""></option>
+                                                                            <option value="Cuenta Corriente">Cuenta Corriente</option>
+                                                                            <option value="Caja de Ahorro">Caja de Ahorro</option>
+                                                                        </select>
+                                                                    </span>
                                                                     <br><br>
                                                                     <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
                                                                     <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required><br>
                                                                     <input type="submit" class="btn confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
                                                                     <a href="./operaciones.html" class="btn volverTransf" id="volver">Volver</a>
                                                                 </form>`
+        let input1 = document.getElementById("cuentaOrigen")
+        input1.onchange = () => {
+            if (input1.value = "Cuenta Corriente") {
+                document.querySelector("#origen").innerHTML = `Caja de Ahorro`
+                document.querySelector("#destino").innerHTML = `Cuenta Corriente`
+            } else if (input1.value = "Caja de Ahorro") {
+                document.querySelector("#origen").innerHTML = `Cuenta Corriente`
+                document.querySelector("#destino").innerHTML = `Caja de Ahorro`
+            }
+        }
+        // Función confirmar transferencia
+        if (document.querySelector("#transfPropia")) {
+            document.querySelector("#transfPropia").addEventListener("submit", confTransfPropia);
+        }
+        function confTransfPropia(e) {
+            // Paramos el envio del formulario submit
+            e.preventDefault();
+            // Recuperar información de los inputs
+            const origen = document.querySelector("#cuentaOrigen").value;
+            const destino = document.querySelector("#cuentaDestino").value;
+            const importe = document.querySelector("#inputMonto").value;
+            // Creación del objeto persona
+            const operacion = new Operacion(origen, destino, importe);
+           // Pusheo en el array
+            arrayOperaciones.push(operacion);
+            Swal.fire({
+                title: "Operación realizada",
+                icon: "success",
+                imageWidth: 400,
+                imageHeight: 200,
+                showConfirmButton: true,
+            })
+            // Guardado del array en localstorage y conversión en JSON
+            sessionStorage.setItem("arrayOperaciones", JSON.stringify(arrayOperaciones));
+        }
+        // Fin función confirmar transferencia
     } else if (menu == "transfTerceros0") {
         document.querySelector("#menuOperaciones").style.display = "none";
         document.querySelector("#transfTerceros0").style.display = "block";
@@ -272,10 +328,10 @@ function abrirMenuOp(menu) {
                                                                         <a href="./operaciones.html" class="btn volverDolares" id="volver">Volver</a>
                                                                     </form>`
                 // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input (agregar el importe simulado al final de "Total con impuesto...")
-/*                 document.querySelector("#simularTotal").addEventListener("onchange", () => simularTotal());
-                function simularTotal() {
-
-                } */
+                /*                 document.querySelector("#simularTotal").addEventListener("onchange", () => simularTotal());
+                                function simularTotal() {
+                
+                                } */
             })
 
         // Fin de la petición
