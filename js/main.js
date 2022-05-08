@@ -236,8 +236,8 @@ function abrirMenuOp(menu) {
                 document.querySelector("#origen").innerHTML = `<strong>Origen</strong>: Cuenta Corriente<br><br>
                                                                 <strong>Destino</strong>: Caja de Ahorro<br><br>`
             } else if (origen.value = "Caja de Ahorro") {
-                document.querySelector("#origen").innerHTML = `<strong>Origen</strong>: Caja de Ahorro<br><br>
-                                                                <strong>Destino</strong>: Cuenta Corriente<br><br>`;
+                document.querySelector("#origen").innerHTML = `<strong>Origen</strong>: Cuenta Corriente<br><br>
+                                                                <strong>Destino</strong>: Caja de Ahorro<br><br>`;
             }
         }
         // Función confirmar transferencia (crear un objeto con los datos de la operación)
