@@ -332,6 +332,7 @@ function abrirMenuOp(menu) {
                                                                 <form id="transfPropia">
                                                                     <label for="cuenta">Seleccione la cuenta de origen:</label>
                                                                     <select name="cuentas" id="cuentas">
+                                                                        <option value=""></option>    
                                                                         <option value="cuentaCorriente">Cuenta Corriente</option>
                                                                         <option value="cajaDeAhorro">Caja de Ahorro</option>
                                                                     </select>
