@@ -8,12 +8,13 @@ const arrayClientes = [];
 
 // Creación de la clase Cliente
 class Cliente {
-    constructor(nombre, apellido, dni, edad, clave) {
+    constructor(nombre, apellido, dni, edad, clave, saldo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.edad = edad;
         this.clave = clave;
+        this.saldo = saldo;
     }
 }
 
@@ -81,9 +82,10 @@ function nuevoCliente(e) {
     const dni = document.querySelector("#dni").value;
     const edad = document.querySelector("#edad").value;
     const clave = document.querySelector("#clave").value;
+    const saldo = {CC:1000000, CP:0, CD:0}
 
     // Creación del objeto persona
-    const cliente = new Cliente(nombre, apellido, dni, edad, clave);
+    const cliente = new Cliente(nombre, apellido, dni, edad, clave, saldo);
 
     if (edad >= 18) {
         // Pusheo en el array
