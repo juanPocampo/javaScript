@@ -1,3 +1,8 @@
+// Declaración de los saldos
+let saldoCC = 1000000; // Cuenta corriente
+let saldoCP = 0; // Caja de ahorro en pesos
+let saldoCD = 0; // Caja de ahorro en dólares
+
 // Declaración del array clientes
 const arrayClientes = [];
 

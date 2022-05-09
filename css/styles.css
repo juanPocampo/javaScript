@@ -180,15 +180,6 @@ body {
     display: flex;
 }
 
-.botonesOperacion {
-    border-radius: 5px;
-    padding: 0px 50px;
-    font-size: 16px;
-    text-decoration: none;
-    color: rgb(90, 83, 83);
-    text-align: center;
-}
-
 .operacion {
     color: white;
     background-color: black;
@@ -273,6 +264,13 @@ body {
     margin-top: 30px;
 }
 
+
+/* Operaciones */
+#operaciones {
+    text-align: left;
+    padding: 30px 700px 0px 0px;
+}
+
 .configTitulo {
     margin-top: 60px;
     margin-bottom: 10px;
@@ -282,16 +280,24 @@ body {
 
 .configSubTitulo {
     color: black;
-    text-align: center;
     font-size: 16px;
+    text-align: center;
+}
+
+.botonesOperacion {
+    border-radius: 5px;
+    padding: 0px 50px;
+    font-size: 16px;
+    text-decoration: none;
+    color: rgb(90, 83, 83);
     text-align: center;
 }
 
 .saldos {
     width: 300px;
     color: white;
-    background-color: rgb(77, 107, 153);
-    margin-top: 30px;
+    background-color: rgb(29, 52, 88);
+    margin-bottom: 30px;
     border: 1px rgb(77, 107, 153);
 }
 
@@ -307,6 +313,7 @@ body {
     background-color: rgb(77, 107, 153);
     margin-top: 30px;
     border: 1px rgb(77, 107, 153);
+    text-align: center;
 }
 
 .transfPropia:hover {
@@ -321,6 +328,7 @@ body {
     background-color: rgb(77, 107, 153);
     margin-top: 10px;
     border: 1px rgb(77, 107, 153);
+    text-align: center;
 }
 
 .transfTerceros:hover {
@@ -335,7 +343,7 @@ body {
     background-color: rgb(77, 107, 153);
     margin-top: 10px;
     border: 1px rgb(77, 107, 153);
-    margin-bottom: 20px;
+    text-align: center;
 }
 
 .dolares:hover {
@@ -348,7 +356,7 @@ body {
     font-size: 20px;
     font-weight: bold;
     margin-left: 150px;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 10px;
     color: black;
     text-align: left;
@@ -394,6 +402,7 @@ body {
     margin-top: 5px;
     border: 1px black solid;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .salirOp:hover {
@@ -509,14 +518,6 @@ body {
     border: 1px black solid;
 }
 
-.transfPropia {
-    width: 300px;
-    color: white;
-    background-color: rgb(77, 107, 153);
-    margin-top: 10px;
-    border: 1px rgb(77, 107, 153);
-}
-
 .transfPropia:hover {
     background-color: black;
     color: white;
@@ -573,6 +574,52 @@ body {
     margin-top: 20px;    
     margin-left: 150px;
 }
+
+
+/* Comprobantes */
+/* Comprobante transferencia propia */
+#compTransfPropia {
+    text-align: left;
+    margin-top: 75px;    
+    margin-left: 75px;
+    margin-right: 700px;
+}
+
+.compOp {
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+}
+
+.comp1 {
+    font-size: 14px;
+    font-weight: normal;
+    color: gray;
+    margin-top: 10px;    
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.comp2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-top: 10px;    
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.comp3 {
+    font-size: 14px;
+    font-weight: normal;
+    color: gray;
+    margin-top: 20px;    
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+/* Fin comprobantes */
+
+
 
 .ingresarImporte {
     font-size: 12px;
