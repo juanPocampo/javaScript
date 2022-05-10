@@ -11,18 +11,18 @@ y se recibe son claves-valor de tipo string con un json.parse() se soluciona */
 
 // Creación de la clase Cliente
 class Cliente {
-  constructor(nombre, apellido, dni, edad, clave, saldo) {
+  constructor(nombre, apellido, dni, edad, clave, saldo, operaciones) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.dni = dni;
     this.edad = edad;
     this.clave = clave;
     this.saldo = saldo;
-    this.operaciones = [];
+    this.operaciones = operaciones;
   }
 }
 
-let cliente = {};
+let cliente = JSON.parse(sessionStorage.getItem("usuario")) || {};
 /* // Declaración del array operaciones
 const arrayOperaciones = [];
 
@@ -94,9 +94,18 @@ function nuevoCliente(e) {
   const edad = document.querySelector("#edad").value;
   const clave = document.querySelector("#clave").value;
   const saldo = { CC: 1000000, CP: 0, CD: 0 };
+  const operaciones = [];
 
   // Creación del objeto persona
-  const cliente = new Cliente(nombre, apellido, dni, edad, clave, saldo);
+  const cliente = new Cliente(
+    nombre,
+    apellido,
+    dni,
+    edad,
+    clave,
+    saldo,
+    operaciones
+  );
 
   if (edad >= 18) {
     // Pusheo en el array
@@ -201,7 +210,9 @@ function ingresoCliente(e) {
     );
     let textoLogin = document.getElementById("#menuLogin");
     if (resultadoBuscar?.clave == claveLogin) {
-      cliente = resultadoBuscar;
+      sessionStorage.setItem("usuario", JSON.stringify(resultadoBuscar));
+
+      console.info("CLIENTE LOGEADO :", cliente);
       textoLogin = `<h4>Bienvenido</h4>
                     <span><h2>${resultadoBuscar.nombre} ${resultadoBuscar.apellido}</h2></span><br>
                     <a href="./operaciones.html" class="btn operacion" id="operar">Operar</a><br>
@@ -308,12 +319,12 @@ function abrirMenuOp(menu) {
 
       switch (origen) {
         case CC:
-          cliente.saldo.CC -= importe;
-          cliente.saldo.CP += importe;
+          cliente.saldo.CC = cliente.saldo.CC - importe;
+          cliente.saldo.CP = cliente.saldo.CP + importe;
           break;
         case CP:
-          cliente.saldo.CC += importe;
-          cliente.saldo.CP -= importe;
+          cliente.saldo.CC = cliente.saldo.CC + importe;
+          cliente.saldo.CP = cliente.saldo.CP - importe;
         default:
           break;
       }
@@ -327,7 +338,7 @@ function abrirMenuOp(menu) {
       const index = arrayClientes.indexOf(oldCliente);
       arrayClientes.splice(index, 1);
       arrayClientes.push(cliente);
-      localStorage.setItem("arrayClientes", arrayClientes);
+      localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes));
       Swal.fire({
         title: "Operación realizada",
         icon: "success",
@@ -335,11 +346,6 @@ function abrirMenuOp(menu) {
         imageHeight: 200,
         showConfirmButton: true,
       });
-      // Guardado del array en localstorage y conversión en JSON
-      sessionStorage.setItem(
-        "arrayOperaciones",
-        JSON.stringify(arrayOperaciones)
-      );
     }
     // Fin función confirmar transferencia
   } else if (menu == "transfTerceros0") {
