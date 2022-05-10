@@ -569,7 +569,13 @@ body {
     margin-left: 150px;
 }
 
-#transfPropia    {
+#transfPropia {
+    text-align: left;
+    margin-top: 20px;    
+    margin-left: 150px;
+}
+
+#transfTerceros {
     text-align: left;
     margin-top: 20px;    
     margin-left: 150px;

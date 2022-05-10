@@ -319,7 +319,7 @@ function abrirMenuOp(menu) {
       }
       cliente.saldo;
       // Pusheo en el array
-      cliente.operaciones.push(operacion);
+      cliente.operaciones.push(operacion); /* Tirar un error acá cuando confirmo la transferencia "main.js:322 Uncaught TypeError: Cannot read properties of undefined (reading 'push') at HTMLFormElement.confTransfPropia (main.js:322:27)*/
       const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
       const oldCliente = arrayClientes.find(
         (elemento) => elemento.dni == cliente.dni
@@ -350,14 +350,18 @@ function abrirMenuOp(menu) {
     document.querySelector(
       "#transfTerceros0"
     ).innerHTML = `<h2 class="dolarTitulo0">Transferencia a cuenta de terceros</h2>
-                                                                <form id="transfPropia">
-                                                                    <label for="cuenta">Seleccione la cuenta de origen:</label>
-                                                                    <select name="cuentas" id="cuentas">
-                                                                        <option value=""></option>    
-                                                                        <option value="cuentaCorriente">Cuenta Corriente</option>
-                                                                        <option value="cajaDeAhorro">Caja de Ahorro</option>
-                                                                    </select>
-                                                                    <br><br>
+                                                                <form id="transfTerceros">
+                                                                  <span id="origenTerceros">
+                                                                      <label for="cuenta">Seleccione la cuenta de origen:</label>
+                                                                        <span>
+                                                                        <select name="cuentas" id="cuentaOrigen">
+                                                                          <option value=""></option>
+                                                                          <option value="${CC}">Cuenta Corriente</option>
+                                                                          <option value="${CP}">Caja de Ahorro</option>
+                                                                        </select>
+                                                                        </span>   
+                                                                        <br><br>
+                                                                  </span>   
                                                                     <label for="cuenta">Ingrese CBU de la cuenta de destino:</label>
                                                                     <input type="text" name="montoTransf" id="montoTransf" class="input" pattern=".{22}" title="Debe contener 22 números" required><br>
                                                                     <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
@@ -365,6 +369,20 @@ function abrirMenuOp(menu) {
                                                                     <input type="submit" class="btn confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
                                                                     <a href="./operaciones.html" class="btn volverTransf" id="volver">Volver</a>
                                                                 </form>`;
+    // Al seleccionar una cuenta de origen, se modifica el id con el texto "Cuenta origen... Cuenta Destino"
+    let origen = document.getElementById("cuentaOrigen");
+    origen.onchange = () => {
+      console.log(origen.value);
+      if (origen.value === CC) {
+        document.querySelector(
+          "#origenTerceros"
+        ).innerHTML = `<strong>Origen</strong>: ${CC}<br><br>`;
+      } else if (origen.value === CP) {
+        document.querySelector(
+          "#origenTerceros"
+        ).innerHTML = `<strong>Origen</strong>:${CP}<br><br>`;
+      }
+    };
   } else if (menu == "cvDolares0") {
     document.querySelector("#menuOperaciones").style.display = "none";
     document.querySelector("#cvDolares0").style.display = "block";
