@@ -330,7 +330,7 @@ function abrirMenuOp(menu) {
       }
       cliente.saldo;
       // Pusheo en el array
-      cliente.operaciones = cliente.operaciones.push(operacion);
+      cliente.operaciones.push(operacion); /* Tira un error acá cuando confirmo la transferencia "main.js:322 Uncaught TypeError: Cannot read properties of undefined (reading 'push') at HTMLFormElement.confTransfPropia (main.js:322:27)*/
       const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
       const oldCliente = arrayClientes.find(
         (elemento) => elemento.dni == cliente.dni
@@ -356,21 +356,94 @@ function abrirMenuOp(menu) {
     document.querySelector(
       "#transfTerceros0"
     ).innerHTML = `<h2 class="dolarTitulo0">Transferencia a cuenta de terceros</h2>
-                                                                <form id="transfPropia">
-                                                                    <label for="cuenta">Seleccione la cuenta de origen:</label>
-                                                                    <select name="cuentas" id="cuentas">
-                                                                        <option value=""></option>    
-                                                                        <option value="cuentaCorriente">Cuenta Corriente</option>
-                                                                        <option value="cajaDeAhorro">Caja de Ahorro</option>
-                                                                    </select>
-                                                                    <br><br>
+                                                                <form id="transfTerceros">
+                                                                  <span id="origenTerceros">
+                                                                      <label for="cuenta">Seleccione la cuenta de origen:</label>
+                                                                        <span>
+                                                                        <select name="cuentas" id="cuentaOrigen">
+                                                                          <option value=""></option>
+                                                                          <option value="${CC}">Cuenta Corriente</option>
+                                                                          <option value="${CP}">Caja de Ahorro</option>
+                                                                        </select>
+                                                                        </span>   
+                                                                        <br><br>
+                                                                  </span>   
                                                                     <label for="cuenta">Ingrese CBU de la cuenta de destino:</label>
-                                                                    <input type="text" name="montoTransf" id="montoTransf" class="input" pattern=".{22}" title="Debe contener 22 números" required><br>
+                                                                    <input type="text" name="montoTransf" id="CBUDestino" class="input" pattern=".{22}" title="Debe contener 22 números" required><br>
                                                                     <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
                                                                     <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required><br>
                                                                     <input type="submit" class="btn confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
                                                                     <a href="./operaciones.html" class="btn volverTransf" id="volver">Volver</a>
                                                                 </form>`;
+    // Al seleccionar una cuenta de origen, se modifica el id con el texto "Origen: Cuenta Corriente / Caja de Ahorro"
+    let origen = document.getElementById("cuentaOrigen");
+    origen.onchange = () => {
+      console.log(origen.value);
+      if (origen.value === CC) {
+        document.querySelector(
+          "#origenTerceros"
+        ).innerHTML = `<strong>Origen</strong>: ${CC}<br><br>`;
+      } else if (origen.value === CP) {
+        document.querySelector(
+          "#origenTerceros"
+        ).innerHTML = `<strong>Origen</strong>:${CP}<br><br>`;
+      }
+    };
+    // Función confirmar transferencia (crear un objeto con los datos de la operación)
+    if (document.querySelector("#transfTerceros")) {
+      document
+        .querySelector("#transfTerceros")
+        .addEventListener("submit", confTransfTerceros);
+    }
+    function confTransfTerceros(e) {
+      // Paramos el envio del formulario submit
+      e.preventDefault();
+      // Recuperar información de los selects
+      const tipo = "Transferencia a Cuenta de Terceros";
+      const importe = Number(document.querySelector("#inputMonto").value);
+      // Creación del objeto persona
+      const operacion = {
+        tipo,
+        origen,
+        destino: "#CBUDestino", /* origen === CC ? CP : CC --------- CBUDestino? Acá el destino es una cuenta "inexistente", de un tercero */
+        importe,
+      };
+      console.log(operacion);
+
+      switch (origen) {
+        case CC:
+          cliente.saldo.CC -= importe;
+          break;
+        case CP:
+          cliente.saldo.CP -= importe;
+        default:
+          break;
+      }
+      cliente.saldo;
+      // Pusheo en el array
+      cliente.operaciones.push(operacion); /* Tira un error acá cuando confirmo la transferencia "main.js:322 Uncaught TypeError: Cannot read properties of undefined (reading 'push') at HTMLFormElement.confTransfPropia (main.js:322:27)*/
+      const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
+      const oldCliente = arrayClientes.find(
+        (elemento) => elemento.dni == cliente.dni
+      );
+      const index = arrayClientes.indexOf(oldCliente);
+      arrayClientes.splice(index, 1);
+      arrayClientes.push(cliente);
+      localStorage.setItem("arrayClientes", arrayClientes);
+      Swal.fire({
+        title: "Operación realizada",
+        icon: "success",
+        imageWidth: 400,
+        imageHeight: 200,
+        showConfirmButton: true,
+      });
+      // Guardado del array en localstorage y conversión en JSON
+      sessionStorage.setItem(
+        "arrayOperaciones",
+        JSON.stringify(arrayOperaciones)
+      );
+    }
+    // Fin función confirmar transferencia
   } else if (menu == "cvDolares0") {
     document.querySelector("#menuOperaciones").style.display = "none";
     document.querySelector("#cvDolares0").style.display = "block";
@@ -404,7 +477,7 @@ function abrirMenuOp(menu) {
                                                                     <h4 class="ingresarImporte">Ingresá el importe en U$S</h4>
                                                                     <form id="formCompraDolares">
                                                                         <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto" required><br>
-                                                                        <h4 class="simularTotal" id="simularTotal">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $</h4>
+                                                                        <h4 class="simularTotal" id="simularTotal">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="montoTotal">0</span></h4>
                                                                         <input type="submit" class="btn compraDolares" id="compraDolares" value="Confirmar">
                                                                         <a href="./operaciones.html" class="btn volverDolares" id="volver">Volver</a>
                                                                     </form>`;
