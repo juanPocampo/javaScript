@@ -476,10 +476,7 @@ function abrirMenuOp(menu) {
                                                                         <a href="./operaciones.html" class="btn volverDolares" id="volver">Volver</a>
                                                                     </form>`;
         // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input (agregar el importe simulado al final de "Total con impuesto...")
-        /*                 document.querySelector("#simularTotal").addEventListener("onchange", () => simularTotal());
-                                function simularTotal() {
-                
-                                } */
+        
       });
 
     // Fin de la petición
