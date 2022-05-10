@@ -3,7 +3,11 @@ const CC = "Cuenta Corriente";
 const CP = "Caja de Ahorro en Pesos";
 const CD = "Caja de Ahorro en Dolares";
 // Declaración del array clientes
-const arrayClientes = localStorage.getItem("arrayClientes") || [];
+const arrayClientes =
+  JSON.parse(localStorage.getItem("arrayClientes")) ||
+  []; /*Este error se estaba
+dando porque el arrayClientes se estaba guardando como string ya que todo lo que se guarda en localStorage
+y se recibe son claves-valor de tipo string con un json.parse() se soluciona */
 
 // Creación de la clase Cliente
 class Cliente {
@@ -242,8 +246,8 @@ function abrirMenuOp(menu) {
                                                                             <span>
                                                                                 <select name="cuentas" id="cuentaOrigen">
                                                                                     <option value=""></option>
-                                                                                    <option value="Cuenta Corriente">Cuenta Corriente</option>
-                                                                                    <option value="Caja de Ahorro">Caja de Ahorro</option>
+                                                                                    <option value="${CC}">Cuenta Corriente</option>
+                                                                                    <option value="${CP}">Caja de Ahorro</option>
                                                                                 </select>
                                                                             </span>
                                                                             <br><br>
@@ -257,16 +261,16 @@ function abrirMenuOp(menu) {
     let origen = document.getElementById("cuentaOrigen");
     origen.onchange = () => {
       console.log(origen.value);
-      if (origen.value == "Cuenta Corriente") {
+      if (origen.value === CC) {
         document.querySelector(
           "#origen"
-        ).innerHTML = `<strong>Origen</strong>: Cuenta Corriente<br><br>
-                                                                <strong>Destino</strong>: Caja de Ahorro<br><br>`;
-      } else if (origen.value == "Caja de Ahorro") {
+        ).innerHTML = `<strong>Origen</strong>: ${CC}<br><br>
+                        <strong>Destino</strong>: ${CP}<br><br>`;
+      } else if (origen.value === CP) {
         document.querySelector(
           "#origen"
-        ).innerHTML = `<strong>Origen</strong>: Caja de Ahorro<br><br>
-                                                                <strong>Destino</strong>: Cuenta Corriente<br><br>`;
+        ).innerHTML = `<strong>Origen</strong>:${CP}<br><br>
+                        <strong>Destino</strong>:${CC}<br><br>`;
       }
     };
     // Función confirmar transferencia (crear un objeto con los datos de la operación)
@@ -280,11 +284,28 @@ function abrirMenuOp(menu) {
       e.preventDefault();
       // Recuperar información de los selects
       const tipo = "Transferencia a Cuenta Propia";
-      const origen = document.querySelector("#cuentaOrigen").value;
-      const destino = document.querySelector("#cuentaDestino").value;
+      /*const origen =
+        document.querySelector(
+          "#cuentaOrigen"
+        ).value; /* El error que tira en el log es porque cuando sobreescribis el html en el 
+                  evento onChange estas borrando los campos select por lo tanto ya no existen
+                   y acá le estamos pidiendo que los busque
+      const destino =
+        document.querySelector(
+          "#cuentaDestino"
+        ).value; /*Si solucionamos el problema anterior acá vamos a tener el mismo problema hay 2
+                   soluciones o los escribimos volvemos a escribir con un atributo hidden 
+                   (no es buena práctica pq el usuario tiene acceso a todo el html) o guardamos
+                    una constante con los valores por fuera de la función o en este caso que ya sabemos que*/
       const importe = Number(document.querySelector("#inputMonto").value);
       // Creación del objeto persona
-      const operacion = { tipo, origen, destino, importe };
+      const operacion = {
+        tipo,
+        origen,
+        destino: origen === CC ? CP : CC,
+        importe,
+      };
+
       switch (origen) {
         case CC:
           cliente.saldo.CC -= importe;
