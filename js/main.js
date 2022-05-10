@@ -377,7 +377,7 @@ function abrirMenuOp(menu) {
                                                                     <h4 class="ingresarImporte">Ingresá el importe en U$S</h4>
                                                                     <form id="formCompraDolares">
                                                                         <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto" required><br>
-                                                                        <h4 class="simularTotal" id="simularTotal">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $</h4>
+                                                                        <h4 class="simularTotal" id="simularTotal">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="montoTotal">0</span></h4>
                                                                         <input type="submit" class="btn compraDolares" id="compraDolares" value="Confirmar">
                                                                         <a href="./operaciones.html" class="btn volverDolares" id="volver">Volver</a>
                                                                     </form>`;
