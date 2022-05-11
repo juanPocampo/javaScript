@@ -12344,7 +12344,7 @@ body {
   width: 200px;
   border-radius: 5px;
   padding: 7px 0px;
-  font-size: 18px;
+  font-size: 20px;
   text-decoration: none;
   margin: 10px;
   color: black;
@@ -12360,7 +12360,7 @@ body {
 }
 
 .azul {
-  width:300px;
+  width: 300px;
   font-size: 22px;
   margin-top: 150px;
   background-color: blue;
@@ -12376,7 +12376,7 @@ body {
 }
 
 .verde {
-  width:300px;
+  width: 300px;
   font-size: 22px;
   color: blue;
   border: 1px blue solid;
@@ -12390,7 +12390,7 @@ body {
 }
 
 .rojo {
-  width:300px;
+  width: 300px;
   font-size: 22px;
   color: rgb(143, 139, 139);
   background-color: none;
@@ -12405,7 +12405,7 @@ body {
 }
 
 .salir {
-  width:300px;
+  width: 300px;
   font-size: 22px;
   color: rgb(141, 144, 155);
   background-color: white;
@@ -12826,9 +12826,14 @@ body {
   border: 1px solid rgb(204, 203, 203);
 }
 
-#labelDNI,
-#labelClave{
-  font-size: 22px;
+#labelArriba {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+#labelDato {
+  font-size: 20px;
+  margin-top: 5px;
 }
 
 .configMonto {
@@ -12973,7 +12978,7 @@ form {
 
 
 .formContacto {
-  padding:0 320px;
+  padding: 0 320px;
 }
 
 .email {

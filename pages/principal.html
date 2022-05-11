@@ -46,9 +46,9 @@
     <div id="menuLogin">
         <div id="borrarMenuLogin">
             <form id="formLogin">
-                <label for="dniLogin" id="labelDNI">DNI</label><br>
+                <label for="dniLogin" id="labelArriba">DNI</label><br>
                 <input type="text" name="dniLogin" id="dniLogin" class="input" required><br><br>
-                <label for="password" id="labelClave">Clave digital</label><br>
+                <label for="password" id="labelDato">Clave digital</label><br>
                 <input type="password" name="claveLogin" id="claveLogin" class="input" required><br><br>
                 <input type="submit" class="btnOp ingreso" id="ingresar" value="Ingresar"><br>
                 <a href="./principal.html" class="btnOp volverPpal" id="volver">Volver</a>
@@ -62,11 +62,11 @@
     <div id="menuClave">
         <div id="borrarMenuClave">
             <form id="formRecuperarClave">
-                <label for="dniBuscar">DNI</label><br>
+                <label for="dniBuscar" id="labelArriba">DNI</label><br>
                 <input type="text" name="dniBuscar" id="dniBuscar" class="input" required><br>
                 <div id="clienteEncontrado"></div>
                 <div id="claveRecuperada">
-                    <input type="submit" class="btnOp recupero" id="ingresar" value="Recuperar clave"><br><br>
+                    <input type="submit" class="btnOp recupero" id="ingresar" value="Recuperar clave">
                 </div>
                 <a href="./principal.html" class="btnOp volverPpal" id="volver">Volver</a>
             </form>
@@ -79,23 +79,23 @@
     <div id="menuNuevoCliente">
         <div id="borrarMenuNuevoCliente">
             <form id="formNuevoCliente">
-                <label for="nombre">Nombre</label><br>
+                <label for="nombre" id="labelArriba">Nombre</label><br>
                 <input type="text" name="nombre" id="nombre" class="input" required><br>
-                <label for="apellido">Apellido</label><br>
+                <label for="apellido" id="labelDato">Apellido</label><br>
                 <input type="text" name="apellido" id="apellido" class="input" required><br>
-                <label for="dni">DNI</label><br>
-                <input type="text" name="dni" id="dni" class="input" pattern=".{8}" title="Debe contener ocho números"
+                <label for="dni" id="labelDato">DNI</label><br>
+                <input type="text" name="dni" id="dniLogin" class="input" pattern=".{8}" title="Debe contener ocho números"
                     required><br>
-                <label for="edad">Edad</label><br>
+                <label for="edad" id="labelDato">Edad</label><br>
                 <input type="text" name="edad" id="edad" class="input" pattern=".{2}" title="Debe contener dos números"
                     required><br>
-                <label for="clave">Clave digital</label><br>
+                <label for="clave" id="labelDato">Clave digital</label><br>
                 <input type="password" name="clave" id="clave" class="input"
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
                     title="Debe contener al menos seis caracteres que incluyan al menos un número, una mayúscula y una minúscula"
                     required><br>
                 <input type="submit" class="btnOp registro" id="nUser" value="Registrarme"><br>
-                <a href="./principal.html" class="btn volverPpal" id="volver">Volver</a>
+                <a href="./principal.html" class="btnOp volverPpal" id="volver">Volver</a>
             </form>
         </div>
     </div>
