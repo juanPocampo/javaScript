@@ -1,13 +1,46 @@
+/*!
+* Start Bootstrap - Scrolling Nav v5.0.5 (https://startbootstrap.com/template/scrolling-nav)
+* Copyright 2013-2022 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-scrolling-nav/blob/master/LICENSE)
+*/
+//
+// Scripts
+// 
+
+window.addEventListener('DOMContentLoaded', event => {
+
+  // Activate Bootstrap scrollspy on the main nav element
+/*   const mainNav = document.body.querySelector('#mainNav');
+  if (mainNav) {
+    new bootstrap.ScrollSpy(document.body, {
+      target: '#mainNav',
+      offset: 74,
+    });
+  }; */
+
+  // Collapse responsive navbar when toggler is visible
+  const navbarToggler = document.body.querySelector('.navbar-toggler');
+  const responsiveNavItems = [].slice.call(
+    document.querySelectorAll('#navbarResponsive .nav-link')
+  );
+  responsiveNavItems.map(function (responsiveNavItem) {
+    responsiveNavItem.addEventListener('click', () => {
+      if (window.getComputedStyle(navbarToggler).display !== 'none') {
+        navbarToggler.click();
+      }
+    });
+  });
+
+});
+
+
 // Declaración de constantes
 const CC = "Cuenta Corriente";
 const CP = "Caja de Ahorro en Pesos";
 const CD = "Caja de Ahorro en Dolares";
 // Declaración del array clientes
 const arrayClientes =
-  JSON.parse(localStorage.getItem("arrayClientes")) ||
-  []; /*Este error se estaba
-dando porque el arrayClientes se estaba guardando como string ya que todo lo que se guarda en localStorage
-y se recibe son claves-valor de tipo string con un json.parse() se soluciona */
+  JSON.parse(localStorage.getItem("arrayClientes")) || [];
 
 // Creación de la clase Cliente
 class Cliente {
@@ -23,18 +56,7 @@ class Cliente {
 }
 
 let cliente = JSON.parse(sessionStorage.getItem("usuario")) || {};
-/* // Declaración del array operaciones
-const arrayOperaciones = [];
 
-// Creación de la clase Operación
-class Operacion {
-  constructor(operacion, origen, destino, importe) {
-    this.operacion = operacion;
-    this.origen = origen;
-    this.destino = destino;
-    this.importe = importe;
-  }
-} */
 
 // Función display de menúes
 function abrirMenu(menu) {
@@ -173,10 +195,10 @@ function recuperarClave(e) {
     textoPersonaEncontrada = `<h2>${resultadoBuscar.nombre} ${resultadoBuscar.apellido}</h2>
                                 <span><h2>DNI ${resultadoBuscar.dni}</h2></span><br>
                                 <span class="claveRecuperada">Clave ${resultadoBuscar.clave}</span><br>
-                                <a href="./principal.html" class="btn ingreso" id="ingresar">Ir al menú principal</a><br>`;
+                                <a href="./principal.html" class="btnOp ingreso" id="ingresar">Ir al menú principal</a><br>`;
   } else {
     textoPersonaEncontrada = `No hay ninguna coincidencia
-                                <br><br><a href="./principal.html" class="btn volverPpal" id="volver">Volver</a>`;
+                                <br><br><a href="./principal.html" class="btnOp volverPpal" id="volver">Volver</a>`;
   }
 
   let borrarMenuClave = `<p></p>`;
@@ -212,11 +234,11 @@ function ingresoCliente(e) {
     if (resultadoBuscar?.clave == claveLogin) {
       sessionStorage.setItem("usuario", JSON.stringify(resultadoBuscar));
 
-      console.info("CLIENTE LOGEADO :", cliente);
-      textoLogin = `<h4>Bienvenido</h4>
+      console.info("CLIENTE LOGUEADO :", cliente);
+      textoLogin = `<h4 class="bienvenido">Bienvenido</h4>
                     <span><h2>${resultadoBuscar.nombre} ${resultadoBuscar.apellido}</h2></span><br>
-                    <a href="./operaciones.html" class="btn operacion" id="operar">Operar</a><br>
-                    <a href="./principal.html" class="btn salir" id="salir">Salir</a><br>`;
+                    <a href="./operaciones.html" class="btnOp operacion" id="operar">Operar</a><br>
+                    <a href="./principal.html" class="btnOp salir" id="salir">Salir</a><br>`;
       Swal.fire({
         icon: "success",
         title: "Ingreso exitoso",
@@ -224,7 +246,7 @@ function ingresoCliente(e) {
       });
     } else {
       textoLogin = `<span class="alerta"><h3 class="alert1">Alguno de los datos ingresados es incorrecto</h3><br><br><h3 class="alert2">Intente nuevamente</span></h4><br>
-                    <a href="./principal.html" class="btn volver" id="volver">Volver</a><br>`;
+                    <a href="./principal.html" class="btnOp volver" id="volver">Volver</a><br>`;
     }
 
     let borrarMenuLogin = `<p></p>`;
@@ -265,8 +287,8 @@ function abrirMenuOp(menu) {
                                                                     </span>    
                                                                         <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
                                                                         <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required><br><br>
-                                                                        <input type="submit" class="btn confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
-                                                                        <a href="./operaciones.html" class="btn volverTransf" id="volver">Volver</a>
+                                                                        <input type="submit" class="btnOp confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
+                                                                        <a href="./operaciones.html" class="btnOp volverTransf" id="volver">Volver</a>
                                                                 </form>`;
     // Al seleccionar una cuenta de origen, se modifica el id con el texto "Cuenta origen... Cuenta Destino"
     let origen = document.getElementById("cuentaOrigen");
@@ -372,8 +394,8 @@ function abrirMenuOp(menu) {
                                                                     <input type="text" name="montoTransf" id="CBUDestino" class="input" pattern=".{22}" title="Debe contener 22 números" required><br>
                                                                     <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
                                                                     <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required><br>
-                                                                    <input type="submit" class="btn confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
-                                                                    <a href="./operaciones.html" class="btn volverTransf" id="volver">Volver</a>
+                                                                    <input type="submit" class="btnOp confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
+                                                                    <a href="./operaciones.html" class="btnOp volverTransf" id="volver">Volver</a>
                                                                 </form>`;
     // Al seleccionar una cuenta de origen, se modifica el id con el texto "Origen: Cuenta Corriente / Caja de Ahorro"
     let origen = document.getElementById("cuentaOrigen");
@@ -478,11 +500,11 @@ function abrirMenuOp(menu) {
                                                                     <form id="formCompraDolares">
                                                                         <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto" required><br>
                                                                         <h4 class="simularTotal" id="simularTotal">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="montoTotal">0</span></h4>
-                                                                        <input type="submit" class="btn compraDolares" id="compraDolares" value="Confirmar">
-                                                                        <a href="./operaciones.html" class="btn volverDolares" id="volver">Volver</a>
+                                                                        <input type="submit" class="btnOp compraDolares" id="compraDolares" value="Confirmar">
+                                                                        <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
                                                                     </form>`;
         // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input (agregar el importe simulado al final de "Total con impuesto...")
-        
+
       });
 
     // Fin de la petición
