@@ -416,7 +416,7 @@ function abrirMenuOp(menu) {
       }
       cliente.saldo;
       // Pusheo en el array
-      cliente.operaciones.push(operacion); /* Tira un error acá cuando confirmo la transferencia "main.js:322 Uncaught TypeError: Cannot read properties of undefined (reading 'push') at HTMLFormElement.confTransfPropia (main.js:322:27)*/
+      cliente.operaciones.push(operacion);
       const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
       const oldCliente = arrayClientes.find(
         (elemento) => elemento.dni == cliente.dni
@@ -477,9 +477,7 @@ function abrirMenuOp(menu) {
                                                                         <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
                                                                     </form>`;
         // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input (agregar el importe simulado al final de "Total con impuesto...")
-
       });
-
     // Fin de la petición
   } else {
     document.querySelector("#cvDolares0").style.display = "none";
@@ -526,17 +524,14 @@ if (document.querySelector("#formCompraDolares")) {
   function compraDolares(e) {
     // Detener el envío del formulario submit
     e.preventDefault();
-
     // Recuperar información de los inputs
     const dolares = document.querySelector("#inputMonto").value;
-
-    // Creación del objeto persona
+    // Creación del objeto 
     const compra = new Compras(dolares);
-
     if (dolares <= 200) {
       // Pusheo en el array
       arrayCompras.push(compra);
-
+      // Disporo de un sweet alert si la compra de dólares fue exitosa
       Swal.fire({
         title: "Compraste dólares",
         icon: "success",
