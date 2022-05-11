@@ -12972,6 +12972,16 @@ form {
   text-align: left;
 }
 
+
+.formContacto {
+  padding:0 320px;
+}
+
+.email {
+  color: blue;
+  text-decoration: blue underline;
+}
+
 /* Esconder menúes al entrar por primera vez */
 #menuLogin,
 #menuClave,

@@ -21,7 +21,6 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#proyecto">Proyecto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#simulador">Simulador</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                 </ul>
             </div>
@@ -78,39 +77,43 @@
                         <li>Sintaxis avanzada.</li>
                         <li>Al menos una librería de uso relevante para el proyecto.</li>
                         <li>Manejo de promesas con fetch.</li>
-                        <li>Carga de datos desde un JSON local o desde una API externa.</li>
+                        <li>Carga de datos desde un JSON local o desde una API externa.</li><br>
+                    </ul>
+                    <h2>El simulador</h2>
+                    <p>El proyecto consiste en desarrollar un simulador de banca online donde,
+                        a partir de
+                        la asignación inicial de $1.000.000, se puedan realizar distintas operaciones:<br>
+                    <ul>
+                        <li>Transferencias a cuenta propia</li>
+                        <li>Transferencias a cuenta de terceros</li>
+                        <li>Comprar dólares al tipo de cambio oficial</li>
+                        <li>Consultar saldos</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección Simulador -->
-    <section class="bg-light" id="simulador">
+    <!-- Sección Contacto -->
+    <section class="bg-light" id="contacto">
         <div class="container px-4">
             <div class="row gx-4 justify-content-center">
                 <div class="col-lg-8">
-                    <h2>Descripción del proyecto</h2>
-                    <p class="lead">El proyecto consiste en desarrollar un simulador de banca online donde, a partir de
-                        la asignación inicial de $1.000.000, se puedan realizar distintas operaciones:<br>
-                        - Transferencias a cuenta propia<br>- Transferencias a cuenta de terceros<br>- Comprar
-                        dólares al tipo de cambio oficial<br>- Consultar saldos</p>
+                    <h2>Contacto</h2><br>
+                    <p class="email">lucasgallo@gmail.com</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Sección Contacto -->
-    <section id="contacto">
-        <div class="container px-4">
-            <div class="row gx-4 justify-content-center">
-                <div class="col-lg-8">
-                    <h2>Contacto</h2>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat
-                        voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam
-                        et repudiandae ipsa exercitationem, in, quo totam.</p>
-                </div>
-            </div>
+        <div class="mb-3 formContacto">
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="nombre@ejemplo.com">
+        </div>
+        <div class="mb-3 formContacto">
+            <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="col-auto formContacto">
+            <button type="submit" class="btn btn-primary mb-3">Enviar</button>
         </div>
     </section>
 
