@@ -12550,12 +12550,11 @@ body {
 
 /* Operaciones */
 #operaciones {
-  text-align: left;
-  padding: 30px 700px 0px 0px;
+  text-align: center;
 }
 
 .configTitulo {
-  margin-top: 60px;
+  margin-top: 100px;
   margin-bottom: 10px;
   color: black;
   text-align: center;

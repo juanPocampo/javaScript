@@ -40,7 +40,7 @@ const CP = "Caja de Ahorro en Pesos";
 const CD = "Caja de Ahorro en Dolares";
 // Declaración del array clientes
 const arrayClientes =
-  JSON.parse(localStorage.getItem("arrayClientes")) || [];
+  /* JSON.parse(localStorage.getItem("arrayClientes")) || []; */
 
 // Creación de la clase Cliente
 class Cliente {
