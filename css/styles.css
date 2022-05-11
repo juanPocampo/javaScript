@@ -12341,7 +12341,7 @@ body {
 }
 
 .btnOp {
-  width: 200px;
+  width: 300px;
   border-radius: 5px;
   padding: 7px 0px;
   font-size: 20px;
@@ -12576,10 +12576,11 @@ body {
 }
 
 .saldos {
-  width: 300px;
+  width: 350px;
   color: white;
   background-color: rgb(29, 52, 88);
   margin-bottom: 30px;
+  padding: 10px;
   border: 1px rgb(77, 107, 153);
 }
 
@@ -12590,7 +12591,7 @@ body {
 }
 
 .transfPropia {
-  width: 300px;
+  width: 350px;
   color: white;
   background-color: rgb(77, 107, 153);
   margin-top: 30px;
@@ -12606,10 +12607,11 @@ body {
 }
 
 .transfTerceros {
-  width: 300px;
+  width: 350px;
   color: white;
   background-color: rgb(77, 107, 153);
   margin-top: 10px;
+  padding: 10px;
   border: 1px rgb(77, 107, 153);
   text-align: center;
 }
@@ -12621,10 +12623,11 @@ body {
 }
 
 .dolares {
-  width: 300px;
+  width: 350px;
   color: white;
   background-color: rgb(77, 107, 153);
   margin-top: 10px;
+  padding: 10px;
   border: 1px rgb(77, 107, 153);
   text-align: center;
 }
@@ -12679,10 +12682,11 @@ body {
 }
 
 .salirOp {
-  width: 300px;
+  width: 350px;
   color: black;
   background-color: white;
   margin-top: 5px;
+  padding: 10px;
   border: 1px black solid;
   margin-bottom: 10px;
   text-align: center;
