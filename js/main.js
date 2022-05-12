@@ -402,14 +402,11 @@ function abrirMenuOp(menu) {
       // Creación del objeto persona
       const operacion = {
         tipo,
-        origen,
-        destino:
-          "#CBUDestino" /* origen === CC ? CP : CC --------- CBUDestino? Acá el destino es una cuenta "inexistente", de un tercero */,
+        origen: origen.value,
+        destino: document.querySelector("#CBUDestino").value,
         importe,
       };
-      console.log(operacion);
-
-      switch (origen) {
+      switch (origen.value) {
         case CC:
           cliente.saldo.CC -= importe;
           break;
@@ -427,10 +424,11 @@ function abrirMenuOp(menu) {
       const oldCliente = arrayClientes.find(
         (elemento) => elemento.dni == cliente.dni
       );
+      sessionStorage.setItem("usuario", JSON.stringify(cliente));
       const index = arrayClientes.indexOf(oldCliente);
       arrayClientes.splice(index, 1);
       arrayClientes.push(cliente);
-      localStorage.setItem("arrayClientes", arrayClientes);
+      localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes)); // dentro del cliente ya está guardada la operacion en su atributo operaciones
       Swal.fire({
         title: "Operación realizada",
         icon: "success",
@@ -438,11 +436,6 @@ function abrirMenuOp(menu) {
         imageHeight: 200,
         showConfirmButton: true,
       });
-      // Guardado del array en localstorage y conversión en JSON
-      sessionStorage.setItem(
-        "arrayOperaciones",
-        JSON.stringify(arrayOperaciones)
-      );
     }
     // Fin función confirmar transferencia
   } else if (menu == "cvDolares0") {
@@ -463,6 +456,7 @@ function abrirMenuOp(menu) {
         return data["baseCurrency"].amount / data["rateCurrency"].amount;
       })
       .then((data) => {
+        precioDolar = data;
         const element = document.querySelector("#encabezadoMenuOp");
         element.remove();
         document.querySelector(
@@ -477,7 +471,8 @@ function abrirMenuOp(menu) {
                                                                     </h4>
                                                                     <h4 class="ingresarImporte">Ingresá el importe en U$S</h4>
                                                                     <form id="formCompraDolares">
-                                                                        <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto" required><br>
+                                                                        <input type="hidden" name="precioDolar" id="precioDolar" class="precioDolae" value=${data} />
+                                                                        <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto" onchange=calcularDolares() min="0" max="200" required><br>
                                                                         <h4 class="simularTotal" id="simularTotal">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="montoTotal">0</span></h4>
                                                                         <input type="submit" class="btnOp compraDolares" id="compraDolares" value="Confirmar">
                                                                         <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
@@ -512,52 +507,14 @@ if (document.querySelector("#cvDolares")) {
     .querySelector("#cvDolares")
     .addEventListener("click", () => abrirMenuOp("cvDolares0"));
 }
-
-// Evento click confirmar compra de dólares
-// Declaración del array compras
-const arrayCompras = [];
-
-// Creación de la clase Compras
-class Compras {
-  constructor(dolares) {
-    this.dolares = dolares;
-  }
-}
-if (document.querySelector("#formCompraDolares")) {
-  document
-    .querySelector("#formCompraDolares")
-    .addEventListener("submit", compraDolares);
-  function compraDolares(e) {
-    // Detener el envío del formulario submit
-    e.preventDefault();
-    // Recuperar información de los inputs
-    const dolares = document.querySelector("#inputMonto").value;
-    // Creación del objeto
-    const compra = new Compras(dolares);
-    if (dolares <= 200) {
-      // Pusheo en el array
-      arrayCompras.push(compra);
-      // Disporo de un sweet alert si la compra de dólares fue exitosa
-      Swal.fire({
-        title: "Compraste dólares",
-        icon: "success",
-        imageWidth: 400,
-        imageHeight: 200,
-        showConfirmButton: true,
-      });
-
-      // Guardado del array en localstorage y conversión en JSON
-      sessionStorage.setItem("arrayCompras", JSON.stringify(arrayCompras));
-    } else if (dolares > 200) {
-      Swal.fire({
-        title: "El monto debe ser menor a U$S 200",
-        icon: "warning",
-        imageWidth: 400,
-        imageHeight: 200,
-        showConfirmButton: true,
-      });
-    }
-  }
+// Calcular El precio de la compra de dólares y mostar en pantalla
+function calcularDolares() {
+  const monto = document.querySelector("#inputMonto").value;
+  const precioDolar = document.querySelector("#precioDolar").value;
+  costo = Number.parseFloat(monto) * precioDolar * 1.6;
+  !Number.isNaN(costo)
+    ? (document.querySelector("#montoTotal").textContent = `${costo}`)
+    : (document.querySelector("#montoTotal").textContent = "0");
 }
 
 // Alert para cuando hace click en "Salir"
