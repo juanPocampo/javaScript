@@ -10,7 +10,7 @@ dando porque el arrayClientes se estaba guardando como string ya que todo lo que
 y se recibe son claves-valor de tipo string con un json.parse() se soluciona */
 
 // Creación de la clase Cliente
-class Cliente {
+/* class Cliente {
   constructor(nombre, apellido, dni, edad, clave, saldo, operaciones) {
     this.nombre = nombre;
     this.apellido = apellido;
@@ -20,7 +20,7 @@ class Cliente {
     this.saldo = saldo;
     this.operaciones = operaciones;
   }
-}
+} */
 
 let cliente = JSON.parse(sessionStorage.getItem("usuario")) || {};
 /* // Declaración del array operaciones
@@ -97,15 +97,15 @@ function nuevoCliente(e) {
   const operaciones = [];
 
   // Creación del objeto persona
-  const cliente = new Cliente(
+  const cliente = {
     nombre,
     apellido,
     dni,
     edad,
     clave,
     saldo,
-    operaciones
-  );
+    operaciones,
+  };
 
   if (edad >= 18) {
     // Pusheo en el array
@@ -312,15 +312,16 @@ function abrirMenuOp(menu) {
       // Creación del objeto persona
       const operacion = {
         tipo,
-        origen,
+        origen: origen.value,
         destino: origen === CC ? CP : CC,
         importe,
       };
 
-      switch (origen) {
+      switch (origen.value) {
         case CC:
           cliente.saldo.CC = cliente.saldo.CC - importe;
           cliente.saldo.CP = cliente.saldo.CP + importe;
+          console.log(cliente.saldo);
           break;
         case CP:
           cliente.saldo.CC = cliente.saldo.CC + importe;
@@ -330,7 +331,9 @@ function abrirMenuOp(menu) {
       }
       cliente.saldo;
       // Pusheo en el array
-      cliente.operaciones.push(operacion); /* Tira un error acá cuando confirmo la transferencia "main.js:322 Uncaught TypeError: Cannot read properties of undefined (reading 'push') at HTMLFormElement.confTransfPropia (main.js:322:27)*/
+      cliente.operaciones.push(
+        operacion
+      ); /* Tira un error acá cuando confirmo la transferencia "main.js:322 Uncaught TypeError: Cannot read properties of undefined (reading 'push') at HTMLFormElement.confTransfPropia (main.js:322:27)*/
       const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
       const oldCliente = arrayClientes.find(
         (elemento) => elemento.dni == cliente.dni
@@ -405,7 +408,8 @@ function abrirMenuOp(menu) {
       const operacion = {
         tipo,
         origen,
-        destino: "#CBUDestino", /* origen === CC ? CP : CC --------- CBUDestino? Acá el destino es una cuenta "inexistente", de un tercero */
+        destino:
+          "#CBUDestino" /* origen === CC ? CP : CC --------- CBUDestino? Acá el destino es una cuenta "inexistente", de un tercero */,
         importe,
       };
       console.log(operacion);
@@ -421,7 +425,9 @@ function abrirMenuOp(menu) {
       }
       cliente.saldo;
       // Pusheo en el array
-      cliente.operaciones.push(operacion); /* Tira un error acá cuando confirmo la transferencia "main.js:322 Uncaught TypeError: Cannot read properties of undefined (reading 'push') at HTMLFormElement.confTransfPropia (main.js:322:27)*/
+      cliente.operaciones.push(
+        operacion
+      ); /* Tira un error acá cuando confirmo la transferencia "main.js:322 Uncaught TypeError: Cannot read properties of undefined (reading 'push') at HTMLFormElement.confTransfPropia (main.js:322:27)*/
       const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
       const oldCliente = arrayClientes.find(
         (elemento) => elemento.dni == cliente.dni
