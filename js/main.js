@@ -499,7 +499,7 @@ function abrirMenuOp(menu) {
         importe,
       };
       // Actualizo saldos
-      cliente.saldo.CP -= importe * precioDolar * 1.6;
+      cliente.saldo.CP -= importe * precioDolar * 1.65;
       cliente.saldo.CD += importe;
       // Pusheo en el array
       cliente.operaciones.push(operacion);
