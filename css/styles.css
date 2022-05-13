@@ -12351,10 +12351,10 @@ body {
 }
 
 .btnOp {
-  width: 300px;
+  width: 200px;
   border-radius: 5px;
   padding: 7px 0px;
-  font-size: 20px;
+  font-size: 16px;
   text-decoration: none;
   margin: 10px;
   color: black;
@@ -12415,6 +12415,14 @@ body {
 }
 
 .salir {
+  width: 200px;
+  font-size: 16px;
+  color: rgb(141, 144, 155);
+  background-color: white;
+  border: none;
+}
+
+.salirPpal {
   width: 300px;
   font-size: 22px;
   color: rgb(141, 144, 155);
@@ -12472,8 +12480,8 @@ body {
 }
 
 .operacion {
-  width: 300px;
-  font-size: 22px;
+  width: 200px;
+  font-size: 16px;
   color: white;
   background-color: black;
   margin-top: 20px;
@@ -12841,12 +12849,12 @@ body {
 }
 
 #labelArriba {
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 20px;
 }
 
 #labelDato {
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 5px;
 }
 
@@ -12946,7 +12954,7 @@ body {
 }
 
 .ingresarImporteTransf {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: normal;
   margin-left: 10px;
   margin-top: 10px;
@@ -12998,6 +13006,10 @@ form {
 .email {
   color: blue;
   text-decoration: blue underline;
+}
+
+.simulDolares {
+  padding-top: 100px;
 }
 
 /* Esconder menúes al entrar por primera vez */

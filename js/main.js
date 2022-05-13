@@ -345,7 +345,7 @@ function abrirMenuOp(menu) {
       });
     }
     // Fin función confirmar transferencia
-    // FIn operación transferencia a cuentas propias
+    // Fin operación transferencia a cuentas propias
   } else if (menu == "transfTerceros0") {
     document.querySelector("#menuOperaciones").style.display = "none";
     document.querySelector("#transfTerceros0").style.display = "block";
@@ -473,7 +473,7 @@ function abrirMenuOp(menu) {
                                                                     <form id="formCompraDolares">
                                                                         <input type="hidden" name="precioDolar" id="precioDolar" class="precioDolae" value=${data} />
                                                                         <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto" onchange=calcularDolares() min="0" max="200" step = "0.01" required><br>
-                                                                        <h4 class="simularTotal" id="simularTotal">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="montoTotal">0</span></h4>
+                                                                        <h4 class="simularTotal" id="simularTotal">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="montoTotal" class="simulDolares">0</span></h4>
                                                                         <input type="submit" class="btnOp compraDolares" id="compraDolares" value="Confirmar">
                                                                         <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
                                                                     </form>`;
@@ -492,7 +492,7 @@ function abrirMenuOp(menu) {
 function calcularDolares() {
   const monto = document.querySelector("#inputMonto").value;
   const precioDolar = document.querySelector("#precioDolar").value;
-  costo = Number.parseFloat(monto) * precioDolar * 1.6;
+  costo = Number.parseFloat(monto) * precioDolar * 1.65;
   !Number.isNaN(costo)
     ? (document.querySelector("#montoTotal").textContent = `${costo}`)
     : (document.querySelector("#montoTotal").textContent = "0");
