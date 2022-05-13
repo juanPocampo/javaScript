@@ -6,7 +6,7 @@
 //
 // Scripts
 //
-
+console.log("JS loaded");
 window.addEventListener("DOMContentLoaded", (event) => {
   // Activate Bootstrap scrollspy on the main nav element
   /*   const mainNav = document.body.querySelector('#mainNav');
@@ -341,6 +341,8 @@ function abrirMenuOp(menu) {
         imageWidth: 400,
         imageHeight: 200,
         showConfirmButton: true,
+      }).then(() => {
+        window.location.pathname = "../pages/comprobante.html";
       });
     }
     // Fin función confirmar transferencia
@@ -433,6 +435,8 @@ function abrirMenuOp(menu) {
         imageWidth: 400,
         imageHeight: 200,
         showConfirmButton: true,
+      }).then(() => {
+        window.location.pathname = "../pages/comprobante.html";
       });
     }
     // Fin función confirmar transferencia
@@ -494,7 +498,7 @@ function abrirMenuOp(menu) {
       // Creación del objeto
       const operacion = {
         tipo,
-        origen: CC,
+        origen: CP,
         destino: CD,
         importe,
       };
@@ -518,6 +522,8 @@ function abrirMenuOp(menu) {
         imageWidth: 400,
         imageHeight: 200,
         showConfirmButton: true,
+      }).then(() => {
+        window.location.pathname = "../pages/comprobante.html";
       });
     }
   } else {
@@ -574,3 +580,13 @@ if (document.querySelector("#salirMenu")) {
   );
 }
 // Fin del alert para cuando hace click en "Salir
+if (!!document.querySelector("#comprobante")) {
+  usuario = JSON.parse(sessionStorage.getItem("usuario"));
+  const operacion = usuario.operaciones[usuario.operaciones.length - 1];
+  console.log(usuario);
+  document.querySelector("#idComprobante").textContent =
+    usuario.operaciones.length;
+  document.querySelector("#origen").textContent = operacion.origen;
+  document.querySelector("#destino").textContent = operacion.destino;
+  document.querySelector("#importe").textContent = operacion.importe;
+}
