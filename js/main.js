@@ -269,10 +269,12 @@ function abrirMenuOp(menu) {
                                                                             </span>
                                                                             <br><br>
                                                                     </span>    
-                                                                        <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
-                                                                        <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required><br><br>
-                                                                        <input type="submit" class="btnOp confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
-                                                                        <a href="./operaciones.html" class="btnOp volverTransf" id="volver">Volver</a>
+                                                                    <span><h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
+                                                                      <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required>
+                                                                    </span>
+                                                                    <br><br>
+                                                                    <input type="submit" class="btnOp confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
+                                                                    <a href="./operaciones.html" class="btnOp volverTransf" id="volver">Volver</a>
                                                                 </form>`;
     // Al seleccionar una cuenta de origen, se modifica el id con el texto "Cuenta origen... Cuenta Destino"
     let origen = document.getElementById("cuentaOrigen");
@@ -502,9 +504,9 @@ function abrirMenuOp(menu) {
       importe,
     };
     // Actualizo saldos
-        /* origen.value
-        cliente.saldo.CP -= importe;
-        cliente.saldo.CD += importe; */  
+    /* origen.value
+    cliente.saldo.CP -= importe;
+    cliente.saldo.CD += importe; */
     cliente.saldo;
     // Pusheo en el array
     cliente.operaciones.push(
