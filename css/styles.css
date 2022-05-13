@@ -535,6 +535,11 @@ progress {
   font-weight: 300;
 }
 
+.lead2 {
+  font-size: 1rem;
+  font-weight: 200;
+}
+
 .display-1 {
   font-size: calc(1.625rem + 4.5vw);
   font-weight: 300;
@@ -3243,6 +3248,10 @@ textarea.form-control.is-invalid {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.ingresar {
+  margin-top: 50px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
@@ -3543,8 +3552,8 @@ fieldset:disabled .btn {
 }
 
 .btn-light {
-  color: #000;
-  background-color: #f8f9fa;
+  color: white;
+  background-color: rgb(9, 9, 49);
   /*   border-color: #f8f9fa; */
 }
 
@@ -8608,6 +8617,7 @@ fieldset:disabled .btn {
 
 .fw-bolder {
   font-weight: bolder !important;
+  margin-top: 20px;
 }
 
 .lh-1 {
