@@ -326,7 +326,7 @@ function abrirMenuOp(menu) {
       // Pusheo en el array
       cliente.operaciones.push(
         operacion
-      ); /* Tira un error acá cuando confirmo la transferencia "main.js:322 Uncaught TypeError: Cannot read properties of undefined (reading 'push') at HTMLFormElement.confTransfPropia (main.js:322:27)*/
+      ); 
       const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
       const oldCliente = arrayClientes.find(
         (elemento) => elemento.dni == cliente.dni
@@ -488,7 +488,7 @@ function abrirMenuOp(menu) {
   }
 }
 // Fin función display de menúes de operaciones
-// Calcular El precio de la compra de dólares y mostar en pantalla
+// Calcular el precio de la compra de dólares y mostar en pantalla
 function calcularDolares() {
   const monto = document.querySelector("#inputMonto").value;
   const precioDolar = document.querySelector("#precioDolar").value;
