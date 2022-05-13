@@ -272,10 +272,12 @@ function abrirMenuOp(menu) {
                                                                             </span>
                                                                             <br><br>
                                                                     </span>    
-                                                                        <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
-                                                                        <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required><br><br>
-                                                                        <input type="submit" class="btnOp confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
-                                                                        <a href="./operaciones.html" class="btnOp volverTransf" id="volver">Volver</a>
+                                                                    <span><h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
+                                                                      <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required>
+                                                                    </span>
+                                                                    <br><br>
+                                                                    <input type="submit" class="btnOp confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
+                                                                    <a href="./operaciones.html" class="btnOp volverTransf" id="volver">Volver</a>
                                                                 </form>`;
     // Al seleccionar una cuenta de origen, se modifica el id con el texto "Cuenta origen... Cuenta Destino"
     let origen = document.getElementById("cuentaOrigen");
@@ -526,6 +528,40 @@ function abrirMenuOp(menu) {
         window.location.pathname = "../pages/comprobante.html";
       });
     }
+    const tipo = "Compra de dólares";
+    const importe = Number(document.querySelector("#inputMonto").value);
+    // Creación del objeto 
+    const operacion = {
+      tipo,
+      origen,
+      destino: CD,
+      importe,
+    };
+    // Actualizo saldos
+    /* origen.value
+    cliente.saldo.CP -= importe;
+    cliente.saldo.CD += importe; */
+    cliente.saldo;
+    // Pusheo en el array
+    cliente.operaciones.push(
+      operacion
+    );
+    const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
+    const oldCliente = arrayClientes.find(
+      (elemento) => elemento.dni == cliente.dni
+    );
+    sessionStorage.setItem("usuario", JSON.stringify(cliente));
+    const index = arrayClientes.indexOf(oldCliente);
+    arrayClientes.splice(index, 1);
+    arrayClientes.push(cliente);
+    localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes)); // dentro del cliente ya está guardada la operacion en su atributo operaciones
+    Swal.fire({
+      title: "Operación realizada",
+      icon: "success",
+      imageWidth: 400,
+      imageHeight: 200,
+      showConfirmButton: true,
+    });
   } else {
     document.querySelector("#cvDolares0").style.display = "none";
     document.querySelector("#transfTerceros0").style.display = "none";

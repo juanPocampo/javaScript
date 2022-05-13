@@ -12520,6 +12520,14 @@ body {
   cursor: pointer;
 }
 
+.volverOperaciones {
+  text-align: center;
+  color: white;
+  background-color: rgb(21, 16, 70);
+  margin-top: 0px;
+  border: 1px black solid;
+}
+
 .volverDolares {
   text-align: center;
   color: white;
@@ -12904,7 +12912,7 @@ body {
   text-align: left;
   margin-top: 75px;
   margin-left: 75px;
-  margin-right: 700px;
+  margin-right: 800px;
 }
 
 .compOp {
@@ -12922,11 +12930,21 @@ body {
   margin-bottom: 20px;
 }
 
+.comp1b {
+  font-size: 14px;
+  font-weight: normal;
+  color: black;
+  margin: 10px;
+  padding: 10px 10px 10px 15px;
+  background-color: azure;
+  border-radius: 5px;
+}
+
 .comp2 {
   font-size: 20px;
   font-weight: bold;
   color: black;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-left: 10px;
   margin-bottom: 10px;
 }
@@ -12936,6 +12954,15 @@ body {
   font-weight: normal;
   color: gray;
   margin-top: 20px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+}
+
+.comp4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  margin-top: 0px;
   margin-left: 10px;
   margin-bottom: 20px;
 }
