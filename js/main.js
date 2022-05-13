@@ -309,7 +309,7 @@ function abrirMenuOp(menu) {
         destino: origen === CC ? CP : CC,
         importe,
       };
-
+      // Actualizo saldos
       switch (origen.value) {
         case CC:
           cliente.saldo.CC = cliente.saldo.CC - importe;
@@ -326,7 +326,7 @@ function abrirMenuOp(menu) {
       // Pusheo en el array
       cliente.operaciones.push(
         operacion
-      ); 
+      );
       const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
       const oldCliente = arrayClientes.find(
         (elemento) => elemento.dni == cliente.dni
@@ -387,7 +387,7 @@ function abrirMenuOp(menu) {
         ).innerHTML = `<strong>Origen</strong>:${CP}<br><br>`;
       }
     };
-    // Función confirmar transferencia (crear un objeto con los datos de la operación)
+    // Función confirmar transferencia a terceros
     if (document.querySelector("#transfTerceros")) {
       document
         .querySelector("#transfTerceros")
@@ -399,13 +399,14 @@ function abrirMenuOp(menu) {
       // Recuperar información de los selects
       const tipo = "Transferencia a Cuenta de Terceros";
       const importe = Number(document.querySelector("#inputMonto").value);
-      // Creación del objeto persona
+      // Creación del objeto 
       const operacion = {
         tipo,
         origen: origen.value,
         destino: document.querySelector("#CBUDestino").value,
         importe,
       };
+      // Actualizo saldos
       switch (origen.value) {
         case CC:
           cliente.saldo.CC -= importe;
@@ -419,7 +420,7 @@ function abrirMenuOp(menu) {
       // Pusheo en el array
       cliente.operaciones.push(
         operacion
-      ); /* Tira un error acá cuando confirmo la transferencia "main.js:322 Uncaught TypeError: Cannot read properties of undefined (reading 'push') at HTMLFormElement.confTransfPropia (main.js:322:27)*/
+      );
       const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
       const oldCliente = arrayClientes.find(
         (elemento) => elemento.dni == cliente.dni
@@ -480,6 +481,51 @@ function abrirMenuOp(menu) {
         // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input (agregar el importe simulado al final de "Total con impuesto...")
       });
     // Fin de la petición
+    // Función confirmar compra de dólares
+    if (document.querySelector("#cvDolares0")) {
+      document
+        .querySelector("#cvDolares0")
+        .addEventListener("submit", confCompraDolares);
+    }
+    function confCompraDolares(e) {
+      // Paramos el envio del formulario submit
+      e.preventDefault();
+      // Recuperar información del input
+    }
+    const tipo = "Compra de dólares";
+    const importe = Number(document.querySelector("#inputMonto").value);
+    // Creación del objeto 
+    const operacion = {
+      tipo,
+      origen,
+      destino: CD,
+      importe,
+    };
+    // Actualizo saldos
+        /* origen.value
+        cliente.saldo.CP -= importe;
+        cliente.saldo.CD += importe; */  
+    cliente.saldo;
+    // Pusheo en el array
+    cliente.operaciones.push(
+      operacion
+    );
+    const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
+    const oldCliente = arrayClientes.find(
+      (elemento) => elemento.dni == cliente.dni
+    );
+    sessionStorage.setItem("usuario", JSON.stringify(cliente));
+    const index = arrayClientes.indexOf(oldCliente);
+    arrayClientes.splice(index, 1);
+    arrayClientes.push(cliente);
+    localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes)); // dentro del cliente ya está guardada la operacion en su atributo operaciones
+    Swal.fire({
+      title: "Operación realizada",
+      icon: "success",
+      imageWidth: 400,
+      imageHeight: 200,
+      showConfirmButton: true,
+    });
   } else {
     document.querySelector("#cvDolares0").style.display = "none";
     document.querySelector("#transfTerceros0").style.display = "none";
