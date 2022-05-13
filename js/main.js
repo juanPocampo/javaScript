@@ -7,6 +7,10 @@
 // Scripts
 //
 console.log("JS loaded");
+// Declaración de constantes
+const CC = "Cuenta Corriente";
+const CP = "Caja de Ahorro en Pesos";
+const CD = "Caja de Ahorro en Dolares";
 window.addEventListener("DOMContentLoaded", (event) => {
   // Activate Bootstrap scrollspy on the main nav element
   /*   const mainNav = document.body.querySelector('#mainNav');
@@ -30,11 +34,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
   });
 });
-
-// Declaración de constantes
-const CC = "Cuenta Corriente";
-const CP = "Caja de Ahorro en Pesos";
-const CD = "Caja de Ahorro en Dolares";
 
 // Declaración del array clientes
 const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes")) || [];
@@ -100,10 +99,7 @@ if (document.querySelector("#formNuevoCliente")) {
     .querySelector("#formNuevoCliente")
     .addEventListener("submit", nuevoCliente);
 }
-const header = `<p>${cliente.nombre}</p>
-                <p>${cliente.saldo.CC}</p>
-                <p>${cliente.saldo.CP}</p>
-                <p>${cliente.saldo.CD}</p>`;
+let header = "";
 function nuevoCliente(e) {
   // Detener el envío del formulario submit
   e.preventDefault();
@@ -219,6 +215,10 @@ function ingresoCliente(e) {
     if (resultadoBuscar?.clave == claveLogin) {
       sessionStorage.setItem("usuario", JSON.stringify(resultadoBuscar));
       console.info("Cliente logueado:", cliente);
+      header = `<p>${cliente.nombre}</p>
+      <p>${cliente.saldo.CC}</p>
+      <p>${cliente.saldo.CP}</p>
+      <p>${cliente.saldo.CD}</p>`;
       textoLogin = `<h4 class="bienvenido">Bienvenido</h4>
                     <span><h2>${resultadoBuscar.nombre} ${resultadoBuscar.apellido}</h2></span><br>
                     <a href="./operaciones.html" class="btnOp operacion" id="operar">Operar</a><br>
@@ -530,7 +530,7 @@ function abrirMenuOp(menu) {
     }
     const tipo = "Compra de dólares";
     const importe = Number(document.querySelector("#inputMonto").value);
-    // Creación del objeto 
+    // Creación del objeto
     const operacion = {
       tipo,
       origen,
@@ -543,9 +543,7 @@ function abrirMenuOp(menu) {
     cliente.saldo.CD += importe; */
     cliente.saldo;
     // Pusheo en el array
-    cliente.operaciones.push(
-      operacion
-    );
+    cliente.operaciones.push(operacion);
     const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
     const oldCliente = arrayClientes.find(
       (elemento) => elemento.dni == cliente.dni
