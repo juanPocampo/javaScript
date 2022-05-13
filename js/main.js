@@ -100,7 +100,10 @@ if (document.querySelector("#formNuevoCliente")) {
     .querySelector("#formNuevoCliente")
     .addEventListener("submit", nuevoCliente);
 }
-
+const header = `<p>${cliente.nombre}</p>
+                <p>${cliente.saldo.CC}</p>
+                <p>${cliente.saldo.CP}</p>
+                <p>${cliente.saldo.CD}</p>`;
 function nuevoCliente(e) {
   // Detener el envío del formulario submit
   e.preventDefault();
@@ -254,9 +257,9 @@ function abrirMenuOp(menu) {
     document.querySelector("#transfPropia0").style.display = "block";
     const element = document.querySelector("#encabezadoMenuOp");
     element.remove();
-    document.querySelector(
-      "#transfPropia0"
-    ).innerHTML = `<h2 class="dolarTitulo0">Transferencia a cuenta propia</h2>
+    document.querySelector("#transfPropia0").innerHTML =
+      header +
+      `<h2 class="dolarTitulo0">Transferencia a cuenta propia</h2>
                                                                 <form id="transfPropia">
                                                                     <span id="origen">
                                                                         <label for="cuenta">Seleccione la cuenta de <strong>origen:</strong></label>
@@ -279,7 +282,6 @@ function abrirMenuOp(menu) {
     // Al seleccionar una cuenta de origen, se modifica el id con el texto "Cuenta origen... Cuenta Destino"
     let origen = document.getElementById("cuentaOrigen");
     origen.onchange = () => {
-      console.log(origen.value);
       if (origen.value === CC) {
         document.querySelector(
           "#origen"
@@ -308,7 +310,7 @@ function abrirMenuOp(menu) {
       const operacion = {
         tipo,
         origen: origen.value,
-        destino: origen === CC ? CP : CC,
+        destino: origen.value === CC ? CP : CC,
         importe,
       };
       // Actualizo saldos
@@ -316,7 +318,6 @@ function abrirMenuOp(menu) {
         case CC:
           cliente.saldo.CC = cliente.saldo.CC - importe;
           cliente.saldo.CP = cliente.saldo.CP + importe;
-          console.log(cliente.saldo);
           break;
         case CP:
           cliente.saldo.CC = cliente.saldo.CC + importe;
@@ -326,9 +327,7 @@ function abrirMenuOp(menu) {
       }
       cliente.saldo;
       // Pusheo en el array
-      cliente.operaciones.push(
-        operacion
-      );
+      cliente.operaciones.push(operacion);
       const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
       const oldCliente = arrayClientes.find(
         (elemento) => elemento.dni == cliente.dni
@@ -353,9 +352,9 @@ function abrirMenuOp(menu) {
     document.querySelector("#transfTerceros0").style.display = "block";
     const element = document.querySelector("#encabezadoMenuOp");
     element.remove();
-    document.querySelector(
-      "#transfTerceros0"
-    ).innerHTML = `<h2 class="dolarTitulo0">Transferencia a cuenta de terceros</h2>
+    document.querySelector("#transfTerceros0").innerHTML =
+      header +
+      `<h2 class="dolarTitulo0">Transferencia a cuenta de terceros</h2>
                                                                 <form id="transfTerceros">
                                                                   <span id="origenTerceros">
                                                                       <label for="cuenta">Seleccione la cuenta de origen:</label>
@@ -401,7 +400,7 @@ function abrirMenuOp(menu) {
       // Recuperar información de los selects
       const tipo = "Transferencia a Cuenta de Terceros";
       const importe = Number(document.querySelector("#inputMonto").value);
-      // Creación del objeto 
+      // Creación del objeto
       const operacion = {
         tipo,
         origen: origen.value,
@@ -420,9 +419,7 @@ function abrirMenuOp(menu) {
       }
       cliente.saldo;
       // Pusheo en el array
-      cliente.operaciones.push(
-        operacion
-      );
+      cliente.operaciones.push(operacion);
       const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
       const oldCliente = arrayClientes.find(
         (elemento) => elemento.dni == cliente.dni
@@ -462,9 +459,9 @@ function abrirMenuOp(menu) {
         precioDolar = data;
         const element = document.querySelector("#encabezadoMenuOp");
         element.remove();
-        document.querySelector(
-          "#cvDolares0"
-        ).innerHTML = `<h2 class="dolarTitulo0">Compra de dólares</h2>
+        document.querySelector("#cvDolares0").innerHTML =
+          header +
+          `<h2 class="dolarTitulo0">Compra de dólares</h2>
                                                                     <h4 class="normativaBCRA">Le recordamos que la operatoria de compra de dólares se encuentra regulada por la normativa de Exterior y Cambios del BCRA y la Ley Penal Cambiarla. La compra es sólo para atesoramiento personal. El cupo de U$S 200 es mensual y por persona. Se encuentra prohibido tanto ceder y/o vender el cupo mensual. No se puede comprar dólares a favor de o por cuentas de terceros. En el caso de que se detecte la violación a la normativa vigente, el banco se reserva el derecho de cerrar las cuentas, efectuar la correspondiente denuncia al BCRA y tomar cualquier medida que estime necesaria.</h4>                               
                                                                         <h3 class="dolarTitulo1">Comprás a $${data} sin impuestos</h3>
                                                                         <h4 class="cotizacionDolar">Cotización dólar por unidad en el Mercado Libre de Cambios, ámbito de aplicación y vigencia para operaciones por banca online al momento de su consulta</h4>
@@ -493,6 +490,37 @@ function abrirMenuOp(menu) {
       // Paramos el envio del formulario submit
       e.preventDefault();
       // Recuperar información del input
+      const tipo = "Compra de dólares";
+      const importe = Number(document.querySelector("#inputMonto").value);
+      const precioDolar = Number(document.querySelector("#precioDolar").value);
+      // Creación del objeto
+      const operacion = {
+        tipo,
+        origen: CC,
+        destino: CD,
+        importe,
+      };
+      // Actualizo saldos
+      cliente.saldo.CP -= importe * precioDolar * 1.65;
+      cliente.saldo.CD += importe;
+      // Pusheo en el array
+      cliente.operaciones.push(operacion);
+      const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
+      const oldCliente = arrayClientes.find(
+        (elemento) => elemento.dni == cliente.dni
+      );
+      sessionStorage.setItem("usuario", JSON.stringify(cliente));
+      const index = arrayClientes.indexOf(oldCliente);
+      arrayClientes.splice(index, 1);
+      arrayClientes.push(cliente);
+      localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes)); // dentro del cliente ya está guardada la operacion en su atributo operaciones
+      Swal.fire({
+        title: "Operación realizada",
+        icon: "success",
+        imageWidth: 400,
+        imageHeight: 200,
+        showConfirmButton: true,
+      });
     }
     const tipo = "Compra de dólares";
     const importe = Number(document.querySelector("#inputMonto").value);
