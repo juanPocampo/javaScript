@@ -88,11 +88,11 @@ if (document.querySelector("#formNuevoCliente")) {
     .querySelector("#formNuevoCliente")
     .addEventListener("submit", nuevoCliente);
 }
-const header = `<p>${cliente.hasOwnProperty("saldo") ? usuario.saldo.CC : ""
+const header = `<p>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CC : ""
   }</p>
-                <p>${cliente.hasOwnProperty("saldo") ? usuario.saldo.CP : ""
+                <p>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CP : ""
   }</p>
-                <p>${cliente.hasOwnProperty("saldo") ? usuario.saldo.CD : ""
+                <p>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
   }</p>`;
 
 
@@ -341,7 +341,7 @@ function abrirMenuOp(menu) {
         imageHeight: 200,
         showConfirmButton: true,
       }).then(() => {
-        window.location.pathname = "../pages/comprobante.html";
+        window.location.pathname = "./pages/comprobante.html";
       });
     }
     // Fin función confirmar transferencia
