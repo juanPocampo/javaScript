@@ -7,13 +7,15 @@
 // Scripts
 //
 console.log("JS loaded");
+
 // Declaración de constantes
 const CC = "Cuenta Corriente";
 const CP = "Caja de Ahorro en Pesos";
 const CD = "Caja de Ahorro en Dolares";
-window.addEventListener("DOMContentLoaded", (event) => {
-  // Activate Bootstrap scrollspy on the main nav element
-  /*   const mainNav = document.body.querySelector('#mainNav');
+
+/* window.addEventListener("DOMContentLoaded", (event) => { */
+// Activate Bootstrap scrollspy on the main nav element
+/*     const mainNav = document.body.querySelector('#mainNav');
     if (mainNav) {
       new bootstrap.ScrollSpy(document.body, {
         target: '#mainNav',
@@ -21,8 +23,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
       });
     }; */
 
-  // Collapse responsive navbar when toggler is visible
-  const navbarToggler = document.body.querySelector(".navbar-toggler");
+// Collapse responsive navbar when toggler is visible
+/*   const navbarToggler = document.body.querySelector(".navbar-toggler");
   const responsiveNavItems = [].slice.call(
     document.querySelectorAll("#navbarResponsive .nav-link")
   );
@@ -32,24 +34,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
         navbarToggler.click();
       }
     });
-  });
-});
+  }); */
+/* }); */
 
 // Declaración del array clientes
 const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes")) || [];
-
-// Creación de la clase Cliente
-/* class Cliente {
-  constructor(nombre, apellido, dni, edad, clave, saldo, operaciones) {
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.dni = dni;
-    this.edad = edad;
-    this.clave = clave;
-    this.saldo = saldo;
-    this.operaciones = operaciones;
-  }
-} */
 
 let cliente = JSON.parse(sessionStorage.getItem("usuario")) || {};
 
@@ -99,73 +88,73 @@ if (document.querySelector("#formNuevoCliente")) {
     .querySelector("#formNuevoCliente")
     .addEventListener("submit", nuevoCliente);
 }
-const header = `<p>${
-  cliente.hasOwnProperty("saldo") ? usuario.saldo.CC : ""
-}</p>
-                <p>${
-                  cliente.hasOwnProperty("saldo") ? usuario.saldo.CP : ""
-                }</p>
-                <p>${
-                  cliente.hasOwnProperty("saldo") ? usuario.saldo.CD : ""
-                }</p>`;
-if (document.querySelector("#cl"))
-  function nuevoCliente(e) {
-    // Detener el envío del formulario submit
-    e.preventDefault();
-    // Recuperar información de los inputs
-    const nombre = document.querySelector("#nombre").value;
-    const apellido = document.querySelector("#apellido").value;
-    const dni = document.querySelector("#dni").value;
-    const edad = document.querySelector("#edad").value;
-    const clave = document.querySelector("#clave").value;
-    const saldo = { CC: 1000000, CP: 0, CD: 0 };
-    const operaciones = [];
-    // Creación del objeto persona
-    const cliente = {
-      nombre,
-      apellido,
-      dni,
-      edad,
-      clave,
-      saldo,
-      operaciones,
-    };
+const header = `<p>${cliente.hasOwnProperty("saldo") ? usuario.saldo.CC : ""
+  }</p>
+                <p>${cliente.hasOwnProperty("saldo") ? usuario.saldo.CP : ""
+  }</p>
+                <p>${cliente.hasOwnProperty("saldo") ? usuario.saldo.CD : ""
+  }</p>`;
 
-    if (edad >= 18) {
-      // Pusheo en el array y disparo de un sweet alert para informar que el cliente fue registrado
-      arrayClientes.push(cliente);
-      Swal.fire({
-        title: "Nuevo cliente registrado",
-        icon: "success",
-        imageWidth: 400,
-        imageHeight: 200,
-        showConfirmButton: true,
-      });
-      // Guardado del array en localstorage y conversión en JSON
-      localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes));
-      document.querySelector("#menuPrincipal").style.display = "block";
-      document.querySelector("#menuNuevoCliente").style.display = "none";
-    } else {
-      // Disparo de un sweet alert en el caso de que la persona sea menor a 18 años
-      Swal.fire({
-        title: "Debe ser mayor a 18 años",
-        icon: "warning",
-        imageWidth: 400,
-        imageHeight: 200,
-        showConfirmButton: true,
-      });
-    }
-    // Incorporo un operador ternario para segmentar los clientes según sean activos o jubilados
-    const jubilado = cliente.edad > 65 ? true : false;
-    jubilado
-      ? console.log("Nuevo cliente segmento jubilados")
-      : console.log("Nuevo cliente segmento activos");
-    // Incorporo un operador lógico AND y desestructuro la variable "edad" para guardar en consola. Si es activo, no guardo el registro de la fecha; si es jubilado sí lo guardo.
-    const registroIngreso = cliente.edad >= 65 && new Date();
-    console.log(registroIngreso);
-    console.log(edad);
-    console.log(...arrayClientes);
+
+/* if (document.querySelector("#cl")) */
+
+
+function nuevoCliente(e) {
+  // Detener el envío del formulario submit
+  e.preventDefault();
+  // Recuperar información de los inputs
+  const nombre = document.querySelector("#nombre").value;
+  const apellido = document.querySelector("#apellido").value;
+  const dni = document.querySelector("#dni").value;
+  const edad = document.querySelector("#edad").value;
+  const clave = document.querySelector("#clave").value;
+  const saldo = { CC: 1000000, CP: 0, CD: 0 };
+  const operaciones = [];
+  // Creación del objeto persona
+  const cliente = {
+    nombre,
+    apellido,
+    dni,
+    edad,
+    clave,
+    saldo,
+    operaciones,
+  };
+  if (edad >= 18) {
+    // Pusheo en el array y disparo de un sweet alert para informar que el cliente fue registrado
+    arrayClientes.push(cliente);
+    Swal.fire({
+      title: "Nuevo cliente registrado",
+      icon: "success",
+      imageWidth: 400,
+      imageHeight: 200,
+      showConfirmButton: true,
+    });
+    // Guardado del array en localstorage y conversión en JSON
+    localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes));
+    document.querySelector("#menuPrincipal").style.display = "block";
+    document.querySelector("#menuNuevoCliente").style.display = "none";
+  } else {
+    // Disparo de un sweet alert en el caso de que la persona sea menor a 18 años
+    Swal.fire({
+      title: "Debe ser mayor a 18 años",
+      icon: "warning",
+      imageWidth: 400,
+      imageHeight: 200,
+      showConfirmButton: true,
+    });
   }
+  // Incorporo un operador ternario para segmentar los clientes según sean activos o jubilados
+  const jubilado = cliente.edad > 65 ? true : false;
+  jubilado
+    ? console.log("Nuevo cliente segmento jubilados")
+    : console.log("Nuevo cliente segmento activos");
+  // Incorporo un operador lógico AND y desestructuro la variable "edad" para guardar en consola. Si es activo, no guardo el registro de la fecha; si es jubilado sí lo guardo.
+  const registroIngreso = cliente.edad >= 65 && new Date();
+  console.log(registroIngreso);
+  console.log(edad);
+  console.log(...arrayClientes);
+}
 // Fin función nuevo cliente
 
 // Función recuperar clave
@@ -254,6 +243,9 @@ function ingresoCliente(e) {
 }
 // Fin función ingresar
 
+
+
+
 // Función display de menúes de operaciones
 function abrirMenuOp(menu) {
   // Operación transferencia a cuentas propias
@@ -311,7 +303,7 @@ function abrirMenuOp(menu) {
       // Recuperar información de los selects
       const tipo = "Transferencia a Cuenta Propia";
       const importe = Number(document.querySelector("#inputMonto").value);
-      // Creación del objeto persona
+      // Creación del objeto 
       const operacion = {
         tipo,
         origen: origen.value,
@@ -486,7 +478,7 @@ function abrirMenuOp(menu) {
                                                                         <input type="submit" class="btnOp compraDolares" id="compraDolares" value="Confirmar">
                                                                         <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
                                                                     </form>`;
-        // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input (agregar el importe simulado al final de "Total con impuesto...")
+        // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input 
       });
     // Fin de la petición
     // Función confirmar compra de dólares
@@ -543,9 +535,6 @@ function abrirMenuOp(menu) {
       importe,
     };
     // Actualizo saldos
-    /* origen.value
-    cliente.saldo.CP -= importe;
-    cliente.saldo.CD += importe; */
     cliente.saldo;
     // Pusheo en el array
     cliente.operaciones.push(operacion);
@@ -573,6 +562,7 @@ function abrirMenuOp(menu) {
   }
 }
 // Fin función display de menúes de operaciones
+
 // Calcular el precio de la compra de dólares y mostar en pantalla
 function calcularDolares() {
   const monto = document.querySelector("#inputMonto").value;
@@ -582,24 +572,28 @@ function calcularDolares() {
     ? (document.querySelector("#montoTotal").textContent = `${costo}`)
     : (document.querySelector("#montoTotal").textContent = "0");
 }
+
 // Evento click transferir a cuenta propia
 if (document.querySelector("#TransfPropia")) {
   document
     .querySelector("#TransfPropia")
     .addEventListener("click", () => abrirMenuOp("transfPropia0"));
 }
+
 // Evento click transferir a cuenta de terceros
 if (document.querySelector("#TransfTerceros")) {
   document
     .querySelector("#TransfTerceros")
     .addEventListener("click", () => abrirMenuOp("transfTerceros0"));
 }
+
 // Evento click comprar o vender dólares
 if (document.querySelector("#cvDolares")) {
   document
     .querySelector("#cvDolares")
     .addEventListener("click", () => abrirMenuOp("cvDolares0"));
 }
+
 // Alert para cuando hace click en "Salir"
 if (document.querySelector("#salirMenu")) {
   document.querySelector("#salirMenu").addEventListener("click", () =>
@@ -619,6 +613,7 @@ if (document.querySelector("#salirMenu")) {
   );
 }
 // Fin del alert para cuando hace click en "Salir
+
 if (!!document.querySelector("#comprobante")) {
   usuario = JSON.parse(sessionStorage.getItem("usuario"));
   const operacion = usuario.operaciones[usuario.operaciones.length - 1];
