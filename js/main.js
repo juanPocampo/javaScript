@@ -99,64 +99,73 @@ if (document.querySelector("#formNuevoCliente")) {
     .querySelector("#formNuevoCliente")
     .addEventListener("submit", nuevoCliente);
 }
-let header = "";
-function nuevoCliente(e) {
-  // Detener el envío del formulario submit
-  e.preventDefault();
-  // Recuperar información de los inputs
-  const nombre = document.querySelector("#nombre").value;
-  const apellido = document.querySelector("#apellido").value;
-  const dni = document.querySelector("#dni").value;
-  const edad = document.querySelector("#edad").value;
-  const clave = document.querySelector("#clave").value;
-  const saldo = { CC: 1000000, CP: 0, CD: 0 };
-  const operaciones = [];
-  // Creación del objeto persona
-  const cliente = {
-    nombre,
-    apellido,
-    dni,
-    edad,
-    clave,
-    saldo,
-    operaciones,
-  };
+const header = `<p>${
+  cliente.hasOwnProperty("saldo") ? usuario.saldo.CC : ""
+}</p>
+                <p>${
+                  cliente.hasOwnProperty("saldo") ? usuario.saldo.CP : ""
+                }</p>
+                <p>${
+                  cliente.hasOwnProperty("saldo") ? usuario.saldo.CD : ""
+                }</p>`;
+if (document.querySelector("#cl"))
+  function nuevoCliente(e) {
+    // Detener el envío del formulario submit
+    e.preventDefault();
+    // Recuperar información de los inputs
+    const nombre = document.querySelector("#nombre").value;
+    const apellido = document.querySelector("#apellido").value;
+    const dni = document.querySelector("#dni").value;
+    const edad = document.querySelector("#edad").value;
+    const clave = document.querySelector("#clave").value;
+    const saldo = { CC: 1000000, CP: 0, CD: 0 };
+    const operaciones = [];
+    // Creación del objeto persona
+    const cliente = {
+      nombre,
+      apellido,
+      dni,
+      edad,
+      clave,
+      saldo,
+      operaciones,
+    };
 
-  if (edad >= 18) {
-    // Pusheo en el array y disparo de un sweet alert para informar que el cliente fue registrado
-    arrayClientes.push(cliente);
-    Swal.fire({
-      title: "Nuevo cliente registrado",
-      icon: "success",
-      imageWidth: 400,
-      imageHeight: 200,
-      showConfirmButton: true,
-    });
-    // Guardado del array en localstorage y conversión en JSON
-    localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes));
-    document.querySelector("#menuPrincipal").style.display = "block";
-    document.querySelector("#menuNuevoCliente").style.display = "none";
-  } else {
-    // Disparo de un sweet alert en el caso de que la persona sea menor a 18 años
-    Swal.fire({
-      title: "Debe ser mayor a 18 años",
-      icon: "warning",
-      imageWidth: 400,
-      imageHeight: 200,
-      showConfirmButton: true,
-    });
+    if (edad >= 18) {
+      // Pusheo en el array y disparo de un sweet alert para informar que el cliente fue registrado
+      arrayClientes.push(cliente);
+      Swal.fire({
+        title: "Nuevo cliente registrado",
+        icon: "success",
+        imageWidth: 400,
+        imageHeight: 200,
+        showConfirmButton: true,
+      });
+      // Guardado del array en localstorage y conversión en JSON
+      localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes));
+      document.querySelector("#menuPrincipal").style.display = "block";
+      document.querySelector("#menuNuevoCliente").style.display = "none";
+    } else {
+      // Disparo de un sweet alert en el caso de que la persona sea menor a 18 años
+      Swal.fire({
+        title: "Debe ser mayor a 18 años",
+        icon: "warning",
+        imageWidth: 400,
+        imageHeight: 200,
+        showConfirmButton: true,
+      });
+    }
+    // Incorporo un operador ternario para segmentar los clientes según sean activos o jubilados
+    const jubilado = cliente.edad > 65 ? true : false;
+    jubilado
+      ? console.log("Nuevo cliente segmento jubilados")
+      : console.log("Nuevo cliente segmento activos");
+    // Incorporo un operador lógico AND y desestructuro la variable "edad" para guardar en consola. Si es activo, no guardo el registro de la fecha; si es jubilado sí lo guardo.
+    const registroIngreso = cliente.edad >= 65 && new Date();
+    console.log(registroIngreso);
+    console.log(edad);
+    console.log(...arrayClientes);
   }
-  // Incorporo un operador ternario para segmentar los clientes según sean activos o jubilados
-  const jubilado = cliente.edad > 65 ? true : false;
-  jubilado
-    ? console.log("Nuevo cliente segmento jubilados")
-    : console.log("Nuevo cliente segmento activos");
-  // Incorporo un operador lógico AND y desestructuro la variable "edad" para guardar en consola. Si es activo, no guardo el registro de la fecha; si es jubilado sí lo guardo.
-  const registroIngreso = cliente.edad >= 65 && new Date();
-  console.log(registroIngreso);
-  console.log(edad);
-  console.log(...arrayClientes);
-}
 // Fin función nuevo cliente
 
 // Función recuperar clave
@@ -215,10 +224,6 @@ function ingresoCliente(e) {
     if (resultadoBuscar?.clave == claveLogin) {
       sessionStorage.setItem("usuario", JSON.stringify(resultadoBuscar));
       console.info("Cliente logueado:", cliente);
-      header = `<p>${cliente.nombre}</p>
-      <p>${cliente.saldo.CC}</p>
-      <p>${cliente.saldo.CP}</p>
-      <p>${cliente.saldo.CD}</p>`;
       textoLogin = `<h4 class="bienvenido">Bienvenido</h4>
                     <span><h2>${resultadoBuscar.nombre} ${resultadoBuscar.apellido}</h2></span><br>
                     <a href="./operaciones.html" class="btnOp operacion" id="operar">Operar</a><br>
