@@ -88,16 +88,17 @@ if (document.querySelector("#formNuevoCliente")) {
     .querySelector("#formNuevoCliente")
     .addEventListener("submit", nuevoCliente);
 }
-const header = `<p>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CC : ""
-  }</p>
-                <p>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CP : ""
-  }</p>
-                <p>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
-  }</p>`;
-
+const header = `<p>${
+  cliente.hasOwnProperty("saldo") ? cliente.saldo.CC : ""
+}</p>
+                <p>${
+                  cliente.hasOwnProperty("saldo") ? cliente.saldo.CP : ""
+                }</p>
+                <p>${
+                  cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
+                }</p>`;
 
 /* if (document.querySelector("#cl")) */
-
 
 function nuevoCliente(e) {
   // Detener el envío del formulario submit
@@ -243,9 +244,6 @@ function ingresoCliente(e) {
 }
 // Fin función ingresar
 
-
-
-
 // Función display de menúes de operaciones
 function abrirMenuOp(menu) {
   // Operación transferencia a cuentas propias
@@ -303,7 +301,7 @@ function abrirMenuOp(menu) {
       // Recuperar información de los selects
       const tipo = "Transferencia a Cuenta Propia";
       const importe = Number(document.querySelector("#inputMonto").value);
-      // Creación del objeto 
+      // Creación del objeto
       const operacion = {
         tipo,
         origen: origen.value,
@@ -313,36 +311,98 @@ function abrirMenuOp(menu) {
       // Actualizo saldos
       switch (origen.value) {
         case CC:
-          cliente.saldo.CC = cliente.saldo.CC - importe;
-          cliente.saldo.CP = cliente.saldo.CP + importe;
+          if (!(cliente.saldo.CC - importe < 0)) {
+            console.log("si entró");
+            cliente.saldo.CC = cliente.saldo.CC - importe;
+            cliente.saldo.CP = cliente.saldo.CP + importe;
+
+            // Pusheo en el array
+            cliente.operaciones.push(operacion);
+            const arrayClientes = JSON.parse(
+              localStorage.getItem("arrayClientes")
+            );
+            const oldCliente = arrayClientes.find(
+              (elemento) => elemento.dni == cliente.dni
+            );
+            sessionStorage.setItem("usuario", JSON.stringify(cliente));
+            const index = arrayClientes.indexOf(oldCliente);
+            arrayClientes.splice(index, 1);
+            arrayClientes.push(cliente);
+            localStorage.setItem(
+              "arrayClientes",
+              JSON.stringify(arrayClientes)
+            );
+            Swal.fire({
+              title: "Operación realizada",
+              icon: "success",
+              imageWidth: 400,
+              imageHeight: 200,
+              showConfirmButton: true,
+            }).then(() => {
+              window.open("./comprobante.html");
+            });
+          } else {
+            Swal.fire({
+              title: "Oops ha ocurrido un error inesperado",
+              text: "No tiene saldo suficiente en su cuenta para realizar esta operación.",
+              icon: "error",
+              imageWidth: 400,
+              imageHeight: 200,
+              showConfirmButton: true,
+            });
+          }
           break;
         case CP:
-          cliente.saldo.CC = cliente.saldo.CC + importe;
-          cliente.saldo.CP = cliente.saldo.CP - importe;
+          if (!(cliente.saldo.CP - importe < 0)) {
+            cliente.saldo.CC = cliente.saldo.CC + importe;
+            cliente.saldo.CP = cliente.saldo.CP - importe;
+            // Pusheo en el array
+            cliente.operaciones.push(operacion);
+            const arrayClientes = JSON.parse(
+              localStorage.getItem("arrayClientes")
+            );
+            const oldCliente = arrayClientes.find(
+              (elemento) => elemento.dni == cliente.dni
+            );
+            sessionStorage.setItem("usuario", JSON.stringify(cliente));
+            const index = arrayClientes.indexOf(oldCliente);
+            arrayClientes.splice(index, 1);
+            arrayClientes.push(cliente);
+            localStorage.setItem(
+              "arrayClientes",
+              JSON.stringify(arrayClientes)
+            );
+            Swal.fire({
+              title: "Operación realizada",
+              icon: "success",
+              imageWidth: 400,
+              imageHeight: 200,
+              showConfirmButton: true,
+            }).then(() => {
+              window.open("./comprobante.html");
+            });
+          } else {
+            Swal.fire({
+              title: "Oops ha ocurrido un error inesperado",
+              text: "No tiene saldo suficiente en su cuenta para realizar esta operación.",
+              icon: "error",
+              imageWidth: 400,
+              imageHeight: 200,
+              showConfirmButton: true,
+            });
+          }
+          break;
         default:
+          Swal.fire({
+            title: "Oops ha ocurrido un error inesperado",
+            text: "El origen seleccionado no está definido.",
+            icon: "error",
+            imageWidth: 400,
+            imageHeight: 200,
+            showConfirmButton: true,
+          });
           break;
       }
-      cliente.saldo;
-      // Pusheo en el array
-      cliente.operaciones.push(operacion);
-      const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
-      const oldCliente = arrayClientes.find(
-        (elemento) => elemento.dni == cliente.dni
-      );
-      sessionStorage.setItem("usuario", JSON.stringify(cliente));
-      const index = arrayClientes.indexOf(oldCliente);
-      arrayClientes.splice(index, 1);
-      arrayClientes.push(cliente);
-      localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes));
-      Swal.fire({
-        title: "Operación realizada",
-        icon: "success",
-        imageWidth: 400,
-        imageHeight: 200,
-        showConfirmButton: true,
-      }).then(() => {
-        window.location.pathname = "./pages/comprobante.html";
-      });
     }
     // Fin función confirmar transferencia
     // Fin operación transferencia a cuentas propias
@@ -397,46 +457,108 @@ function abrirMenuOp(menu) {
       // Paramos el envio del formulario submit
       e.preventDefault();
       // Recuperar información de los selects
-      const tipo = "Transferencia a Cuenta de Terceros";
-      const importe = Number(document.querySelector("#inputMonto").value);
-      // Creación del objeto
-      const operacion = {
-        tipo,
-        origen: origen.value,
-        destino: document.querySelector("#CBUDestino").value,
-        importe,
-      };
-      // Actualizo saldos
-      switch (origen.value) {
-        case CC:
-          cliente.saldo.CC -= importe;
-          break;
-        case CP:
-          cliente.saldo.CP -= importe;
-        default:
-          break;
+      {
+        const tipo = "Transferencia a Cuenta de Terceros";
+        const importe = Number(document.querySelector("#inputMonto").value);
+        // Creación del objeto
+        const operacion = {
+          tipo,
+          origen: origen.value,
+          destino: document.querySelector("#CBUDestino").value,
+          importe,
+        };
+        // Actualizo saldos
+        switch (origen.value) {
+          case CC:
+            if (!(cliente.saldo.CC - importe < 0)) {
+              cliente.saldo.CC -= importe;
+              // Pusheo en el array
+              cliente.operaciones.push(operacion);
+              const arrayClientes = JSON.parse(
+                localStorage.getItem("arrayClientes")
+              );
+              const oldCliente = arrayClientes.find(
+                (elemento) => elemento.dni == cliente.dni
+              );
+              sessionStorage.setItem("usuario", JSON.stringify(cliente));
+              const index = arrayClientes.indexOf(oldCliente);
+              arrayClientes.splice(index, 1);
+              arrayClientes.push(cliente);
+              localStorage.setItem(
+                "arrayClientes",
+                JSON.stringify(arrayClientes)
+              ); // dentro del cliente ya está guardada la operacion en su atributo operaciones
+              Swal.fire({
+                title: "Operación realizada",
+                icon: "success",
+                imageWidth: 400,
+                imageHeight: 200,
+                showConfirmButton: true,
+              }).then(() => {
+                window.open("http://localhost:5500/pages/comprobante.html");
+              });
+            } else {
+              Swal.fire({
+                title: "Oops ha ocurrido un error inesperado",
+                text: "No tiene saldo suficiente en su cuenta para realizar esta operación.",
+                icon: "error",
+                imageWidth: 400,
+                imageHeight: 200,
+                showConfirmButton: true,
+              });
+            }
+            break;
+          case CP:
+            if (!(cliente.saldo.CP - importe < 0)) {
+              cliente.saldo.CP -= importe;
+              // Pusheo en el array
+              cliente.operaciones.push(operacion);
+              const arrayClientes = JSON.parse(
+                localStorage.getItem("arrayClientes")
+              );
+              const oldCliente = arrayClientes.find(
+                (elemento) => elemento.dni == cliente.dni
+              );
+              sessionStorage.setItem("usuario", JSON.stringify(cliente));
+              const index = arrayClientes.indexOf(oldCliente);
+              arrayClientes.splice(index, 1);
+              arrayClientes.push(cliente);
+              localStorage.setItem(
+                "arrayClientes",
+                JSON.stringify(arrayClientes)
+              ); // dentro del cliente ya está guardada la operacion en su atributo operaciones
+              Swal.fire({
+                title: "Operación realizada",
+                icon: "success",
+                imageWidth: 400,
+                imageHeight: 200,
+                showConfirmButton: true,
+              }).then(() => {
+                window.open("http://localhost:5500/pages/comprobante.html");
+              });
+            } else {
+              Swal.fire({
+                title: "Oops ha ocurrido un error inesperado",
+                text: "No tiene saldo suficiente en su cuenta para realizar esta operación.",
+                icon: "error",
+                imageWidth: 400,
+                imageHeight: 200,
+                showConfirmButton: true,
+              });
+            }
+            break;
+          default:
+            Swal.fire({
+              title: "Oops ha ocurrido un error inesperado",
+              text: "El origen seleccionado no está definido.",
+              icon: "error",
+              imageWidth: 400,
+              imageHeight: 200,
+              showConfirmButton: true,
+            });
+            break;
+        }
       }
-      cliente.saldo;
-      // Pusheo en el array
-      cliente.operaciones.push(operacion);
-      const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
-      const oldCliente = arrayClientes.find(
-        (elemento) => elemento.dni == cliente.dni
-      );
-      sessionStorage.setItem("usuario", JSON.stringify(cliente));
-      const index = arrayClientes.indexOf(oldCliente);
-      arrayClientes.splice(index, 1);
-      arrayClientes.push(cliente);
-      localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes)); // dentro del cliente ya está guardada la operacion en su atributo operaciones
-      Swal.fire({
-        title: "Operación realizada",
-        icon: "success",
-        imageWidth: 400,
-        imageHeight: 200,
-        showConfirmButton: true,
-      }).then(() => {
-        window.location.pathname = "../pages/comprobante.html";
-      });
     }
     // Fin función confirmar transferencia
   } else if (menu == "cvDolares0") {
@@ -478,7 +600,7 @@ function abrirMenuOp(menu) {
                                                                         <input type="submit" class="btnOp compraDolares" id="compraDolares" value="Confirmar">
                                                                         <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
                                                                     </form>`;
-        // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input 
+        // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input
       });
     // Fin de la petición
     // Función confirmar compra de dólares
@@ -494,36 +616,47 @@ function abrirMenuOp(menu) {
       const tipo = "Compra de dólares";
       const importe = Number(document.querySelector("#inputMonto").value);
       const precioDolar = Number(document.querySelector("#precioDolar").value);
-      // Creación del objeto
-      const operacion = {
-        tipo,
-        origen: CP,
-        destino: CD,
-        importe,
-      };
-      // Actualizo saldos
-      cliente.saldo.CP -= importe * precioDolar * 1.65;
-      cliente.saldo.CD += importe;
-      // Pusheo en el array
-      cliente.operaciones.push(operacion);
-      const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
-      const oldCliente = arrayClientes.find(
-        (elemento) => elemento.dni == cliente.dni
-      );
-      sessionStorage.setItem("usuario", JSON.stringify(cliente));
-      const index = arrayClientes.indexOf(oldCliente);
-      arrayClientes.splice(index, 1);
-      arrayClientes.push(cliente);
-      localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes)); // dentro del cliente ya está guardada la operacion en su atributo operaciones
-      Swal.fire({
-        title: "Operación realizada",
-        icon: "success",
-        imageWidth: 400,
-        imageHeight: 200,
-        showConfirmButton: true,
-      }).then(() => {
-        window.location.pathname = "../pages/comprobante.html";
-      });
+      if (!(cliente.saldo.CP - importe * precioDolar * 1.65 < 0)) {
+        // Creación del objeto
+        const operacion = {
+          tipo,
+          origen: CP,
+          destino: CD,
+          importe,
+        };
+        // Actualizo saldos
+        cliente.saldo.CP -= importe * precioDolar * 1.65;
+        cliente.saldo.CD += importe;
+        // Pusheo en el array
+        cliente.operaciones.push(operacion);
+        const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
+        const oldCliente = arrayClientes.find(
+          (elemento) => elemento.dni == cliente.dni
+        );
+        sessionStorage.setItem("usuario", JSON.stringify(cliente));
+        const index = arrayClientes.indexOf(oldCliente);
+        arrayClientes.splice(index, 1);
+        arrayClientes.push(cliente);
+        localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes)); // dentro del cliente ya está guardada la operacion en su atributo operaciones
+        Swal.fire({
+          title: "Operación realizada",
+          icon: "success",
+          imageWidth: 400,
+          imageHeight: 200,
+          showConfirmButton: true,
+        }).then(() => {
+          window.location.pathname = "../pages/comprobante.html";
+        });
+      } else {
+        Swal.fire({
+          title: "Oops ha ocurrido un error inesperado",
+          text: "No tiene saldo suficiente en su cuenta para realizar esta operación.",
+          icon: "error",
+          imageWidth: 400,
+          imageHeight: 200,
+          showConfirmButton: true,
+        });
+      }
     }
     const tipo = "Compra de dólares";
     const importe = Number(document.querySelector("#inputMonto").value);
