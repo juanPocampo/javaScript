@@ -645,7 +645,7 @@ function abrirMenuOp(menu) {
           imageHeight: 200,
           showConfirmButton: true,
         }).then(() => {
-          window.location.pathname = "../pages/comprobante.html";
+          window.open("../pages/comprobante.html");
         });
       } else {
         Swal.fire({
