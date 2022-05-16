@@ -6,7 +6,6 @@
 //
 // Scripts
 //
-console.log("JS loaded");
 
 // Declaración de constantes
 const CC = "Cuenta Corriente";
@@ -495,7 +494,7 @@ function abrirMenuOp(menu) {
                 imageHeight: 200,
                 showConfirmButton: true,
               }).then(() => {
-                window.open("http://localhost:5500/pages/comprobante.html");
+                window.open("./comprobante.html");
               });
             } else {
               Swal.fire({
@@ -534,7 +533,7 @@ function abrirMenuOp(menu) {
                 imageHeight: 200,
                 showConfirmButton: true,
               }).then(() => {
-                window.open("http://localhost:5500/pages/comprobante.html");
+                window.open("./comprobante.html");
               });
             } else {
               Swal.fire({
@@ -645,7 +644,7 @@ function abrirMenuOp(menu) {
           imageHeight: 200,
           showConfirmButton: true,
         }).then(() => {
-          window.open("../pages/comprobante.html");
+          window.open("./comprobante.html");
         });
       } else {
         Swal.fire({
@@ -658,35 +657,6 @@ function abrirMenuOp(menu) {
         });
       }
     }
-    const tipo = "Compra de dólares";
-    const importe = Number(document.querySelector("#inputMonto").value);
-    // Creación del objeto
-    const operacion = {
-      tipo,
-      origen,
-      destino: CD,
-      importe,
-    };
-    // Actualizo saldos
-    cliente.saldo;
-    // Pusheo en el array
-    cliente.operaciones.push(operacion);
-    const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
-    const oldCliente = arrayClientes.find(
-      (elemento) => elemento.dni == cliente.dni
-    );
-    sessionStorage.setItem("usuario", JSON.stringify(cliente));
-    const index = arrayClientes.indexOf(oldCliente);
-    arrayClientes.splice(index, 1);
-    arrayClientes.push(cliente);
-    localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes)); // dentro del cliente ya está guardada la operacion en su atributo operaciones
-    Swal.fire({
-      title: "Operación realizada",
-      icon: "success",
-      imageWidth: 400,
-      imageHeight: 200,
-      showConfirmButton: true,
-    });
   } else {
     document.querySelector("#cvDolares0").style.display = "none";
     document.querySelector("#transfTerceros0").style.display = "none";
@@ -748,9 +718,9 @@ if (document.querySelector("#salirMenu")) {
 // Fin del alert para cuando hace click en "Salir
 
 if (!!document.querySelector("#comprobante")) {
-  usuario = JSON.parse(sessionStorage.getItem("usuario"));
-  const operacion = usuario.operaciones[usuario.operaciones.length - 1];
+  const usuario = JSON.parse(sessionStorage.getItem("usuario"));
   console.log(usuario);
+  const operacion = usuario.operaciones[usuario.operaciones.length - 1];
   document.querySelector("#idComprobante").textContent =
     usuario.operaciones.length;
   document.querySelector("#origen").textContent = operacion.origen;
