@@ -697,24 +697,6 @@ if (document.querySelector("#cvDolares")) {
     .addEventListener("click", () => abrirMenuOp("cvDolares0"));
 }
 
-// Alert para cuando hace click en "Salir"
-if (document.querySelector("#salirMenu")) {
-  document.querySelector("#salirMenu").addEventListener("click", () =>
-    Swal.fire({
-      title: "Está por salir del simulador",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Confirmar",
-      confirmButtonColor: "#3085d6",
-      cancelButtonText: "Cancelar",
-      cancelButtonColor: "#d33",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.assign("../index.html");
-      }
-    })
-  );
-}
 // Fin del alert para cuando hace click en "Salir
 
 if (!!document.querySelector("#comprobante")) {
