@@ -3,6 +3,7 @@
  * Copyright 2013-2022 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-scrolling-nav/blob/master/LICENSE)
  */
+
 //
 // Scripts
 //
@@ -11,30 +12,6 @@
 const CC = "Cuenta Corriente";
 const CP = "Caja de Ahorro en Pesos";
 const CD = "Caja de Ahorro en Dolares";
-
-/* window.addEventListener("DOMContentLoaded", (event) => { */
-// Activate Bootstrap scrollspy on the main nav element
-/*     const mainNav = document.body.querySelector('#mainNav');
-    if (mainNav) {
-      new bootstrap.ScrollSpy(document.body, {
-        target: '#mainNav',
-        offset: 74,
-      });
-    }; */
-
-// Collapse responsive navbar when toggler is visible
-/*   const navbarToggler = document.body.querySelector(".navbar-toggler");
-  const responsiveNavItems = [].slice.call(
-    document.querySelectorAll("#navbarResponsive .nav-link")
-  );
-  responsiveNavItems.map(function (responsiveNavItem) {
-    responsiveNavItem.addEventListener("click", () => {
-      if (window.getComputedStyle(navbarToggler).display !== "none") {
-        navbarToggler.click();
-      }
-    });
-  }); */
-/* }); */
 
 // Declaración del array clientes
 const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes")) || [];
@@ -87,15 +64,23 @@ if (document.querySelector("#formNuevoCliente")) {
     .querySelector("#formNuevoCliente")
     .addEventListener("submit", nuevoCliente);
 }
-const header = `<p>${
-  cliente.hasOwnProperty("saldo") ? cliente.saldo.CC : ""
-}</p>
-                <p>${
-                  cliente.hasOwnProperty("saldo") ? cliente.saldo.CP : ""
-                }</p>
-                <p>${
-                  cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
-                }</p>`;
+/* const header = `<div class="headerSaldoCC">${cliente.hasOwnProperty("saldo") ? cliente.saldo.CC : ""
+  }</div>
+  <div class="headerSaldoCP">${cliente.hasOwnProperty("saldo") ? cliente.saldo.CP : ""
+  }</div>
+                <div class="headerSaldoCD">${cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
+  }</div>`; */
+
+const header = `<h2 class="mt-4">Saldos</h2>
+  <div class="row mb-3">
+    <div class="col-md-3 themed-grid-col">Cuenta corriente<br>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CC : ""
+  }</div>
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en pesos<br>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CP : ""
+  }</div>
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en dólares<br>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
+  }</div>
+  </div>`
+
 
 /* if (document.querySelector("#cl")) */
 
