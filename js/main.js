@@ -71,18 +71,15 @@ if (document.querySelector("#formNuevoCliente")) {
                 <div class="headerSaldoCD">${cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
   }</div>`; */
 
-const header = `<h2 class="mt-4">Saldos</h2>
+const header = `<h2 class="mt-4">Saldos</h2><hr>
   <div class="row mb-3">
-    <div class="col-md-3 themed-grid-col">Cuenta corriente<br>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CC : ""
+    <div class="col-md-3 themed-grid-col">Cuenta corriente<br>$ ${cliente.hasOwnProperty("saldo") ? cliente.saldo.CC : ""
   }</div>
-    <div class="col-md-3 themed-grid-col">Caja de ahorro en pesos<br>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CP : ""
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en pesos<br>$ ${cliente.hasOwnProperty("saldo") ? cliente.saldo.CP : ""
   }</div>
-    <div class="col-md-3 themed-grid-col">Caja de ahorro en dólares<br>${cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en dólares<br>U$S ${cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
   }</div>
   </div>`
-
-
-/* if (document.querySelector("#cl")) */
 
 function nuevoCliente(e) {
   // Detener el envío del formulario submit

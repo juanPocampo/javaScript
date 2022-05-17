@@ -191,8 +191,8 @@ p {
   display:flex;
   text-align:center;
   margin: 20px;
-  background-color: rgba(86, 61, 124, .15);
-  border: 5px solid rgba(86, 61, 124, .2);
+  background-color: rgba(117, 158, 219, 0.224);
+/*   border: 5px solid rgba(86, 61, 124, .2); */
   padding:10px;
   border-radius:25px;
 }
@@ -1264,7 +1264,7 @@ progress {
 
   .col-md-3 {
     flex: 0 0 auto;
-    width: 25%;
+    width: 20%;
     justify-content:center;
   }
 
@@ -8307,7 +8307,9 @@ fieldset:disabled .btn {
 }
 
 .mt-4 {
-  margin-top: 1.5rem !important;
+  font-size: 22px;
+  text-align: center;
+  margin-top: 70px !important;
 }
 
 .mt-5 {
@@ -12687,7 +12689,7 @@ body {
   font-size: 22px;
   font-weight: bold;
   margin-left: 150px;
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: 10px;
   color: black;
   text-align: left;
