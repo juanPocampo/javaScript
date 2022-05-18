@@ -362,6 +362,18 @@ table {
   border-collapse: collapse;
 }
 
+.montoResumen {
+  text-align: right;
+}
+
+.tituloColumna {
+  text-align: center;
+}
+
+.celda {
+  text-align: center; 
+}
+
 caption {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
