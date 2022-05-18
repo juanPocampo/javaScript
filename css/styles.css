@@ -12901,13 +12901,20 @@ body {
   font-weight: normal;
   width: 200px;
   height: 30px;
-  margin-left: 15px;
-  margin-top: 5px;
-  margin-bottom: 30px;
+  margin-left: 13px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   padding-left: 10px;
   text-align: left;
   color: black;
   border: 1px solid rgb(204, 203, 203);
+  border-radius: 10px;
+}
+.inputTransfPropia {
+  padding:40px 0px 40px 100px;
+  margin-right:700px;
+  background-color:lightgray;
+  border-radius: 20px;
 }
 
 #formCompraDolares {
@@ -13004,10 +13011,10 @@ body {
 
 .ingresarImporteTransf {
   font-size: 16px;
-  font-weight: normal;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-bottom: 0px;
+  font-weight: bold;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 5px;
   color: black;
 }
 
