@@ -238,7 +238,7 @@ function abrirMenuOp(menu) {
     element.remove();
     document.querySelector("#transfPropia0").innerHTML =
       header +
-      `<h2 class="dolarTitulo0">Transferencia a cuenta propia</h2>
+      `<h2 class="dolarTitulo0">Transferencia entre cuentas propias</h2>
                                                                 <form id="transfPropia">
                                                                     <span id="origen">
                                                                         <label for="cuenta">Seleccione la cuenta de <strong>origen:</strong></label>
@@ -538,7 +538,7 @@ function abrirMenuOp(menu) {
           default:
             Swal.fire({
               title: "Oops ha ocurrido un error inesperado",
-              text: "El origen seleccionado no está definido.",
+              text: "La cuenta de origen no está seleccionada",
               icon: "error",
               imageWidth: 400,
               imageHeight: 200,
@@ -739,7 +739,7 @@ if (document.querySelector("#saldos")) {
     .addEventListener("click", () => abrirMenuOp("consSaldos"));
 }
 
-/* if (!!document.querySelector("#comprobante")) {
+if (!!document.querySelector("#comprobante")) {
   const usuario = JSON.parse(sessionStorage.getItem("usuario"));
   console.log(usuario);
   const operacion = usuario.operaciones[usuario.operaciones.length - 1];
@@ -748,7 +748,7 @@ if (document.querySelector("#saldos")) {
   document.querySelector("#origen").textContent = operacion.origen;
   document.querySelector("#destino").textContent = operacion.destino;
   document.querySelector("#importe").textContent = operacion.importe;
-} */
+}
 
 // Alert para cuando hace click en "Salir"
 if (document.querySelector("#salirMenu")) {
