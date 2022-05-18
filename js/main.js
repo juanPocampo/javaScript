@@ -590,20 +590,16 @@ function abrirMenuOp(menu) {
         document.querySelector("#cvDolares0").innerHTML =
           header +
           `<h2 class="dolarTitulo0">Compra de dólares</h2>
-                                                                    <h4 class="normativaBCRA">Le recordamos que la operatoria de compra de dólares se encuentra regulada por la normativa de Exterior y Cambios del BCRA y la Ley Penal Cambiarla. La compra es sólo para atesoramiento personal. El cupo de U$S 200 es mensual y por persona. Se encuentra prohibido tanto ceder y/o vender el cupo mensual. No se puede comprar dólares a favor de o por cuentas de terceros. En el caso de que se detecte la violación a la normativa vigente, el banco se reserva el derecho de cerrar las cuentas, efectuar la correspondiente denuncia al BCRA y tomar cualquier medida que estime necesaria.</h4>                               
+                                                                    <h4 class="normativaBCRA">Le recordamos que la operatoria de compra de dólares se encuentra regulada por la normativa de Exterior y Cambios del BCRA y la Ley Penal Cambiarla. La compra es sólo para atesoramiento personal. <strong>El cupo de U$S 200 es mensual y por persona.</strong> Se encuentra prohibido tanto ceder y/o vender el cupo mensual. No se puede comprar dólares a favor de o por cuentas de terceros. En el caso de que se detecte la violación a la normativa vigente, el banco se reserva el derecho de cerrar las cuentas, efectuar la correspondiente denuncia al BCRA y tomar cualquier medida que estime necesaria.</h4>                               
                                                                         <h3 class="dolarTitulo1">Comprás a $${new Intl.NumberFormat().format(
                                                                           data
                                                                         )} sin impuestos ni retenciones</h3>
                                                                         <h4 class="cotizacionDolar">Cotización dólar por unidad en el Mercado Libre de Cambios, ámbito de aplicación y vigencia para operaciones por banca online al momento de su consulta</h4>
                                                                     </h4>                               
-                                                                    <h3 class="dolarTitulo1">¿Cuánto querés comprar?</h3>
-                                                                    <h4 class="cotizacionDolar">Recordá que el cupo es de U$S 200 mensuales</h4>
-                                                                    </h4>
                                                                     <h4 class="ingresarImporte">Ingresá el importe en U$S</h4>
                                                                     <form id="formCompraDolares">
                                                                         <input type="hidden" name="precioDolar" id="precioDolar" class="precioDolae" value=${data} />
-                                                                        <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto"  min="0" max="200" step = "0.01" required><br>
-                                                                        <h4 class="simularTotal" id="simularTotal">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="costoOperacion" class="simulDolares">0</span></h4>
+                                                                        <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto"  min="0" max="200" step = "0.01" required><span class="simularTotal" id="simularTotal"><span class="simularTotalDolares">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="costoOperacion" class="simularTotalDolares2">0</span></span><br>
                                                                         <input type="submit" class="btnOp compraDolares" id="compraDolares" value="Confirmar">
                                                                         <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
                                                                     </form>`;
@@ -689,7 +685,7 @@ function abrirMenuOp(menu) {
       } else {
         Swal.fire({
           title: "Oops ha ocurrido un error inesperado",
-          text: "No puede comprar más de 200 u$d mensuales.",
+          text: "No puede comprar más de U$S 200 mensuales.",
           icon: "error",
           imageWidth: 400,
           imageHeight: 200,
