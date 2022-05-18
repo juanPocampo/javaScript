@@ -597,12 +597,29 @@ function abrirMenuOp(menu) {
                                                                     <h4 class="ingresarImporte">Ingresá el importe en U$S</h4>
                                                                     <form id="formCompraDolares">
                                                                         <input type="hidden" name="precioDolar" id="precioDolar" class="precioDolae" value=${data} />
-                                                                        <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto" onchange=calcularDolares() min="0" max="200" step = "0.01" required><br>
-                                                                        <h4 class="simularTotal" id="simularTotal">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="montoTotal" class="simulDolares">0</span></h4>
+                                                                        <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto"  min="0" max="200" step = "0.01" required><br>
+                                                                        <h4 class="simularTotal" id="simularTotal">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="costoOperacion" class="simulDolares">0</span></h4>
                                                                         <input type="submit" class="btnOp compraDolares" id="compraDolares" value="Confirmar">
                                                                         <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
                                                                     </form>`;
         // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input
+        // Calcular el monto total en pesos de la compra de dólares y mostar en pantalla
+        if (document.querySelector("#cvDolares0")) {
+          document
+            .querySelector("#inputMonto")
+            .addEventListener("change", (ev) => {
+              const montoDolar = Number.parseFloat(ev.target.value);
+              console.log(montoDolar);
+              const precioDolar = Number.parseFloat(
+                document.querySelector("#precioDolar").value
+              );
+              console.log(precioDolar);
+              const costoOperacion = montoDolar * precioDolar * 1.65;
+              document.querySelector("#costoOperacion").textContent = `${
+                Math.round(costoOperacion * 100) / 100
+              }`;
+            });
+        }
       });
     // Fin de la petición
     // Función confirmar compra de dólares
@@ -676,26 +693,41 @@ function abrirMenuOp(menu) {
       }
     }
   } else if (menu == "consSaldos") {
+    document.querySelector("#menuOperaciones").style.display = "none";
+    document.querySelector("#consSaldos").style.display = "block";
+    const element = document.querySelector("#encabezadoMenuOp");
+    element.remove();
+    let content =
+      header +
+      `<table>
+      <thead>
+          <th>Numero de transaccion</th>
+          <th>tipo de transaccion</th>
+          <th>monto de transaccion</th>
+          <th>origen</th>
+          <th>destino</th>
+      </thead>
+      <tbody>`;
+    cliente.operaciones.map((op, index) => {
+      content += `<tr>
+      <td>${index + 1}</td>
+                    <td>${op.tipo}</td>
+                    <td>${op.importe}</td>
+                    <td>${op.origen}</td>
+                    <td>${op.destino}</td></tr>
+        `;
+    });
+    content += "</table></table>";
+    document.querySelector("#transfTerceros0").innerHTML = content;
   } else {
     document.querySelector("#cvDolares0").style.display = "none";
     document.querySelector("#transfTerceros0").style.display = "none";
     document.querySelector("#transfPropia0").style.display = "none";
+    document.querySelector("#consSaldo").style.display = "none";
     document.querySelector("#menuOperaciones").style.display = "block";
   }
 }
 // Fin función display de menúes de operaciones
-
-// Calcular el monto total en pesos de la compra de dólares y mostar en pantalla
-function calcularDolares() {
-  const monto = document.querySelector("#inputMonto").value;
-  const precioDolar = document.querySelector("#precioDolar").value;
-  costo = Number.parseFloat(monto) * precioDolar * 1.65;
-  !Number.isNaN(costo)
-    ? (document.querySelector(
-        "#montoTotal"
-      ).textContent = `${new Intl.NumberFormat().format(costo)}`)
-    : (document.querySelector("#montoTotal").textContent = "0");
-}
 
 // Evento click transferir a cuenta propia
 if (document.querySelector("#TransfPropia")) {
@@ -716,6 +748,13 @@ if (document.querySelector("#cvDolares")) {
   document
     .querySelector("#cvDolares")
     .addEventListener("click", () => abrirMenuOp("cvDolares0"));
+}
+
+// Evento Click Consultar Datos
+if (document.querySelector("#saldos")) {
+  document
+    .querySelector("#saldos")
+    .addEventListener("click", () => abrirMenuOp("consSaldos"));
 }
 
 // Fin del alert para cuando hace click en "Salir
