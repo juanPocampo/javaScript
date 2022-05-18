@@ -12910,9 +12910,19 @@ body {
   border: 1px solid rgb(204, 203, 203);
   border-radius: 10px;
 }
+
 .inputTransfPropia {
   padding:40px 0px 40px 100px;
   margin-right:700px;
+  background-color:lightgray;
+  border-radius: 20px;
+}
+
+.inputTransfTerceros {
+  padding:40px 0px 40px 100px;
+  margin-right:700px;
+  margin-top:10px;
+  margin-bottom:20px;
   background-color:lightgray;
   border-radius: 20px;
 }
@@ -13001,8 +13011,8 @@ body {
 
 
 .ingresarImporte {
-  font-size: 14px;
-  font-weight: normal;
+  font-size: 16px;
+  font-weight: bold;
   margin-left: 180px;
   margin-top: 20px;
   margin-bottom: 5px;
