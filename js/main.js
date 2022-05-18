@@ -263,10 +263,13 @@ function abrirMenuOp(menu) {
                                                                             </span>
                                                                             <br><br>
                                                                     </span>    
-                                                                    <span><h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
-                                                                      <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required>
-                                                                    </span>
-                                                                    <br><br>
+                                                                    <div class="inputTransfPropia">
+                                                                        <span>
+                                                                          <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
+                                                                          <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required>
+                                                                        </span>
+                                                                    </div>
+                                                                    <br>
                                                                     <input type="submit" class="btnOp confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
                                                                     <a href="./operaciones.html" class="btnOp volverTransf" id="volver">Volver</a>
                                                                 </form>`;
@@ -426,8 +429,10 @@ function abrirMenuOp(menu) {
                                                                   </span>   
                                                                     <label for="cuenta">Ingrese CBU de la cuenta de destino:</label>
                                                                     <input type="text" name="montoTransf" id="CBUDestino" class="input" pattern=".{22}" title="Debe contener 22 números" required><br>
-                                                                    <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
-                                                                    <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required><br>
+                                                                    <div class="inputTransfTerceros">
+                                                                      <h4 class="ingresarImporteTransf">Ingresá el importe a transferir</h4>
+                                                                      <input type="number" name="inputMonto" id="inputMonto" class="inputMonto" required><br>
+                                                                    </div>
                                                                     <input type="submit" class="btnOp confirmTransfPropia" id="confimTransfPropia" value="Confirmar">
                                                                     <a href="./operaciones.html" class="btnOp volverTransf" id="volver">Volver</a>
                                                                 </form>`;
