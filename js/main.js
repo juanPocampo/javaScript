@@ -73,13 +73,28 @@ if (document.querySelector("#formNuevoCliente")) {
 
 const header = `<h2 class="mt-4">Saldos</h2>
   <div class="row mb-3">
-    <div class="col-md-3 themed-grid-col">Cuenta corriente<br>$ ${cliente.hasOwnProperty("saldo") ? new Intl.NumberFormat("es-ES").format(parseFloat((cliente.saldo.CC)).toFixed(2)) : ""
-  }</div>
-    <div class="col-md-3 themed-grid-col">Caja de ahorro en pesos<br>$ ${cliente.hasOwnProperty("saldo") ? new Intl.NumberFormat("es-ES").format(parseFloat((cliente.saldo.CP)).toFixed(2)) : ""
-  }</div>
-    <div class="col-md-3 themed-grid-col">Caja de ahorro en dólares<br>U$S ${cliente.hasOwnProperty("saldo") ? new Intl.NumberFormat("es-ES").format(parseFloat((cliente.saldo.CD)).toFixed(2)) : ""
-  }</div>
-  </div><hr>`
+    <div class="col-md-3 themed-grid-col">Cuenta corriente<br>$ ${
+      cliente.hasOwnProperty("saldo")
+        ? new Intl.NumberFormat("es-ES").format(
+            parseFloat(cliente.saldo.CC).toFixed(2)
+          )
+        : ""
+    }</div>
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en pesos<br>$ ${
+      cliente.hasOwnProperty("saldo")
+        ? new Intl.NumberFormat("es-ES").format(
+            parseFloat(cliente.saldo.CP).toFixed(2)
+          )
+        : ""
+    }</div>
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en dólares<br>U$S ${
+      cliente.hasOwnProperty("saldo")
+        ? new Intl.NumberFormat("es-ES").format(
+            parseFloat(cliente.saldo.CD).toFixed(2)
+          )
+        : ""
+    }</div>
+  </div><hr>`;
 
 function nuevoCliente(e) {
   // Detener el envío del formulario submit
@@ -292,7 +307,7 @@ function abrirMenuOp(menu) {
       // Actualizo saldos
       switch (origen.value) {
         case CC:
-          if (!(cliente.saldo.CC - importe < 0)) {
+          if (cliente.saldo.CC - importe >= 0) {
             console.log("si entró");
             cliente.saldo.CC = cliente.saldo.CC - importe;
             cliente.saldo.CP = cliente.saldo.CP + importe;
@@ -335,7 +350,7 @@ function abrirMenuOp(menu) {
           }
           break;
         case CP:
-          if (!(cliente.saldo.CP - importe < 0)) {
+          if (cliente.saldo.CP - importe >= 0) {
             cliente.saldo.CC = cliente.saldo.CC + importe;
             cliente.saldo.CP = cliente.saldo.CP - importe;
             // Pusheo en el array
@@ -452,7 +467,7 @@ function abrirMenuOp(menu) {
         // Actualizo saldos
         switch (origen.value) {
           case CC:
-            if (!(cliente.saldo.CC - importe < 0)) {
+            if (cliente.saldo.CC - importe >= 0) {
               cliente.saldo.CC -= importe;
               // Pusheo en el array
               cliente.operaciones.push(operacion);
@@ -492,7 +507,7 @@ function abrirMenuOp(menu) {
             }
             break;
           case CP:
-            if (!(cliente.saldo.CP - importe < 0)) {
+            if (cliente.saldo.CP - importe >= 0) {
               cliente.saldo.CP -= importe;
               // Pusheo en el array
               cliente.operaciones.push(operacion);
@@ -571,7 +586,9 @@ function abrirMenuOp(menu) {
           header +
           `<h2 class="dolarTitulo0">Compra de dólares</h2>
                                                                     <h4 class="normativaBCRA">Le recordamos que la operatoria de compra de dólares se encuentra regulada por la normativa de Exterior y Cambios del BCRA y la Ley Penal Cambiarla. La compra es sólo para atesoramiento personal. El cupo de U$S 200 es mensual y por persona. Se encuentra prohibido tanto ceder y/o vender el cupo mensual. No se puede comprar dólares a favor de o por cuentas de terceros. En el caso de que se detecte la violación a la normativa vigente, el banco se reserva el derecho de cerrar las cuentas, efectuar la correspondiente denuncia al BCRA y tomar cualquier medida que estime necesaria.</h4>                               
-                                                                        <h3 class="dolarTitulo1">Comprás a $${(new Intl.NumberFormat().format(data))} sin impuestos ni retenciones</h3>
+                                                                        <h3 class="dolarTitulo1">Comprás a $${new Intl.NumberFormat().format(
+                                                                          data
+                                                                        )} sin impuestos ni retenciones</h3>
                                                                         <h4 class="cotizacionDolar">Cotización dólar por unidad en el Mercado Libre de Cambios, ámbito de aplicación y vigencia para operaciones por banca online al momento de su consulta</h4>
                                                                     </h4>                               
                                                                     <h3 class="dolarTitulo1">¿Cuánto querés comprar?</h3>
@@ -601,42 +618,56 @@ function abrirMenuOp(menu) {
       const tipo = "Compra de dólares";
       const importe = Number(document.querySelector("#inputMonto").value);
       const precioDolar = Number(document.querySelector("#precioDolar").value);
-      if (!(cliente.saldo.CP - importe * precioDolar * 1.65 < 0)) {
-        // Creación del objeto
-        const operacion = {
-          tipo,
-          origen: CP,
-          destino: CD,
-          importe,
-        };
-        // Actualizo saldos de las cuentas
-        cliente.saldo.CP -= importe * precioDolar * 1.65;
-        cliente.saldo.CD += importe;
-        // Pusheo en el array
-        cliente.operaciones.push(operacion);
-        const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes"));
-        const oldCliente = arrayClientes.find(
-          (elemento) => elemento.dni == cliente.dni
-        );
-        sessionStorage.setItem("usuario", JSON.stringify(cliente));
-        const index = arrayClientes.indexOf(oldCliente);
-        arrayClientes.splice(index, 1);
-        arrayClientes.push(cliente);
-        localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes)); // dentro del cliente ya está guardada la operacion en su atributo operaciones
-        Swal.fire({
-          title: "Operación realizada",
-          icon: "success",
-          imageWidth: 400,
-          imageHeight: 200,
-          showConfirmButton: true,
-        }).then(() => {
-          window.location.reload();
-          window.open("./comprobante.html");
-        });
+      if (cliente.saldo.CD + importe <= 200) {
+        console.log(cliente.saldo.CD + importe);
+        if (cliente.saldo.CP - importe * precioDolar * 1.65 >= 0) {
+          // Creación del objeto
+          const operacion = {
+            tipo,
+            origen: CP,
+            destino: CD,
+            importe,
+          };
+          // Actualizo saldos de las cuentas
+          cliente.saldo.CP -= importe * precioDolar * 1.65;
+          cliente.saldo.CD += importe;
+          // Pusheo en el array
+          cliente.operaciones.push(operacion);
+          const arrayClientes = JSON.parse(
+            localStorage.getItem("arrayClientes")
+          );
+          const oldCliente = arrayClientes.find(
+            (elemento) => elemento.dni == cliente.dni
+          );
+          sessionStorage.setItem("usuario", JSON.stringify(cliente));
+          const index = arrayClientes.indexOf(oldCliente);
+          arrayClientes.splice(index, 1);
+          arrayClientes.push(cliente);
+          localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes)); // dentro del cliente ya está guardada la operacion en su atributo operaciones
+          Swal.fire({
+            title: "Operación realizada",
+            icon: "success",
+            imageWidth: 400,
+            imageHeight: 200,
+            showConfirmButton: true,
+          }).then(() => {
+            window.location.reload();
+            window.open("./comprobante.html");
+          });
+        } else {
+          Swal.fire({
+            title: "Oops ha ocurrido un error inesperado",
+            text: "No tiene saldo suficiente en su cuenta para realizar esta operación.",
+            icon: "error",
+            imageWidth: 400,
+            imageHeight: 200,
+            showConfirmButton: true,
+          });
+        }
       } else {
         Swal.fire({
           title: "Oops ha ocurrido un error inesperado",
-          text: "No tiene saldo suficiente en su cuenta para realizar esta operación.",
+          text: "No puede comprar más de 200 u$d mensuales.",
           icon: "error",
           imageWidth: 400,
           imageHeight: 200,
@@ -644,7 +675,8 @@ function abrirMenuOp(menu) {
         });
       }
     }
-  } else if(menu == "consSaldos"){}else{
+  } else if (menu == "consSaldos") {
+  } else {
     document.querySelector("#cvDolares0").style.display = "none";
     document.querySelector("#transfTerceros0").style.display = "none";
     document.querySelector("#transfPropia0").style.display = "none";
@@ -659,7 +691,9 @@ function calcularDolares() {
   const precioDolar = document.querySelector("#precioDolar").value;
   costo = Number.parseFloat(monto) * precioDolar * 1.65;
   !Number.isNaN(costo)
-    ? (document.querySelector("#montoTotal").textContent = `${new Intl.NumberFormat().format(costo)}`)
+    ? (document.querySelector(
+        "#montoTotal"
+      ).textContent = `${new Intl.NumberFormat().format(costo)}`)
     : (document.querySelector("#montoTotal").textContent = "0");
 }
 
