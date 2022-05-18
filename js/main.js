@@ -338,6 +338,7 @@ function abrirMenuOp(menu) {
               imageHeight: 200,
               showConfirmButton: true,
             }).then(() => {
+              window.location.reload();
               window.open("./comprobante.html");
             });
           } else {
@@ -378,6 +379,7 @@ function abrirMenuOp(menu) {
               imageHeight: 200,
               showConfirmButton: true,
             }).then(() => {
+              window.location.reload();
               window.open("./comprobante.html");
             });
           } else {
@@ -435,7 +437,6 @@ function abrirMenuOp(menu) {
     // Al seleccionar una cuenta de origen, se modifica el id con el texto "Origen: Cuenta Corriente / Caja de Ahorro"
     let origen = document.getElementById("cuentaOrigen");
     origen.onchange = () => {
-      console.log(origen.value);
       if (origen.value === CC) {
         document.querySelector(
           "#origenTerceros"
@@ -494,6 +495,7 @@ function abrirMenuOp(menu) {
                 imageHeight: 200,
                 showConfirmButton: true,
               }).then(() => {
+                window.location.reload();
                 window.open("./comprobante.html");
               });
             } else {
@@ -533,6 +535,7 @@ function abrirMenuOp(menu) {
                 imageHeight: 200,
                 showConfirmButton: true,
               }).then(() => {
+                window.location.reload();
                 window.open("./comprobante.html");
               });
             } else {
@@ -644,6 +647,7 @@ function abrirMenuOp(menu) {
           imageHeight: 200,
           showConfirmButton: true,
         }).then(() => {
+          window.location.reload();
           window.open("./comprobante.html");
         });
       } else {
@@ -657,7 +661,7 @@ function abrirMenuOp(menu) {
         });
       }
     }
-  } else {
+  } else if(menu == "consSaldos"){}else{
     document.querySelector("#cvDolares0").style.display = "none";
     document.querySelector("#transfTerceros0").style.display = "none";
     document.querySelector("#transfPropia0").style.display = "none";
