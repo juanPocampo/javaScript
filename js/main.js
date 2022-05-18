@@ -4,10 +4,6 @@
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-scrolling-nav/blob/master/LICENSE)
  */
 
-//
-// Scripts
-//
-
 // Declaración de constantes
 const CC = "Cuenta Corriente";
 const CP = "Caja de Ahorro en Pesos";
@@ -16,6 +12,7 @@ const CD = "Caja de Ahorro en Dolares";
 // Declaración del array clientes
 const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes")) || [];
 
+//
 let cliente = JSON.parse(sessionStorage.getItem("usuario")) || {};
 
 // Función display de menúes
@@ -64,12 +61,6 @@ if (document.querySelector("#formNuevoCliente")) {
     .querySelector("#formNuevoCliente")
     .addEventListener("submit", nuevoCliente);
 }
-/* const header = `<div class="headerSaldoCC">${cliente.hasOwnProperty("saldo") ? cliente.saldo.CC : ""
-  }</div>
-  <div class="headerSaldoCP">${cliente.hasOwnProperty("saldo") ? cliente.saldo.CP : ""
-  }</div>
-                <div class="headerSaldoCD">${cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
-  }</div>`; */
 
 const header = `<h2 class="mt-4">Saldos</h2>
   <div class="row mb-3">
@@ -596,7 +587,7 @@ function abrirMenuOp(menu) {
                                                                     <h4 class="ingresarImporte">Ingresá el importe en U$S</h4>
                                                                     <form id="formCompraDolares">
                                                                         <input type="hidden" name="precioDolar" id="precioDolar" class="precioDolae" value=${data} />
-                                                                        <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto"  min="0" max="200" step = "0.01" required><span class="simularTotal" id="simularTotal"><span class="simularTotalDolares">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="costoOperacion" class="simularTotalDolares2">0</span></span><br>
+                                                                        <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto"  min="0" max="200" step = "0.01" required><span class="simularTotal" id="simularTotal"><span class="simularTotalDolares">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="costoOperacion">0</span></span><br>
                                                                         <input type="submit" class="btnOp compraDolares" id="compraDolares" value="Confirmar">
                                                                         <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
                                                                     </form>`;
@@ -755,8 +746,6 @@ if (document.querySelector("#saldos")) {
     .addEventListener("click", () => abrirMenuOp("consSaldos"));
 }
 
-// Fin del alert para cuando hace click en "Salir
-
 if (!!document.querySelector("#comprobante")) {
   const usuario = JSON.parse(sessionStorage.getItem("usuario"));
   console.log(usuario);
@@ -767,3 +756,22 @@ if (!!document.querySelector("#comprobante")) {
   document.querySelector("#destino").textContent = operacion.destino;
   document.querySelector("#importe").textContent = operacion.importe;
 }
+
+// Alert para cuando hace click en "Salir"
+if (document.querySelector("#salirMenu")) {
+  document.querySelector("#salirMenu").addEventListener('click', () =>
+      Swal.fire({
+          title: 'Está por salir del simulador',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Confirmar',
+          confirmButtonColor: '#3085d6',
+          cancelButtonText: 'Cancelar',
+          cancelButtonColor: '#d33'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.assign("../index.html")
+          }
+      }))
+}
+// Fin del alert para cuando hace click en "Salir"
