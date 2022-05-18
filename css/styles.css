@@ -12835,7 +12835,7 @@ body {
   color: black;
   background-color: white;
   margin-left: 0px;
-  margin-top: 20px;
+  margin-top: 30px;
   border: 1px black solid;
 }
 
@@ -13013,9 +13013,9 @@ body {
 .ingresarImporte {
   font-size: 16px;
   font-weight: bold;
-  margin-left: 180px;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  margin-left: 168px;
+  margin-top: 30px;
+  margin-bottom: 10px;
   color: black;
 }
 
@@ -13028,12 +13028,21 @@ body {
   color: black;
 }
 
-.simularTotal {
-  font-size: 16px;
-  font-weight: bold;
-  margin-left: 0px;
-  margin-top: 10px;
-  margin-bottom: 0px;
+.simularTotalDolares {
+  font-size: 14px;
+  font-weight: normal;
+  padding-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.simularTotalDolares2 {
+  font-size: 14px;
+  font-weight: normal;
+  padding-left: 0px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   color: black;
 }
 
@@ -13045,7 +13054,7 @@ body {
   font-size: 12px;
   font-weight: normal;
   text-align: left;
-  padding: 20px;
+  padding: 15px;
   margin-left: 150px;
   margin-right: 200px;
   background-color: rgba(158, 189, 214, 0.514);
@@ -13072,10 +13081,6 @@ form {
 .email {
   color: blue;
   text-decoration: blue underline;
-}
-
-.simulDolares {
-  padding-top: 100px;
 }
 
 /* Esconder menúes al entrar por primera vez */
