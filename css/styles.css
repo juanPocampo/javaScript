@@ -190,7 +190,7 @@ p {
 .themed-grid-col {
   display:flex;
   text-align:center;
-  margin: 20px;
+  margin: 20px 20px 0px 20px;
   background-color: rgba(117, 158, 219, 0.224);
 /*   border: 5px solid rgba(86, 61, 124, .2); */
   padding:10px;
@@ -8307,7 +8307,8 @@ fieldset:disabled .btn {
 }
 
 .mt-4 {
-  font-size: 22px;
+  font-size: 20px;
+  font-weight: bold;
   text-align: center;
   margin-top: 70px !important;
 }
@@ -12393,7 +12394,7 @@ body {
 .azul {
   width: 300px;
   font-size: 22px;
-  margin-top: 150px;
+  margin-top: 100px;
   background-color: blue;
   color: white;
   border: 1px blue solid;
@@ -12601,7 +12602,7 @@ body {
 }
 
 .configTitulo {
-  margin-top: 100px;
+  margin-top: 70px;
   margin-bottom: 10px;
   color: black;
   text-align: center;
@@ -12626,7 +12627,7 @@ body {
   width: 350px;
   color: white;
   background-color: rgb(29, 52, 88);
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   padding: 10px;
   border: 1px rgb(77, 107, 153);
 }
@@ -12641,7 +12642,7 @@ body {
   width: 350px;
   color: white;
   background-color: rgb(77, 107, 153);
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 10px;
   border: 1px rgb(77, 107, 153);
   text-align: center;
@@ -12848,7 +12849,7 @@ body {
   color: black;
   background-color: white;
   margin-left: 0px;
-  margin-top: 30px;
+  margin-top: 10px;
   border: 1px black solid;
 }
 
@@ -12898,11 +12899,11 @@ body {
 .inputMonto {
   font-size: 12px;
   font-weight: normal;
-  width: 150px;
+  width: 200px;
   height: 30px;
-  margin-left: 10px;
+  margin-left: 15px;
   margin-top: 5px;
-  margin-bottom: 0px;
+  margin-bottom: 30px;
   padding-left: 10px;
   text-align: left;
   color: black;
@@ -12993,12 +12994,12 @@ body {
 
 
 .ingresarImporte {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
-  margin-left: 165px;
-  margin-top: 10px;
-  margin-bottom: 0px;
-  color: gray;
+  margin-left: 180px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: black;
 }
 
 .ingresarImporteTransf {
