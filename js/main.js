@@ -600,7 +600,7 @@ function abrirMenuOp(menu) {
                                                                         <input type="submit" class="btnOp compraDolares" id="compraDolares" value="Confirmar">
                                                                         <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
                                                                     </form>`;
-        // Evento que simular la compra de dólares al mismo tiempo que se está ingresando el monto en el input
+        // Evento que simula la compra de dólares al mismo tiempo que se está ingresando el monto en el input
         // Calcular el monto total en pesos de la compra de dólares y mostar en pantalla
         if (document.querySelector("#cvDolares0")) {
           document
@@ -712,10 +712,11 @@ function abrirMenuOp(menu) {
                     <td class="montoResumen">${new Intl.NumberFormat().format(op.importe)}</td>
                     <td class="celda">${op.origen}</td>
                     <td class="celda">${op.destino}</td></tr>
-        `;
+                    `;
     });
     content += "</table></table>";
-    document.querySelector("#transfTerceros0").innerHTML = content;
+    document.querySelector("#transfTerceros0").innerHTML = content +
+    `<a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>`;
   } else {
     document.querySelector("#cvDolares0").style.display = "none";
     document.querySelector("#transfTerceros0").style.display = "none";
