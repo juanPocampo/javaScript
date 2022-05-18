@@ -187,6 +187,23 @@ p {
   margin-bottom: 1rem;
 }
 
+.themed-grid-col {
+  display:flex;
+  text-align:center;
+  margin: 20px 20px 0px 20px;
+  background-color: rgba(117, 158, 219, 0.224);
+/*   border: 5px solid rgba(86, 61, 124, .2); */
+  padding:10px;
+  border-radius:25px;
+}
+
+.themed-container {
+  padding: .75rem;
+  margin-bottom: 1.5rem;
+  background-color: rgba(0, 123, 255, .15);
+  border: 1px solid rgba(0, 123, 255, .2);
+}
+
 abbr[title],
 abbr[data-bs-original-title] {
   -webkit-text-decoration: underline dotted;
@@ -752,6 +769,7 @@ progress {
   --bs-gutter-y: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content:center;
   margin-top: calc(-1 * var(--bs-gutter-y));
   margin-right: calc(-0.5 * var(--bs-gutter-x));
   margin-left: calc(-0.5 * var(--bs-gutter-x));
@@ -1246,7 +1264,8 @@ progress {
 
   .col-md-3 {
     flex: 0 0 auto;
-    width: 25%;
+    width: 20%;
+    justify-content:center;
   }
 
   .col-md-4 {
@@ -8288,7 +8307,10 @@ fieldset:disabled .btn {
 }
 
 .mt-4 {
-  margin-top: 1.5rem !important;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 70px !important;
 }
 
 .mt-5 {
@@ -12372,7 +12394,7 @@ body {
 .azul {
   width: 300px;
   font-size: 22px;
-  margin-top: 150px;
+  margin-top: 100px;
   background-color: blue;
   color: white;
   border: 1px blue solid;
@@ -12580,7 +12602,7 @@ body {
 }
 
 .configTitulo {
-  margin-top: 100px;
+  margin-top: 70px;
   margin-bottom: 10px;
   color: black;
   text-align: center;
@@ -12605,7 +12627,7 @@ body {
   width: 350px;
   color: white;
   background-color: rgb(29, 52, 88);
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   padding: 10px;
   border: 1px rgb(77, 107, 153);
 }
@@ -12620,7 +12642,7 @@ body {
   width: 350px;
   color: white;
   background-color: rgb(77, 107, 153);
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 10px;
   border: 1px rgb(77, 107, 153);
   text-align: center;
@@ -12668,7 +12690,7 @@ body {
   font-size: 22px;
   font-weight: bold;
   margin-left: 150px;
-  margin-top: 100px;
+  margin-top: 0px;
   margin-bottom: 10px;
   color: black;
   text-align: left;
@@ -12827,7 +12849,7 @@ body {
   color: black;
   background-color: white;
   margin-left: 0px;
-  margin-top: 30px;
+  margin-top: 10px;
   border: 1px black solid;
 }
 
@@ -12877,11 +12899,11 @@ body {
 .inputMonto {
   font-size: 12px;
   font-weight: normal;
-  width: 150px;
+  width: 200px;
   height: 30px;
-  margin-left: 10px;
+  margin-left: 15px;
   margin-top: 5px;
-  margin-bottom: 0px;
+  margin-bottom: 30px;
   padding-left: 10px;
   text-align: left;
   color: black;
@@ -12972,12 +12994,12 @@ body {
 
 
 .ingresarImporte {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
-  margin-left: 165px;
-  margin-top: 10px;
-  margin-bottom: 0px;
-  color: gray;
+  margin-left: 180px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: black;
 }
 
 .ingresarImporteTransf {

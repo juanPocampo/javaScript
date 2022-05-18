@@ -3,6 +3,7 @@
  * Copyright 2013-2022 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-scrolling-nav/blob/master/LICENSE)
  */
+
 //
 // Scripts
 //
@@ -11,30 +12,6 @@
 const CC = "Cuenta Corriente";
 const CP = "Caja de Ahorro en Pesos";
 const CD = "Caja de Ahorro en Dolares";
-
-/* window.addEventListener("DOMContentLoaded", (event) => { */
-// Activate Bootstrap scrollspy on the main nav element
-/*     const mainNav = document.body.querySelector('#mainNav');
-    if (mainNav) {
-      new bootstrap.ScrollSpy(document.body, {
-        target: '#mainNav',
-        offset: 74,
-      });
-    }; */
-
-// Collapse responsive navbar when toggler is visible
-/*   const navbarToggler = document.body.querySelector(".navbar-toggler");
-  const responsiveNavItems = [].slice.call(
-    document.querySelectorAll("#navbarResponsive .nav-link")
-  );
-  responsiveNavItems.map(function (responsiveNavItem) {
-    responsiveNavItem.addEventListener("click", () => {
-      if (window.getComputedStyle(navbarToggler).display !== "none") {
-        navbarToggler.click();
-      }
-    });
-  }); */
-/* }); */
 
 // Declaración del array clientes
 const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes")) || [];
@@ -87,17 +64,22 @@ if (document.querySelector("#formNuevoCliente")) {
     .querySelector("#formNuevoCliente")
     .addEventListener("submit", nuevoCliente);
 }
-const header = `<p>${
-  cliente.hasOwnProperty("saldo") ? cliente.saldo.CC : ""
-}</p>
-                <p>${
-                  cliente.hasOwnProperty("saldo") ? cliente.saldo.CP : ""
-                }</p>
-                <p>${
-                  cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
-                }</p>`;
+/* const header = `<div class="headerSaldoCC">${cliente.hasOwnProperty("saldo") ? cliente.saldo.CC : ""
+  }</div>
+  <div class="headerSaldoCP">${cliente.hasOwnProperty("saldo") ? cliente.saldo.CP : ""
+  }</div>
+                <div class="headerSaldoCD">${cliente.hasOwnProperty("saldo") ? cliente.saldo.CD : ""
+  }</div>`; */
 
-/* if (document.querySelector("#cl")) */
+const header = `<h2 class="mt-4">Saldos</h2>
+  <div class="row mb-3">
+    <div class="col-md-3 themed-grid-col">Cuenta corriente<br>$ ${cliente.hasOwnProperty("saldo") ? new Intl.NumberFormat("es-ES").format(parseFloat((cliente.saldo.CC)).toFixed(2)) : ""
+  }</div>
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en pesos<br>$ ${cliente.hasOwnProperty("saldo") ? new Intl.NumberFormat("es-ES").format(parseFloat((cliente.saldo.CP)).toFixed(2)) : ""
+  }</div>
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en dólares<br>U$S ${cliente.hasOwnProperty("saldo") ? new Intl.NumberFormat("es-ES").format(parseFloat((cliente.saldo.CD)).toFixed(2)) : ""
+  }</div>
+  </div><hr>`
 
 function nuevoCliente(e) {
   // Detener el envío del formulario submit
@@ -575,10 +557,11 @@ function abrirMenuOp(menu) {
       },
     };
     const tipoDeCambio = document.querySelector("#tipoDeCambio");
-    fetch("https://global-currency.p.rapidapi.com/currency/ARS/USD/1", options)
+    fetch("https://global-currency.p.rapidapi.com/currency/USD/ARS/1", options)
       .then((resp) => resp.json())
       .then((data) => {
-        return data["baseCurrency"].amount / data["rateCurrency"].amount;
+        return data["rateCurrency"].amount * 1.047;
+        /* return (new Intl.NumberFormat('de-DE').format(data["rateCurrency"].amount * 1.047)); */
       })
       .then((data) => {
         precioDolar = data;
@@ -588,7 +571,7 @@ function abrirMenuOp(menu) {
           header +
           `<h2 class="dolarTitulo0">Compra de dólares</h2>
                                                                     <h4 class="normativaBCRA">Le recordamos que la operatoria de compra de dólares se encuentra regulada por la normativa de Exterior y Cambios del BCRA y la Ley Penal Cambiarla. La compra es sólo para atesoramiento personal. El cupo de U$S 200 es mensual y por persona. Se encuentra prohibido tanto ceder y/o vender el cupo mensual. No se puede comprar dólares a favor de o por cuentas de terceros. En el caso de que se detecte la violación a la normativa vigente, el banco se reserva el derecho de cerrar las cuentas, efectuar la correspondiente denuncia al BCRA y tomar cualquier medida que estime necesaria.</h4>                               
-                                                                        <h3 class="dolarTitulo1">Comprás a $${data} sin impuestos</h3>
+                                                                        <h3 class="dolarTitulo1">Comprás a $${(new Intl.NumberFormat().format(data))} sin impuestos ni retenciones</h3>
                                                                         <h4 class="cotizacionDolar">Cotización dólar por unidad en el Mercado Libre de Cambios, ámbito de aplicación y vigencia para operaciones por banca online al momento de su consulta</h4>
                                                                     </h4>                               
                                                                     <h3 class="dolarTitulo1">¿Cuánto querés comprar?</h3>
@@ -626,7 +609,7 @@ function abrirMenuOp(menu) {
           destino: CD,
           importe,
         };
-        // Actualizo saldos
+        // Actualizo saldos de las cuentas
         cliente.saldo.CP -= importe * precioDolar * 1.65;
         cliente.saldo.CD += importe;
         // Pusheo en el array
@@ -670,13 +653,13 @@ function abrirMenuOp(menu) {
 }
 // Fin función display de menúes de operaciones
 
-// Calcular el precio de la compra de dólares y mostar en pantalla
+// Calcular el monto total en pesos de la compra de dólares y mostar en pantalla
 function calcularDolares() {
   const monto = document.querySelector("#inputMonto").value;
   const precioDolar = document.querySelector("#precioDolar").value;
   costo = Number.parseFloat(monto) * precioDolar * 1.65;
   !Number.isNaN(costo)
-    ? (document.querySelector("#montoTotal").textContent = `${costo}`)
+    ? (document.querySelector("#montoTotal").textContent = `${new Intl.NumberFormat().format(costo)}`)
     : (document.querySelector("#montoTotal").textContent = "0");
 }
 
