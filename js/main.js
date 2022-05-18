@@ -604,7 +604,7 @@ function abrirMenuOp(menu) {
               );
               console.log(precioDolar);
               const costoOperacion = montoDolar * precioDolar * 1.65;
-              document.querySelector("#costoOperacion").textContent = `${Math.round(costoOperacion * 100) / 100
+              document.querySelector("#costoOperacion").textContent = `${(new Intl.NumberFormat().format(((costoOperacion * 100) / 100).toFixed(2)))
                 }`;
             });
         }
@@ -661,8 +661,7 @@ function abrirMenuOp(menu) {
           });
         } else {
           Swal.fire({
-            title: "Oops ha ocurrido un error inesperado",
-            text: "No tiene saldo suficiente en su cuenta para realizar esta operación.",
+            title: "No tiene saldo suficiente <br>en su caja de ahorro <br>para realizar esta operación",
             icon: "error",
             imageWidth: 400,
             imageHeight: 200,
@@ -671,8 +670,7 @@ function abrirMenuOp(menu) {
         }
       } else {
         Swal.fire({
-          title: "Oops ha ocurrido un error inesperado",
-          text: "No puede comprar más de U$S 200 mensuales.",
+          title: "No puede comprar más de <br>U$S 200 mensuales",
           icon: "error",
           imageWidth: 400,
           imageHeight: 200,
@@ -739,14 +737,14 @@ if (document.querySelector("#cvDolares")) {
     .addEventListener("click", () => abrirMenuOp("cvDolares0"));
 }
 
-// Evento Click Consultar Datos
+// Evento click resumen de cuenta
 if (document.querySelector("#saldos")) {
   document
     .querySelector("#saldos")
     .addEventListener("click", () => abrirMenuOp("consSaldos"));
 }
 
-if (!!document.querySelector("#comprobante")) {
+/* if (!!document.querySelector("#comprobante")) {
   const usuario = JSON.parse(sessionStorage.getItem("usuario"));
   console.log(usuario);
   const operacion = usuario.operaciones[usuario.operaciones.length - 1];
@@ -755,18 +753,18 @@ if (!!document.querySelector("#comprobante")) {
   document.querySelector("#origen").textContent = operacion.origen;
   document.querySelector("#destino").textContent = operacion.destino;
   document.querySelector("#importe").textContent = operacion.importe;
-}
+} */
 
 // Alert para cuando hace click en "Salir"
 if (document.querySelector("#salirMenu")) {
   document.querySelector("#salirMenu").addEventListener('click', () =>
       Swal.fire({
-          title: 'Está por salir del simulador',
+          title: '¿Está seguro que quiere salir del simulador?',
           icon: 'warning',
           showCancelButton: true,
-          confirmButtonText: 'Confirmar',
+          confirmButtonText: 'Sí',
           confirmButtonColor: '#3085d6',
-          cancelButtonText: 'Cancelar',
+          cancelButtonText: 'No, quiero quedarme',
           cancelButtonColor: '#d33'
       }).then((result) => {
           if (result.isConfirmed) {
