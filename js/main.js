@@ -198,8 +198,8 @@ function ingresoCliente(e) {
     if (resultadoBuscar?.clave == claveLogin) {
       sessionStorage.setItem("usuario", JSON.stringify(resultadoBuscar));
       console.info("Cliente logueado:", cliente);
-      textoLogin = `<h4 class="bienvenido">Bienvenido</h4>
-                    <span><h2>${resultadoBuscar.nombre} ${resultadoBuscar.apellido}</h2></span><br>
+      textoLogin = `<h3 class="bienvenido">Bienvenido</h3>
+                    <span class="bienvenido2">${resultadoBuscar.nombre} ${resultadoBuscar.apellido}</span><br>
                     <a href="./operaciones.html" class="btnOp operacion" id="operar">Operar</a><br>
                     <a href="./principal.html" class="btnOp salir" id="salir">Salir</a><br>`;
       // Disparo de un sweet alert en el caso de que el ingreso del cliente sea correcto
@@ -757,7 +757,7 @@ if (document.querySelector("#saldos")) {
 if (document.querySelector("#salirMenu")) {
   document.querySelector("#salirMenu").addEventListener('click', () =>
       Swal.fire({
-          title: '¿Está seguro que quiere salir del simulador?',
+          title: '¿Está seguro que quiere salir <br>del simulador?',
           icon: 'warning',
           showCancelButton: true,
           confirmButtonText: 'Sí',

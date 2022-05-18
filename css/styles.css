@@ -12506,7 +12506,19 @@ body {
 }
 
 .bienvenido {
+  font-size: 24px;
+  font-weight: normal;
   margin-top: 150px;
+  margin-bottom: 30px;
+}
+
+.bienvenido2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 100px;
+  background-color: lightgray;
+  border-radius:15px;
+  padding:15px 30px 15px 30px;
 }
 
 .menuOperaciones {
@@ -12518,7 +12530,7 @@ body {
   font-size: 16px;
   color: white;
   background-color: black;
-  margin-top: 20px;
+  margin-top: 50px;
   border: 1px black solid;
 }
 
