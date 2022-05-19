@@ -7,7 +7,7 @@
 // Declaración de constantes
 const CC = "Cuenta Corriente";
 const CP = "Caja de Ahorro en Pesos";
-const CD = "Caja de Ahorro en Dolares";
+const CD = "Caja de Ahorro en Dólares";
 
 // Declaración del array clientes
 const ls = localStorage.getItem("arrayClientes") || "[]";
@@ -679,7 +679,7 @@ function abrirMenuOp(menu) {
         } else {
           Swal.fire({
             title: "Error",
-            text: "No tiene saldo suficiente en su caja de ahorro <br>para realizar esta operación",
+            text: "No tiene saldo suficiente en su caja de ahorro para realizar esta operación",
             icon: "error",
             imageWidth: 400,
             imageHeight: 200,
