@@ -10,10 +10,12 @@ const CP = "Caja de Ahorro en Pesos";
 const CD = "Caja de Ahorro en Dolares";
 
 // Declaración del array clientes
-const arrayClientes = JSON.parse(localStorage.getItem("arrayClientes")) || [];
+const ls = localStorage.getItem("arrayClientes") || "[]";
+const arrayClientes = JSON.parse(ls);
 
 //
-let cliente = JSON.parse(sessionStorage.getItem("usuario")) || {};
+let ss = sessionStorage.getItem("usuario") || "{}";
+let cliente = JSON.parse(ss);
 
 // Función display de menúes
 function abrirMenu(menu) {
@@ -107,7 +109,7 @@ function nuevoCliente(e) {
   };
   if (edad >= 18) {
     // Pusheo en el array y disparo de un sweet alert para informar que el cliente fue registrado
-    if (arrayClientes.indexOf(cliente) !== -1) {
+    if (!arrayClientes.find((elemento) => elemento.dni == cliente.dni)) {
       arrayClientes.push(cliente);
       Swal.fire({
         title: "Nuevo cliente registrado",
@@ -788,6 +790,7 @@ if (document.querySelector("#salirMenu")) {
       cancelButtonColor: "#d33",
     }).then((result) => {
       if (result.isConfirmed) {
+        sessionStorage.setItem("usuario", "");
         window.location.assign("../index.html");
       }
     })
