@@ -332,7 +332,8 @@ function abrirMenuOp(menu) {
           } else {
             Swal.fire({
               title: "Error",
-              icon: "No tiene saldo suficiente en su cuenta para realizar esta operación",
+              text: "No tiene saldo suficiente en su cuenta para realizar esta operación",
+              icon: "error",
               imageWidth: 400,
               imageHeight: 200,
               showConfirmButton: true,
@@ -372,7 +373,8 @@ function abrirMenuOp(menu) {
           } else {
             Swal.fire({
               title: "Error",
-              icon: "No tiene saldo suficiente en su cuenta para realizar esta operación",
+              text: "No tiene saldo suficiente en su cuenta para realizar esta operación",
+              icon: "error",
               imageWidth: 400,
               imageHeight: 200,
               showConfirmButton: true,
@@ -523,7 +525,7 @@ function abrirMenuOp(menu) {
                 showConfirmButton: true,
               }).then(() => {
                 window.location.reload();
-                window.open("./comprobante.html");
+                window.open("comprobante.html");
               });
             } else {
               Swal.fire({
@@ -565,7 +567,6 @@ function abrirMenuOp(menu) {
       .then((resp) => resp.json())
       .then((data) => {
         return data["rateCurrency"].amount * 1.047;
-        /* return (new Intl.NumberFormat('de-DE').format(data["rateCurrency"].amount * 1.047)); */
       })
       .then((data) => {
         precioDolar = data;
@@ -652,7 +653,7 @@ function abrirMenuOp(menu) {
             showConfirmButton: true,
           }).then(() => {
             window.location.reload();
-            window.open("./comprobante.html");
+            window.open("comprobante.html");
           });
         } else {
           Swal.fire({
