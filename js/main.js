@@ -110,7 +110,7 @@ function nuevoCliente(e) {
   };
   if (edad >= 18) {
     // Pusheo en el array y disparo de un sweet alert para informar que el cliente fue registrado
-    if (arrayClientes.find((elemento) => elemento.dni == cliente.dni)) {
+    if (!arrayClientes.find((elemento) => elemento.dni == cliente.dni)) {
       arrayClientes.push(cliente);
       Swal.fire({
         title: "Nuevo cliente registrado",
