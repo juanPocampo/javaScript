@@ -331,8 +331,8 @@ function abrirMenuOp(menu) {
             });
           } else {
             Swal.fire({
-              title: "No tiene saldo suficiente en su cuenta<br> para realizar esta operación",
-              icon: "error",
+              title: "Error",
+              icon: "No tiene saldo suficiente en su cuenta para realizar esta operación",
               imageWidth: 400,
               imageHeight: 200,
               showConfirmButton: true,
@@ -371,8 +371,8 @@ function abrirMenuOp(menu) {
             });
           } else {
             Swal.fire({
-              title: "No tiene saldo suficiente en su cuenta<br> para realizar esta operación",
-              icon: "error",
+              title: "Error",
+              icon: "No tiene saldo suficiente en su cuenta para realizar esta operación",
               imageWidth: 400,
               imageHeight: 200,
               showConfirmButton: true,
@@ -382,7 +382,7 @@ function abrirMenuOp(menu) {
         default:
           Swal.fire({
             title: "Oops ha ocurrido un error inesperado",
-            text: "El origen seleccionado no está definido",
+            text: "La cuenta de origen no está seleccionada",
             icon: "error",
             imageWidth: 400,
             imageHeight: 200,
@@ -488,8 +488,8 @@ function abrirMenuOp(menu) {
               });
             } else {
               Swal.fire({
-                title: "No tiene saldo suficiente en su cuenta<br> para realizar esta operación",
-                icon: "error",
+                title: "Error",
+                icon: "No tiene saldo suficiente en su cuenta para realizar esta operación",
                 imageWidth: 400,
                 imageHeight: 200,
                 showConfirmButton: true,
@@ -527,8 +527,8 @@ function abrirMenuOp(menu) {
               });
             } else {
               Swal.fire({
-                title: "No tiene saldo suficiente<br> en su cuenta<br> para realizar esta operación",
-                icon: "error",
+                title: "Error",
+                icon: "No tiene saldo suficiente en su cuenta para realizar esta operación",
                 imageWidth: 400,
                 imageHeight: 200,
                 showConfirmButton: true,
@@ -656,7 +656,8 @@ function abrirMenuOp(menu) {
           });
         } else {
           Swal.fire({
-            title: "No tiene saldo suficiente <br>en su caja de ahorro <br>para realizar esta operación",
+            title: "Error",
+            text:"No tiene saldo suficiente en su caja de ahorro para realizar esta operación",
             icon: "error",
             imageWidth: 400,
             imageHeight: 200,
@@ -665,7 +666,8 @@ function abrirMenuOp(menu) {
         }
       } else {
         Swal.fire({
-          title: "No puede comprar más de <br>U$S 200 mensuales",
+          title: "Error",
+          text: "No puede comprar más de U$S 200 mensuales",
           icon: "error",
           imageWidth: 400,
           imageHeight: 200,
