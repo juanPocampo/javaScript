@@ -791,6 +791,7 @@ if (document.querySelector("#salirMenu")) {
       cancelButtonColor: "#d33",
     }).then((result) => {
       if (result.isConfirmed) {
+        sessionStorage.setItem("usuario", "");
         window.location.assign("../index.html");
       }
     })
