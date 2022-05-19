@@ -12,8 +12,6 @@ const CD = "Caja de Ahorro en Dolares";
 // Declaración del array clientes
 const ls = localStorage.getItem("arrayClientes") || "[]";
 const arrayClientes = JSON.parse(ls);
-
-//
 let ss = sessionStorage.getItem("usuario") || "{}";
 let cliente = JSON.parse(ss);
 
@@ -64,28 +62,31 @@ if (document.querySelector("#formNuevoCliente")) {
     .addEventListener("submit", nuevoCliente);
 }
 
+// Header para mostrar los saldos de las cuentas actualizados
 const header = `<h2 class="mt-4">Saldos</h2>
   <div class="row mb-3">
     <div class="col-md-3 themed-grid-col">Cuenta corriente<br>$ ${cliente.hasOwnProperty("saldo")
-    ? new Intl.NumberFormat("es-ES").format(
-      parseFloat(cliente.saldo.CC).toFixed(2)
+    ? new Intl.NumberFormat('de-DE').format(
+      parseInt(cliente.saldo.CC).toFixed(2)
     )
     : ""
   }</div>
     <div class="col-md-3 themed-grid-col">Caja de ahorro en pesos<br>$ ${cliente.hasOwnProperty("saldo")
-    ? new Intl.NumberFormat("es-ES").format(
-      parseFloat(cliente.saldo.CP).toFixed(2)
+    ? new Intl.NumberFormat('de-DE').format(
+      parseInt(cliente.saldo.CP).toFixed(2)
     )
     : ""
   }</div>
     <div class="col-md-3 themed-grid-col">Caja de ahorro en dólares<br>U$S ${cliente.hasOwnProperty("saldo")
-    ? new Intl.NumberFormat("es-ES").format(
-      parseFloat(cliente.saldo.CD).toFixed(2)
+    ? new Intl.NumberFormat('de-DE').format(
+      parseInt(cliente.saldo.CD).toFixed(2)
     )
     : ""
   }</div>
   </div><hr>`;
+// Fin header
 
+// Función para registrar un nuevo cliente
 function nuevoCliente(e) {
   // Detener el envío del formulario submit
   e.preventDefault();
@@ -153,7 +154,7 @@ function nuevoCliente(e) {
   console.log(edad);
   console.log(...arrayClientes);
 }
-// Fin función nuevo cliente
+// Fin función para registrar un nuevo clientenuevo cliente
 
 // Función recuperar clave
 if (document.querySelector("#formRecuperarClave")) {
@@ -345,7 +346,7 @@ function abrirMenuOp(menu) {
           } else {
             Swal.fire({
               title: "Error",
-              text: "No tiene saldo suficiente en su cuenta<br> para realizar esta operación",
+              text: "No tiene saldo suficiente en su cuenta para realizar esta operación",
               icon: "error",
               imageWidth: 400,
               imageHeight: 200,
@@ -591,7 +592,7 @@ function abrirMenuOp(menu) {
           header +
           `<h2 class="dolarTitulo0">Compra de dólares</h2>
                                                                     <h4 class="normativaBCRA">Le recordamos que la operatoria de compra de dólares se encuentra regulada por la normativa de Exterior y Cambios del BCRA y la Ley Penal Cambiarla. La compra es sólo para atesoramiento personal. <strong>El cupo de U$S 200 es mensual y por persona.</strong> Se encuentra prohibido tanto ceder y/o vender el cupo mensual. No se puede comprar dólares a favor de o por cuentas de terceros. En el caso de que se detecte la violación a la normativa vigente, el banco se reserva el derecho de cerrar las cuentas, efectuar la correspondiente denuncia al BCRA y tomar cualquier medida que estime necesaria.</h4>                               
-                                                                        <h3 class="dolarTitulo1">Compra a $${new Intl.NumberFormat().format(
+                                                                        <h3 class="dolarTitulo1">Compra a $${new Intl.NumberFormat('de-DE').format(
             data.toFixed(
               2
             )
@@ -606,7 +607,6 @@ function abrirMenuOp(menu) {
                                                                         <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
                                                                     </form>`;
         // Evento que simula la compra de dólares al mismo tiempo que se está ingresando el monto en el input
-        // Calcular el monto total en pesos de la compra de dólares y mostar en pantalla
         if (document.querySelector("#cvDolares0")) {
           document
             .querySelector("#inputMonto")
@@ -620,7 +620,7 @@ function abrirMenuOp(menu) {
               const costoOperacion = montoDolar * precioDolar * 1.65;
               document.querySelector(
                 "#costoOperacion"
-              ).textContent = `${new Intl.NumberFormat().format(
+              ).textContent = `${new Intl.NumberFormat('de-DE').format(
                 ((costoOperacion * 100) / 100).toFixed(2)
               )}`;
             });
@@ -697,7 +697,9 @@ function abrirMenuOp(menu) {
         });
       }
     }
+    // Fin función confirmar compra de dólares
   } else if (menu == "consSaldos") {
+    // Resumen de operaciones
     document.querySelector("#menuOperaciones").style.display = "none";
     document.querySelector("#consSaldos").style.display = "block";
     const element = document.querySelector("#encabezadoMenuOp");
@@ -717,7 +719,7 @@ function abrirMenuOp(menu) {
       content += `<tr>
                     <td class="celda">${index + 1}</td>
                     <td class="celda">${op.tipo}</td>
-                    <td class="montoResumen">${new Intl.NumberFormat().format(
+                    <td class="montoResumen">${new Intl.NumberFormat('de-DE').format(
         op.importe
       )}</td>
                     <td class="celda">${op.origen}</td>
@@ -728,6 +730,7 @@ function abrirMenuOp(menu) {
     document.querySelector("#transfTerceros0").innerHTML =
       content +
       `<a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>`;
+    // Fin resumen de operaciones
   } else {
     document.querySelector("#cvDolares0").style.display = "none";
     document.querySelector("#transfTerceros0").style.display = "none";
@@ -736,7 +739,7 @@ function abrirMenuOp(menu) {
     document.querySelector("#menuOperaciones").style.display = "block";
   }
 }
-// Fin función display de menúes de operaciones
+// Fin función display de menu de operaciones
 
 // Evento click transferir a cuenta propia
 if (document.querySelector("#TransfPropia")) {
@@ -752,20 +755,21 @@ if (document.querySelector("#TransfTerceros")) {
     .addEventListener("click", () => abrirMenuOp("transfTerceros0"));
 }
 
-// Evento click comprar o vender dólares
+// Evento click comprar dólares
 if (document.querySelector("#cvDolares")) {
   document
     .querySelector("#cvDolares")
     .addEventListener("click", () => abrirMenuOp("cvDolares0"));
 }
 
-// Evento click resumen de cuenta
+// Evento click resumen de operaciones
 if (document.querySelector("#saldos")) {
   document
     .querySelector("#saldos")
     .addEventListener("click", () => abrirMenuOp("consSaldos"));
 }
 
+// Generación del comprobante de cada operación
 if (!!document.querySelector("#comprobante")) {
   const usuario = JSON.parse(sessionStorage.getItem("usuario"));
   console.log(usuario);
@@ -776,12 +780,14 @@ if (!!document.querySelector("#comprobante")) {
   document.querySelector("#destino").textContent = operacion.destino;
   document.querySelector("#importe").textContent = operacion.importe;
 }
+// Fin generación del comprobante de cada operación
 
 // Alert para cuando hace click en "Salir"
-if (document.querySelector("#salirMenu")) {
-  document.querySelector("#salirMenu").addEventListener("click", () =>
+if (document.querySelector("#salirMenuPpal")) {
+  document.querySelector("#salirMenuPpal").addEventListener("click", () =>
     Swal.fire({
-      title: "¿Está seguro que quiere salir <br>del simulador?",
+      title: "Espere...",
+      text: "¿Está seguro que quiere salir del simulador?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Sí",
