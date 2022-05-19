@@ -345,13 +345,8 @@ function abrirMenuOp(menu) {
             });
           } else {
             Swal.fire({
-<<<<<<< HEAD
-              title: "Error",
-              text: "No tiene saldo suficiente en su cuenta para realizar esta operación",
-=======
               title:
                 "No tiene saldo suficiente en su cuenta<br> para realizar esta operación",
->>>>>>> 969f4cf13d0865e75de5ee9047d02270eb6feb2b
               icon: "error",
               imageWidth: 400,
               imageHeight: 200,
@@ -391,13 +386,8 @@ function abrirMenuOp(menu) {
             });
           } else {
             Swal.fire({
-<<<<<<< HEAD
-              title: "Error",
-              text: "No tiene saldo suficiente en su cuenta para realizar esta operación",
-=======
               title:
                 "No tiene saldo suficiente en su cuenta<br> para realizar esta operación",
->>>>>>> 969f4cf13d0865e75de5ee9047d02270eb6feb2b
               icon: "error",
               imageWidth: 400,
               imageHeight: 200,
