@@ -398,7 +398,7 @@ function abrirMenuOp(menu) {
         default:
           Swal.fire({
             title: "Oops ha ocurrido un error inesperado",
-            text: "El origen seleccionado no está definido",
+            text: "La cuenta de origen no está seleccionada",
             icon: "error",
             imageWidth: 400,
             imageHeight: 200,
@@ -690,7 +690,8 @@ function abrirMenuOp(menu) {
         }
       } else {
         Swal.fire({
-          title: "No puede comprar más de <br>U$S 200 mensuales",
+          title: "Error",
+          text: "No puede comprar más de U$S 200 mensuales",
           icon: "error",
           imageWidth: 400,
           imageHeight: 200,
