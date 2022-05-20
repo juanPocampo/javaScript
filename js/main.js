@@ -65,24 +65,27 @@ if (document.querySelector("#formNuevoCliente")) {
 // Header para mostrar los saldos de las cuentas actualizados
 const header = `<h2 class="mt-4">Saldos</h2>
   <div class="row mb-3">
-    <div class="col-md-3 themed-grid-col">Cuenta corriente<br>$ ${cliente.hasOwnProperty("saldo")
-    ? new Intl.NumberFormat('de-DE').format(
-      parseInt(cliente.saldo.CC).toFixed(2)
-    )
-    : ""
-  }</div>
-    <div class="col-md-3 themed-grid-col">Caja de ahorro en pesos<br>$ ${cliente.hasOwnProperty("saldo")
-    ? new Intl.NumberFormat('de-DE').format(
-      parseInt(cliente.saldo.CP).toFixed(2)
-    )
-    : ""
-  }</div>
-    <div class="col-md-3 themed-grid-col">Caja de ahorro en dólares<br>U$S ${cliente.hasOwnProperty("saldo")
-    ? new Intl.NumberFormat('de-DE').format(
-      parseInt(cliente.saldo.CD).toFixed(2)
-    )
-    : ""
-  }</div>
+    <div class="col-md-3 themed-grid-col">Cuenta corriente<br>$ ${
+      cliente.hasOwnProperty("saldo")
+        ? new Intl.NumberFormat("de-DE").format(
+            parseInt(cliente.saldo.CC).toFixed(2)
+          )
+        : ""
+    }</div>
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en pesos<br>$ ${
+      cliente.hasOwnProperty("saldo")
+        ? new Intl.NumberFormat("de-DE").format(
+            parseInt(cliente.saldo.CP).toFixed(2)
+          )
+        : ""
+    }</div>
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en dólares<br>U$S ${
+      cliente.hasOwnProperty("saldo")
+        ? new Intl.NumberFormat("de-DE").format(
+            parseInt(cliente.saldo.CD).toFixed(2)
+          )
+        : ""
+    }</div>
   </div><hr>`;
 // Fin header
 
@@ -167,8 +170,9 @@ function recuperarClave(e) {
   e.preventDefault();
   // Buscar información input DNI
   const dniBuscar = document.querySelector("#dniBuscar").value;
+  console.log(dniBuscar);
   // Buscar en localstorage
-  const arrayParaBuscar = JSON.parse(sessionStorage.getItem("arrayClientes"));
+  const arrayParaBuscar = JSON.parse(localStorage.getItem("arrayClientes"));
   const resultadoBuscar = arrayParaBuscar.find(
     (personita) => personita.dni == dniBuscar
   );
@@ -592,11 +596,13 @@ function abrirMenuOp(menu) {
           header +
           `<h2 class="dolarTitulo0">Compra de dólares</h2>
                                                                     <h4 class="normativaBCRA">Le recordamos que la operatoria de compra de dólares se encuentra regulada por la normativa de Exterior y Cambios del BCRA y la Ley Penal Cambiarla. La compra es sólo para atesoramiento personal. <strong>El cupo de U$S 200 es mensual y por persona.</strong> Se encuentra prohibido tanto ceder y/o vender el cupo mensual. No se puede comprar dólares a favor de o por cuentas de terceros. En el caso de que se detecte la violación a la normativa vigente, el banco se reserva el derecho de cerrar las cuentas, efectuar la correspondiente denuncia al BCRA y tomar cualquier medida que estime necesaria.</h4>                               
-                                                                        <h3 class="dolarTitulo1">Compra a $${new Intl.NumberFormat('de-DE').format(
-            data.toFixed(
-              2
-            )
-          )} sin impuestos ni retenciones</h3>
+                                                                        <h3 class="dolarTitulo1">Compra a $${new Intl.NumberFormat(
+                                                                          "de-DE"
+                                                                        ).format(
+                                                                          data.toFixed(
+                                                                            2
+                                                                          )
+                                                                        )} sin impuestos ni retenciones</h3>
                                                                         <h4 class="cotizacionDolar">Cotización dólar por unidad en el Mercado Libre de Cambios, ámbito de aplicación y vigencia para operaciones por banca online al momento de su consulta</h4>
                                                                     </h4>                               
                                                                     <h4 class="ingresarImporte">Ingrese el importe en U$S</h4>
@@ -620,7 +626,7 @@ function abrirMenuOp(menu) {
               const costoOperacion = montoDolar * precioDolar * 1.65;
               document.querySelector(
                 "#costoOperacion"
-              ).textContent = `${new Intl.NumberFormat('de-DE').format(
+              ).textContent = `${new Intl.NumberFormat("de-DE").format(
                 ((costoOperacion * 100) / 100).toFixed(2)
               )}`;
             });
@@ -719,9 +725,9 @@ function abrirMenuOp(menu) {
       content += `<tr>
                     <td class="celda">${index + 1}</td>
                     <td class="celda">${op.tipo}</td>
-                    <td class="montoResumen">${new Intl.NumberFormat('de-DE').format(
-        op.importe
-      )}</td>
+                    <td class="montoResumen">${new Intl.NumberFormat(
+                      "de-DE"
+                    ).format(op.importe)}</td>
                     <td class="celda">${op.origen}</td>
                     <td class="celda">${op.destino}</td></tr>
                     `;
