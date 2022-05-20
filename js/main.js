@@ -4,12 +4,12 @@
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-scrolling-nav/blob/master/LICENSE)
  */
 
-// Declaración de constantes
+// Declaración de constantes globales
 const CC = "Cuenta Corriente";
 const CP = "Caja de Ahorro en Pesos";
 const CD = "Caja de Ahorro en Dólares";
 
-// Declaración del array clientes
+// Declaración de estados globales
 const ls = localStorage.getItem("arrayClientes") || "[]";
 const arrayClientes = JSON.parse(ls);
 let ss = sessionStorage.getItem("usuario") || "{}";
@@ -101,7 +101,7 @@ function nuevoCliente(e) {
   const clave = document.querySelector("#clave").value;
   const saldo = { CC: 1000000, CP: 0, CD: 0 };
   const operaciones = [];
-  // Creación del objeto persona
+  // Creación del objeto cliente
   const cliente = {
     nombre,
     apellido,
@@ -111,9 +111,11 @@ function nuevoCliente(e) {
     saldo,
     operaciones,
   };
+  //pregunto si la edad es mayor a 18
   if (edad >= 18) {
-    // Pusheo en el array y disparo de un sweet alert para informar que el cliente fue registrado
+    // Pregunto si no existe un cliente con el dni suministrado
     if (!arrayClientes.find((elemento) => elemento.dni == cliente.dni)) {
+      // Pusheo en el array y disparo de un sweet alert para informar que el cliente fue registrado
       arrayClientes.push(cliente);
       Swal.fire({
         title: "Nuevo cliente registrado",
@@ -316,23 +318,30 @@ function abrirMenuOp(menu) {
       // Actualizo saldos
       switch (origen.value) {
         case CC:
+          //validacion de saldo
           if (cliente.saldo.CC - importe >= 0) {
-            console.log("si entró");
+            // modificacion del cliente en memoria
             cliente.saldo.CC = cliente.saldo.CC - importe;
             cliente.saldo.CP = cliente.saldo.CP + importe;
 
-            // Pusheo en el array
+            // Pusheo en el array operaciones del cliente en memoria
             cliente.operaciones.push(operacion);
+            //guardo el cliente modificado en session storage
+            sessionStorage.setItem("usuario", JSON.stringify(cliente));
+            // traer el array de clientes del local storage
             const arrayClientes = JSON.parse(
               localStorage.getItem("arrayClientes")
             );
+            // busco en ese array al cliente que tengo en memoria
             const oldCliente = arrayClientes.find(
               (elemento) => elemento.dni == cliente.dni
             );
-            sessionStorage.setItem("usuario", JSON.stringify(cliente));
             const index = arrayClientes.indexOf(oldCliente);
+            //borramos el cliente que teniamos
             arrayClientes.splice(index, 1);
+            //lo reemplazamos por el cliente modificado
             arrayClientes.push(cliente);
+            // guardamos el nuevo dato del cliente en local storage
             localStorage.setItem(
               "arrayClientes",
               JSON.stringify(arrayClientes)
@@ -455,12 +464,12 @@ function abrirMenuOp(menu) {
         ).innerHTML = `<strong>Origen</strong>:${CP}<br><br>`;
       }
     };
-    // Función confirmar transferencia a terceros
     if (document.querySelector("#transfTerceros")) {
       document
         .querySelector("#transfTerceros")
         .addEventListener("submit", confTransfTerceros);
     }
+    // Función confirmar transferencia a terceros
     function confTransfTerceros(e) {
       // Paramos el envio del formulario submit
       e.preventDefault();
@@ -622,7 +631,6 @@ function abrirMenuOp(menu) {
               const precioDolar = Number.parseFloat(
                 document.querySelector("#precioDolar").value
               );
-              console.log(precioDolar);
               const costoOperacion = montoDolar * precioDolar * 1.65;
               document.querySelector(
                 "#costoOperacion"
@@ -646,8 +654,9 @@ function abrirMenuOp(menu) {
       const tipo = "Compra de dólares";
       const importe = Number(document.querySelector("#inputMonto").value);
       const precioDolar = Number(document.querySelector("#precioDolar").value);
+      // validacion de monto mensual
       if (cliente.saldo.CD + importe <= 200) {
-        console.log(cliente.saldo.CD + importe);
+        // validacion de saldo
         if (cliente.saldo.CP - importe * precioDolar * 1.65 >= 0) {
           // Creación del objeto
           const operacion = {
