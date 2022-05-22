@@ -602,23 +602,16 @@ function abrirMenuOp(menu) {
         document.querySelector("#cvDolares0").innerHTML =
           header +
           `<h2 class="dolarTitulo0">Compra de dólares</h2>
-                                                                    <h4 class="normativaBCRA">Le recordamos que la operatoria de compra de dólares se encuentra regulada por la normativa de Exterior y Cambios del BCRA y la Ley Penal Cambiarla. La compra es sólo para atesoramiento personal. <strong>El cupo de U$S 200 es mensual y por persona.</strong> Se encuentra prohibido tanto ceder y/o vender el cupo mensual. No se puede comprar dólares a favor de o por cuentas de terceros. En el caso de que se detecte la violación a la normativa vigente, el banco se reserva el derecho de cerrar las cuentas, efectuar la correspondiente denuncia al BCRA y tomar cualquier medida que estime necesaria.</h4>                               
-                                                                        <h3 class="dolarTitulo1">Compra a $${new Intl.NumberFormat(
-            "de-DE"
-          ).format(
-            data.toFixed(
-              2
-            )
-          )} sin impuestos ni retenciones</h3>
-                                                                        <h4 class="cotizacionDolar">Cotización dólar por unidad en el Mercado Libre de Cambios, ámbito de aplicación y vigencia para operaciones por banca online al momento de su consulta</h4>
-                                                                    </h4>                               
-                                                                    <h4 class="ingresarImporte">Ingrese el importe en U$S</h4>
-                                                                    <form id="formCompraDolares">
-                                                                        <input type="hidden" name="precioDolar" id="precioDolar" class="precioDolae" value=${data} />
-                                                                        <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto"  min="0" max="200" step = "0.01" required><span class="simularTotal" id="simularTotal"><span class="simularTotalDolares">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="costoOperacion">0</span></span><br>
-                                                                        <input type="submit" class="btnOp compraDolares" id="compraDolares" value="Confirmar">
-                                                                        <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
-                                                                    </form>`;
+           <h4 class="normativaBCRA">Le recordamos que la operatoria de compra de dólares se encuentra regulada por la normativa de Exterior y Cambios del BCRA y la Ley Penal Cambiarla. La compra es sólo para atesoramiento personal. <strong>El cupo de U$S 200 es mensual y por persona.</strong> Se encuentra prohibido tanto ceder y/o vender el cupo mensual. No se puede comprar dólares a favor de o por cuentas de terceros. En el caso de que se detecte la violación a la normativa vigente, el banco se reserva el derecho de cerrar las cuentas, efectuar la correspondiente denuncia al BCRA y tomar cualquier medida que estime necesaria.</h4>                               
+           <h3 class="dolarTitulo1">Compra a $${new Intl.NumberFormat("de-DE").format(data.toFixed(2))} sin impuestos ni retenciones</h3>
+           <h4 class="cotizacionDolar">Cotización dólar por unidad en el Mercado Libre de Cambios, ámbito de aplicación y vigencia para operaciones por banca online al momento de su consulta</h4>
+           <h4 class="ingresarImporte">Ingrese el importe en U$S</h4>
+              <form id="formCompraDolares">
+                  <input type="hidden" name="precioDolar" id="precioDolar" class="precioDolae" value=${data} />
+                  <input type="number" name="cupoDolares" id="inputMonto" class="inputMonto"  min="0" max="200" step = "0.01" required><span class="simularTotal" id="simularTotal"><span class="simularTotalDolares">Total con impuesto ley Nº27.541 y Percepción RG 4815/20 $<span id="costoOperacion">0</span></span><br>
+                  <input type="submit" class="btnOp compraDolares" id="compraDolares" value="Confirmar">
+                  <a href="./operaciones.html" class="btnOp volverDolares" id="volver">Volver</a>
+              </form>`;
         // Evento que simula la compra de dólares al mismo tiempo que se está ingresando el monto en el input
         if (document.querySelector("#cvDolares0")) {
           document
