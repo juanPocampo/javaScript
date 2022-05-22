@@ -784,7 +784,7 @@ if (!!document.querySelector("#comprobante")) {
     usuario.operaciones.length;
   document.querySelector("#origen").textContent = operacion.origen;
   document.querySelector("#destino").textContent = operacion.destino;
-  document.querySelector("#importe").textContent = operacion.importe;
+  document.querySelector("#importe").textContent = new Intl.NumberFormat("de-DE").format(parseInt(operacion.importe).toFixed(2));
 }
 // Fin generación del comprobante de cada operación
 
