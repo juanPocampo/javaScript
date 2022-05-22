@@ -12474,7 +12474,7 @@ body {
 .ingreso {
   color: black;
   background-color: white;
-  margin-top: 20px;
+  margin-top: 30px;
   border: 1px black solid;
 }
 
@@ -12778,7 +12778,7 @@ body {
 
 #clienteEncontrado {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 40px;
   color: black;
 }
 
@@ -12812,8 +12812,12 @@ body {
 }
 
 .claveRecuperada {
-  font-size: 14px;
-  color: rgb(87, 84, 84)
+  font-size: 18px;
+  color: rgb(87, 84, 84);
+  background-color: lightgray;
+  margin-left: 5px;
+  padding:10px 12px;
+  border-radius:15px;
 }
 
 .alert1 {

@@ -4,12 +4,12 @@
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-scrolling-nav/blob/master/LICENSE)
  */
 
-// Declaración de constantes globales
+// Declaro las constantes globales
 const CC = "Cuenta Corriente";
 const CP = "Caja de Ahorro en Pesos";
 const CD = "Caja de Ahorro en Dólares";
 
-// Declaración de estados globales
+// Declaro los estados globales
 const ls = localStorage.getItem("arrayClientes") || "[]";
 const arrayClientes = JSON.parse(ls);
 let ss = sessionStorage.getItem("usuario") || "{}";
@@ -62,38 +62,35 @@ if (document.querySelector("#formNuevoCliente")) {
     .addEventListener("submit", nuevoCliente);
 }
 
-// Header para mostrar los saldos de las cuentas actualizados
+// Declaro un header para mostrar los saldos actualizados de las cuentas 
 const header = `<h2 class="mt-4">Saldos</h2>
   <div class="row mb-3">
-    <div class="col-md-3 themed-grid-col">Cuenta corriente<br>$ ${
-      cliente.hasOwnProperty("saldo")
-        ? new Intl.NumberFormat("de-DE").format(
-            parseInt(cliente.saldo.CC).toFixed(2)
-          )
-        : ""
-    }</div>
-    <div class="col-md-3 themed-grid-col">Caja de ahorro en pesos<br>$ ${
-      cliente.hasOwnProperty("saldo")
-        ? new Intl.NumberFormat("de-DE").format(
-            parseInt(cliente.saldo.CP).toFixed(2)
-          )
-        : ""
-    }</div>
-    <div class="col-md-3 themed-grid-col">Caja de ahorro en dólares<br>U$S ${
-      cliente.hasOwnProperty("saldo")
-        ? new Intl.NumberFormat("de-DE").format(
-            parseInt(cliente.saldo.CD).toFixed(2)
-          )
-        : ""
-    }</div>
+    <div class="col-md-3 themed-grid-col">Cuenta corriente<br>$ ${cliente.hasOwnProperty("saldo")
+    ? new Intl.NumberFormat("de-DE").format(
+      parseInt(cliente.saldo.CC).toFixed(2)
+    )
+    : ""
+  }</div>
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en pesos<br>$ ${cliente.hasOwnProperty("saldo")
+    ? new Intl.NumberFormat("de-DE").format(
+      parseInt(cliente.saldo.CP).toFixed(2)
+    )
+    : ""
+  }</div>
+    <div class="col-md-3 themed-grid-col">Caja de ahorro en dólares<br>U$S ${cliente.hasOwnProperty("saldo")
+    ? new Intl.NumberFormat("de-DE").format(
+      parseInt(cliente.saldo.CD).toFixed(2)
+    )
+    : ""
+  }</div>
   </div><hr>`;
 // Fin header
 
 // Función para registrar un nuevo cliente
 function nuevoCliente(e) {
-  // Detener el envío del formulario submit
+  // Detengo el envío del formulario submit
   e.preventDefault();
-  // Recuperar información de los inputs
+  // Recupero la información de los inputs
   const nombre = document.querySelector("#nombre").value;
   const apellido = document.querySelector("#apellido").value;
   const dni = document.querySelector("#dni").value;
@@ -111,11 +108,11 @@ function nuevoCliente(e) {
     saldo,
     operaciones,
   };
-  //pregunto si la edad es mayor a 18
+  // Pregunto si la edad de la persona es mayor a 18
   if (edad >= 18) {
-    // Pregunto si no existe un cliente con el dni suministrado
+    // Pregunto si no existe un cliente con el DNI suministrado
     if (!arrayClientes.find((elemento) => elemento.dni == cliente.dni)) {
-      // Pusheo en el array y disparo de un sweet alert para informar que el cliente fue registrado
+      // Pusheo en el array y disparo un sweet alert para informar que el cliente fue registrado exitosamente
       arrayClientes.push(cliente);
       Swal.fire({
         title: "Nuevo cliente registrado",
@@ -125,21 +122,22 @@ function nuevoCliente(e) {
         showConfirmButton: true,
       });
     } else {
+      // Disparo un sweet alert para informar que el DNI ingresado ya existe
       Swal.fire({
-        title: "Oops Ha ocurrido un error inesperado",
-        text: "El número de DNI es incorrecto",
+        title: "Error",
+        text: "El número de DNI ya existe",
         icon: "error",
         imageWidth: 400,
         imageHeight: 200,
         showConfirmButton: true,
       });
     }
-    // Guardado del array en localstorage y conversión en JSON
+    // Guardo el array en localstorage y lo convierto en JSON
     localStorage.setItem("arrayClientes", JSON.stringify(arrayClientes));
     document.querySelector("#menuPrincipal").style.display = "block";
     document.querySelector("#menuNuevoCliente").style.display = "none";
   } else {
-    // Disparo de un sweet alert en el caso de que la persona sea menor a 18 años
+    // Disparo un sweet alert en el caso de que la persona sea menor a 18 años
     Swal.fire({
       title: "Debe ser mayor a 18 años",
       icon: "warning",
@@ -159,7 +157,7 @@ function nuevoCliente(e) {
   console.log(edad);
   console.log(...arrayClientes);
 }
-// Fin función para registrar un nuevo clientenuevo cliente
+// Fin función para registrar un nuevo cliente
 
 // Función recuperar clave
 if (document.querySelector("#formRecuperarClave")) {
@@ -168,12 +166,11 @@ if (document.querySelector("#formRecuperarClave")) {
     .addEventListener("submit", recuperarClave);
 }
 function recuperarClave(e) {
-  // Detener el envío del formulario submit
+  // Detengo el envío del formulario submit
   e.preventDefault();
-  // Buscar información input DNI
+  // Busco la información input DNI
   const dniBuscar = document.querySelector("#dniBuscar").value;
-  console.log(dniBuscar);
-  // Buscar en localstorage
+  // Busco en el localstorage
   const arrayParaBuscar = JSON.parse(localStorage.getItem("arrayClientes"));
   const resultadoBuscar = arrayParaBuscar.find(
     (personita) => personita.dni == dniBuscar
@@ -181,11 +178,12 @@ function recuperarClave(e) {
   let textoPersonaEncontrada;
   if (resultadoBuscar != undefined) {
     textoPersonaEncontrada = `<h2>${resultadoBuscar.nombre} ${resultadoBuscar.apellido}</h2>
-                                <span><h2>DNI ${resultadoBuscar.dni}</h2></span><br>
-                                <span class="claveRecuperada">Clave ${resultadoBuscar.clave}</span><br>
+                                <span><p>DNI ${new Intl.NumberFormat("de-DE").format(resultadoBuscar.dni)}</p></span><br>
+                                <strong>Clave:</strong>
+                                <span class="claveRecuperada">${resultadoBuscar.clave}</span><br>
                                 <a href="./principal.html" class="btnOp ingreso" id="ingresar">Ir al menú principal</a><br>`;
   } else {
-    textoPersonaEncontrada = `No hay ninguna coincidencia
+    textoPersonaEncontrada = `<h4>El número de DNI ingresado no existe</h4>
                                 <br><br><a href="./principal.html" class="btnOp volverPpal" id="volver">Volver</a>`;
   }
   // Modifico el HTML a través de los id correspondiente (borro y luego escribo)
@@ -595,7 +593,7 @@ function abrirMenuOp(menu) {
     fetch("https://global-currency.p.rapidapi.com/currency/USD/ARS/1", options)
       .then((resp) => resp.json())
       .then((data) => {
-        return data["rateCurrency"].amount * 1.047;
+        return data["rateCurrency"].amount * 1.047; // Aplica el coeficiente para pasar de dólar mayorista a minorista
       })
       .then((data) => {
         precioDolar = data;
@@ -606,12 +604,12 @@ function abrirMenuOp(menu) {
           `<h2 class="dolarTitulo0">Compra de dólares</h2>
                                                                     <h4 class="normativaBCRA">Le recordamos que la operatoria de compra de dólares se encuentra regulada por la normativa de Exterior y Cambios del BCRA y la Ley Penal Cambiarla. La compra es sólo para atesoramiento personal. <strong>El cupo de U$S 200 es mensual y por persona.</strong> Se encuentra prohibido tanto ceder y/o vender el cupo mensual. No se puede comprar dólares a favor de o por cuentas de terceros. En el caso de que se detecte la violación a la normativa vigente, el banco se reserva el derecho de cerrar las cuentas, efectuar la correspondiente denuncia al BCRA y tomar cualquier medida que estime necesaria.</h4>                               
                                                                         <h3 class="dolarTitulo1">Compra a $${new Intl.NumberFormat(
-                                                                          "de-DE"
-                                                                        ).format(
-                                                                          data.toFixed(
-                                                                            2
-                                                                          )
-                                                                        )} sin impuestos ni retenciones</h3>
+            "de-DE"
+          ).format(
+            data.toFixed(
+              2
+            )
+          )} sin impuestos ni retenciones</h3>
                                                                         <h4 class="cotizacionDolar">Cotización dólar por unidad en el Mercado Libre de Cambios, ámbito de aplicación y vigencia para operaciones por banca online al momento de su consulta</h4>
                                                                     </h4>                               
                                                                     <h4 class="ingresarImporte">Ingrese el importe en U$S</h4>
@@ -735,8 +733,8 @@ function abrirMenuOp(menu) {
                     <td class="celda">${index + 1}</td>
                     <td class="celda">${op.tipo}</td>
                     <td class="montoResumen">${new Intl.NumberFormat(
-                      "de-DE"
-                    ).format(op.importe)}</td>
+        "de-DE"
+      ).format(op.importe)}</td>
                     <td class="celda">${op.origen}</td>
                     <td class="celda">${op.destino}</td></tr>
                     `;
