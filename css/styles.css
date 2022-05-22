@@ -13031,6 +13031,15 @@ body {
   color: black;
   margin-top: 0px;
   margin-left: 10px;
+  margin-bottom: 0px;
+}
+
+.numTrans {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  margin-top: 0px;
+  margin-left: 10px;
   margin-bottom: 20px;
 }
 
