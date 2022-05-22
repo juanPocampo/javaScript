@@ -12975,9 +12975,9 @@ body {
 
 /* Comprobantes */
 /* Comprobante transferencia propia */
-#compTransfPropia {
+#comprobante {
   text-align: left;
-  margin-top: 75px;
+  margin-top: 50px;
   margin-left: 75px;
   margin-right: 800px;
 }
